@@ -10,7 +10,9 @@
 | administrateur | associer une annonce à un gestionnaire | gérer la répartition des annonces |     |
 | administrateur | accéder aux statistiques du site | prendre des décisions de gestion |     |
 | administrateur | accéder aux statistiques de toutes les annonces du site | prendre des décisions de gestion |     |
-|  |  |  |  |
+
+| EN TANT QUE | JE VEUX | POUR | SPRINT |
+| --- | --- | --- | :---: |
 | gestionnaire | se connecter au back-office | accéder à ses fonctionnalités |     |
 | gestionnaire | se déconnecter au back-office | quitter le back-office |     |
 | gestionnaire | créer une annonce en brouillon | gérer les annonces du site |     |
@@ -20,7 +22,9 @@
 | gestionnaire | mettre en ligne une annonce | pour rendre l'annonce visible par tout le monde |     |
 | gestionnaire | supprimer un avis/commentaire | modérer |     |
 | gestionnaire | accéder aux statistiques des annonces qu'il gère | prendre des décisions de gestion |     |
-|  |  |  |  |
+
+| EN TANT QUE | JE VEUX | POUR | SPRINT |
+| --- | --- | --- | :---: |
 | visiteur | voir les annonces | les consulter  |     |
 | visiteur | voir une annonce en détail | voir les photos, la description, les infos générales,... |     |
 | visiteur | arriver sur la homepage | decouvrir le site |     |
@@ -31,7 +35,9 @@
 | visiteur | voir les CGV, FAQ | en savoir plus sur le fonctionnement du site |     |
 | visiteur | s'incrire à la newsletter | etre au courant des nouveautés et offres commerciales |     |
 | visiteur | se désinscrire de la newsletter |arreter de recevoir des infos par mail|     |
-|  |  |  |  |
+
+| EN TANT QUE | JE VEUX | POUR | SPRINT |
+| --- | --- | --- | :---: |
 | utilisateur|se connecter|accéder à son compte|      |
 | utilisateur|avoir accès à ses informations, les modifier, les supprimer (CRUD)|gérer son compte|      |
 | utilisateur|supprimer son compte|se désinscrire du site|      |
