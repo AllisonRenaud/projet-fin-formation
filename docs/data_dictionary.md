@@ -23,7 +23,7 @@
 |Field|Type|Specificities|Description|
 |---|---|---|---|
 |comment_id|INT|GENERATED ALWAYS AS IDENTITY|comment identification
-|body|TEXT||comment content
+|body|TEXT|N/A|comment content
 |note|INT|NOT NULL|given note by user
 |created_at|TIMESTAMPTZ|NOT NULL DEFAULT NOW()|comment creation date
 
@@ -60,18 +60,18 @@
 |Field|Type|Specificities|Description|
 |---|---|---|---|
 |picture_id|INT|GENERATED ALWAYS AS IDENTITY|picture identification|
-|main_picture|TEXT|NOT NULL DEFAULT {url}|main picture|
-|galery_picture_1|TEXT||first picture|
-|galery_picture_2|TEXT||second picture|
-|galery_picture_3|TEXT||third picture|
-|galery_picture_4|TEXT||fourth picture|
-|galery_picture_5|TEXT||fifth picture|
+|main_picture|TEXT|NOT NULL DEFAULT {url}|main picture url|
+|galery_picture_1|TEXT|N/A|first picture url|
+|galery_picture_2|TEXT|N/A|second picture url|
+|galery_picture_3|TEXT|N/A|third picture url|
+|galery_picture_4|TEXT|N/A|fourth picture url|
+|galery_picture_5|TEXT|N/A|fifth picture url|
 
 ## NEWSLETTER
 
 |Field|Type|Specificities|Description|
 |---|---|---|---|
-|newsletter_id|INT|GENERATED ALWAYS AS IDENTITY|newsletter identification|s
+|newsletter_id|INT|GENERATED ALWAYS AS IDENTITY|newsletter identification|
 |firstname|TEXT|NOT NULL|user firstname|
 |lastname|TEXT|NOT NULL|user lastname|
 |email|TEXT|NOT NULL|user email|
