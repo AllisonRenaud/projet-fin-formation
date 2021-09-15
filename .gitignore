@@ -1,4 +1,4 @@
-DS_Stores
+.DS_Stores
 node_modules/
 .env
 sqitch.conf
