@@ -41,6 +41,7 @@
 |np_persons|INT|N/A|number of persons for the reservation
 |body|TEXT|NOT NULL|message payload completed by user
 |created_at|TIMESTAMPTZ|NOT NULL DEFAULT NOW()|automaticly completed by actual date when message is posted
+|message_status|BOOL|NOT NULL DEFAULT TRUE|message status (TRUE : not seen / FALSE : seen)
 
 ## BOOKING
 

@@ -4,7 +4,7 @@ USER(__user_id__, firstname, lastname, email, phone, birth_date, zip_code, city_
 
 COMMENT(__comment_id__, body, note, created_at, #user_id, #offer_id)
 
-MESSAGE(__message_id__, firstname, lastname, email, reservation_start, reservation_end, nb_persons, body, created_at, #user_id, #offer_id)
+MESSAGE(__message_id__, firstname, lastname, email, reservation_start, reservation_end, nb_persons, body, created_at, message_status, #user_id, #offer_id)
 
 BOOKING(__booking_id__, reservation_start, reservation_end, reservation_status, message, #user_id, #offer_id)
 
