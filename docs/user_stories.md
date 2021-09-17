@@ -28,6 +28,7 @@
 | administrateur | gérer les rôles des collaborateurs | gérer leurs droits |        |v2|
 | administrateur | associer une annonce à un gestionnaire | gérer la répartition des annonces |     |v2|
 | administrateur | proposer des prix différents en fonction de la saison | diversifier l'offre |     |v2|
+| administrateur | envoyer un rappel par mail en cas d'inaction sur une demande de réservation au bout de 24h | rappeler les demande de réservation |     |v2|
 
 | EN TANT QUE | JE VEUX | POUR | SPRINT | VERSION |
 | --- | --- | --- | --- | --- |

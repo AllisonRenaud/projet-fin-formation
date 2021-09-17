@@ -23,6 +23,7 @@
 |Field|Type|Specificities|Description|
 |---|---|---|---|
 |comment_id|INT|GENERATED ALWAYS AS IDENTITY|comment identification
+|user_name|TEXT|NOT NULL|user firstname
 |body|TEXT|N/A|comment content
 |note|INT|NOT NULL|given note by user
 |created_at|TIMESTAMPTZ|NOT NULL DEFAULT NOW()|comment creation date
@@ -32,7 +33,12 @@
 |Field|Type|Specificities|Description|
 |---|---|---|---|
 |message_id|INT|GENERATED ALWAYS AS IDENTITY|message identification
-|title|TEXT|NOT NULL|automaticly completed by offer title
+|firstname|TEXT|N/A|user firstname
+|lastname|TEXT|N/A|user lastname
+|email|TEXT|N/A|user email
+|reservation_start|TIMESTAMPTZ|N/A|first day of reservation
+|reservation_end|TIMESTAMPTZ|N/A|last day of reservation
+|np_persons|INT|N/A|number of persons for the reservation
 |body|TEXT|NOT NULL|message payload completed by user
 |created_at|TIMESTAMPTZ|NOT NULL DEFAULT NOW()|automaticly completed by actual date when message is posted
 
