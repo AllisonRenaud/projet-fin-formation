@@ -18,8 +18,8 @@
 | administrateur | accepter ou refuser une réservation | gérer les réservations |2|MVP|
 | administrateur | recevoir des messages liés aux annonces | répondre aux questions |2|MVP|
 | administrateur | recevoir une notification par mail à chaque nouveau message | être prévenu de l'arrivée d'un nouveau message |2|MVP|
-| administrateur | supprimer un avis/commentaire | modérer |2|MVP|
 |  |  |  |  |  |
+| administrateur | supprimer un avis/commentaire | modérer ||v1.1|
 | administrateur | envoyer une newsletter | partager des offres avec les utilisateurs enregistrés |     |v1.1|
 | administrateur | accéder aux statistiques du site | prendre des décisions de gestion |        |v1.2|
 | administrateur | accéder aux statistiques de toutes les annonces du site | prendre des décisions de gestion |     |v1.2|
@@ -57,8 +57,8 @@
 | utilisateur|voir le détail d'une réservation|organiser son voyage|2|MVP|
 | utilisateur|recevoir une notification par mail en cas de changement de status de la réservation|gérer ses réservations|2|MVP|
 | utilisateur|demander l'annulation d'une réservation| pour faire face à un imprévu |2|MVP|
-| utilisateur|mettre un avis sur le chalet réservé après le séjour|donner mon avis |2|MVP|
 |  |  |  |  |  |
+| utilisateur|mettre un avis sur le chalet réservé après le séjour|donner mon avis ||v1.1|
 | utilisateur| s'inscrire à la newsletter | recevoir les nouvelles offres |  |v1.1|
 | utilisateur| se désincrire de la newsletter | recevoir les nouvelles offres |  |v1.1|
 | utilisateur|payer ma réservation|finaliser ma réservation|      |v2|
