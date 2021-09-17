@@ -8,4 +8,4 @@ MESSAGE(__message_id__, firstname, lastname, email, reservation_start, reservati
 
 BOOKING(__booking_id__, reservation_start, reservation_end, reservation_status, message, #user_id, #offer_id)
 
-OFFER(__offer_id__, title, description,address, geolocalisation, price, main_picture, galery_picture_1, galery_picture_2, galery_picture_3, galery_picture_4, galery_picture_5)
+OFFER(__offer_id__, title, description,address, geolocalisation, price, main_picture, galery_picture_1, galery_picture_2, galery_picture_3, galery_picture_4, galery_picture_5, published)

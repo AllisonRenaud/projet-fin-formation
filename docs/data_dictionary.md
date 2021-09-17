@@ -69,3 +69,4 @@
 |galery_picture_3|TEXT|N/A|third picture url|
 |galery_picture_4|TEXT|N/A|fourth picture url|
 |galery_picture_5|TEXT|N/A|fifth picture url|
+|published|BOOL|NOT NULL DEFAULT FALSE|is the offer published ? (TRUE : yes / FALSE : no)|
