@@ -23,7 +23,6 @@
 |Field|Type|Specificities|Description|
 |---|---|---|---|
 |comment_id|INT|GENERATED ALWAYS AS IDENTITY|comment identification
-|user_name|TEXT|NOT NULL|user firstname
 |body|TEXT|N/A|comment content
 |note|INT|NOT NULL|given note by user
 |created_at|TIMESTAMPTZ|NOT NULL DEFAULT NOW()|comment creation date
@@ -59,14 +58,20 @@
 |---|---|---|---|
 |offer_id|INT|GENERATED ALWAYS AS IDENTITY|offer identification
 |title|TEXT|NOT NULL|offer title
-|description|TEXT|NOT NULL|offer description
-|adress|TEXT|NOT NULL|adress of offer
-|geolocation|TEXT|NOT NULL|lattitude and longitude in single string separted by space
-|price|INT|NOT NULL|rent price for a week
+|body|TEXT|NOT NULL|offer description
+|zip_code|TEXT |NOT NULL| user zip code|
+|city_name|TEXT|NOT NULL| user city|
+|country|TEXT|NOT NULL| user country|
+|street_name|TEXT|NOT NULL|user street|
+|street_number|TEXT|NOT NULL|user street number|
+|latitude|TEXT|NOT NULL|lattitude
+|longitude|TEXT|NOT NULL|longitude
+|price_ht|INT|NOT NULL|rent price for a week without tax
+|tax|INT|NOT NULL|location tax
 |main_picture|TEXT|NOT NULL DEFAULT {url}|main picture url|
 |galery_picture_1|TEXT|N/A|first picture url|
 |galery_picture_2|TEXT|N/A|second picture url|
 |galery_picture_3|TEXT|N/A|third picture url|
 |galery_picture_4|TEXT|N/A|fourth picture url|
 |galery_picture_5|TEXT|N/A|fifth picture url|
-|published|BOOL|NOT NULL DEFAULT FALSE|is the offer published ? (TRUE : yes / FALSE : no)|
+|offer_status|BOOL|NOT NULL DEFAULT FALSE|is the offer published ? (TRUE : yes / FALSE : no)|
