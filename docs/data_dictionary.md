@@ -37,7 +37,7 @@
 |email|TEXT|N/A|user email
 |reservation_start|TIMESTAMPTZ|N/A|first day of reservation
 |reservation_end|TIMESTAMPTZ|N/A|last day of reservation
-|np_persons|INT|N/A|number of persons for the reservation
+|nb_persons|INT|N/A|number of persons for the reservation
 |body|TEXT|NOT NULL|message payload completed by user
 |created_at|TIMESTAMPTZ|NOT NULL DEFAULT NOW()|automaticly completed by actual date when message is posted
 |message_status|BOOL|NOT NULL DEFAULT TRUE|message status (TRUE : not seen / FALSE : seen)
@@ -75,3 +75,11 @@
 |galery_picture_4|TEXT|N/A|fourth picture url|
 |galery_picture_5|TEXT|N/A|fifth picture url|
 |offer_status|BOOL|NOT NULL DEFAULT FALSE|is the offer published ? (TRUE : yes / FALSE : no)|
+
+## LOCATION
+
+|Field|Type|Specificities|Description|
+|---|---|---|---|
+|location_id|INT|GENERATED ALWAYS AS IDENTITY|location identification
+|name|TEXT|NOT NULL|location name
+|picture|TEXT|NOT NULL|location picture
