@@ -26,7 +26,6 @@ CREATE TABLE "location" (
 
 CREATE TABLE "offer" (
 	"id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "location_id" INTEGER NOT NULL REFERENCES "location"("id"),
 	"title" text NOT NULL,
     "body" text NOT NULL,
     "zip_code" text NOT NULL,
@@ -44,41 +43,42 @@ CREATE TABLE "offer" (
     "galery_picture_3" text,
     "galery_picture_4" text,
     "galery_picture_5" text,
-    "offer_status" boolean NOT NULL DEFAULT 'false'
+    "offer_status" boolean NOT NULL DEFAULT 'false',
+    "location_id" INTEGER NOT NULL REFERENCES "location"("id")
 );
 
 CREATE TABLE "comment" (
 	"id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "user_id" INT NOT NULL REFERENCES "user"("id"),
-    "offer_id" INT NOT NULL REFERENCES "offer"("id"),
 	"body" text NOT NULL,
     "note" int NOT NULL,
-    "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    "user_id" INT NOT NULL REFERENCES "user"("id"),
+    "offer_id" INT NOT NULL REFERENCES "offer"("id")
 );
 
 CREATE TABLE "message" (
 	"id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "offer_id" INT NOT NULL REFERENCES "offer"("id"),
 	-- firstname text ,
 	-- lastname text ,
 	-- email text ,
-    "user_id" INTEGER NOT NULL REFERENCES "user"("id"),
 	"reservation_start" TIMESTAMPTZ,
 	"reservation_end" TIMESTAMPTZ,
     "nb_persons" int,
     "body" text NOT NULL,
     "created_at" timestamptz NOT NULL DEFAULT NOW (),
-    "message_status" boolean NOT NULL DEFAULT 'true'
+    "message_status" boolean NOT NULL DEFAULT 'true',
+    "offer_id" INT NOT NULL REFERENCES "offer"("id"),
+    "user_id" INTEGER NOT NULL REFERENCES "user"("id")
 );
 
 CREATE TABLE "booking" (
 	"id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "user_id" INT NOT NULL REFERENCES "user"("id"),
-    "offer_id" INT NOT NULL REFERENCES "offer"("id"),
 	"reservation_start" timestamptz NOT NULL,
 	"reservation_end" timestamptz NOT NULL,
     "reservation_status" boolean NOT NULL DEFAULT 'false',
-    "message" text
+    "message" text,
+    "user_id" INT NOT NULL REFERENCES "user"("id"),
+    "offer_id" INT NOT NULL REFERENCES "offer"("id")
 );
 
 COMMIT;
