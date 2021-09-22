@@ -1,12 +1,12 @@
 const { json } = require('express');
-const {Booking} = require('../models');
+const {Comment} = require('../models');
 
-const bookingController = {
+const commentController = {
 
     findAll: async (_, response) => {
         try {
-            const bookings = await Booking.findAll();
-            response.json(bookings);
+            const comments = await Comment.findAll();
+            response.json(comments);
         } catch(error) {
             response.status(500).send(error.message);
         }
@@ -14,8 +14,8 @@ const bookingController = {
 
     findById: async (request, response) => {
       try {
-          const booking = await Booking.findById(parseInt(request.params.id, 10));
-          response.json(booking);
+          const comment = await Comment.findById(parseInt(request.params.id, 10));
+          response.json(comment);
       } catch(error) {
           response.status(500).send(error.message);
       }
@@ -23,11 +23,11 @@ const bookingController = {
 
   save: async (request, response) => {
       try {
-          const booking = new Booking(request.body);
-          const newBooking = await booking.save();
-          if (newBooking) {
+          const comment = new Comment(request.body);
+          const newComment = await comment.save();
+          if (newComment) {
               //on a une valeur de retour, il s'agit d'un INSERT
-              response.status(201).json(newBooking);
+              response.status(201).json(newComment);
           } else {
               //pas de valeur de retour, c'était un UPDATE
               response.status(204).json('Update done');
@@ -39,9 +39,9 @@ const bookingController = {
 
   delete: async (request, response) => {
       try {
-          const bookingID = parseInt(request.params.id, 10);
-          await Booking.delete(bookingID);
-          response.status(200).json(`booking with id ${bookingID} deleted`);
+          const commentID = parseInt(request.params.id, 10);
+          await Comment.delete(commentID);
+          response.status(200).json(`Comment with id ${commentID} deleted`);
       } catch(error) {
           response.status(500).send(error.message);
       }
@@ -49,4 +49,4 @@ const bookingController = {
 
 }
 
-module.exports = bookingController;
+module.exports = commentController;

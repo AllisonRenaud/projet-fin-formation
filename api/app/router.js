@@ -4,10 +4,12 @@ const router = Router();
 const {
     userRoutes,
     offerRoutes,
-    messageRoutes
+    messageRoutes,
+    bookingRoutes,
+    commentRoutes
 } = require('./routes/index');
 
-router.use(userRoutes, offerRoutes, messageRoutes)
+router.use(userRoutes, offerRoutes, messageRoutes, bookingRoutes, commentRoutes)
 
 // router.get('/test', (req, res) => {
 //     res.json('Good !');

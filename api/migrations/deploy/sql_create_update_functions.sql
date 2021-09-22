@@ -64,6 +64,51 @@ CREATE FUNCTION update_message(json) RETURNS void AS $$
 		reservation_end=($1->>'reservation_end')::timestamptz,
         nb_persons=($1->>'nb_persons')::int,
 		body=$1->>'body',
+		message_status=($1->>'message_status')::boolean,
+		offer_id=($1->>'offer_id')::int,
+		user_id=($1->>'user_id')::int
+	WHERE id=($1->>'id')::int;
+$$ LANGUAGE SQL STRICT;
+
+--BOOKING FUNCTIONS
+
+CREATE FUNCTION new_booking(myRecord json) RETURNS int AS $$
+	INSERT INTO "booking" ("reservation_start", "reservation_end", "offer_id", "user_id")
+	VALUES (
+		(myRecord->>'reservation_start')::timestamptz,
+		(myRecord->>'reservation_end')::timestamptz,
+		(myRecord->>'offer_id')::int,
+		(myRecord->>'user_id')::int
+	) RETURNING id
+$$ LANGUAGE SQL STRICT;
+
+CREATE FUNCTION update_booking(json) RETURNS void AS $$
+	UPDATE "booking" SET
+		reservation_start=($1->>'reservation_start')::timestamptz,
+		reservation_end=($1->>'reservation_end')::timestamptz,
+        message=$1->>'message',
+		reservation_status=($1->>'reservation_status')::boolean,
+		offer_id=($1->>'offer_id')::int,
+		user_id=($1->>'user_id')::int
+	WHERE id=($1->>'id')::int;
+$$ LANGUAGE SQL STRICT;
+
+-- COMMENT FUNCTIONS
+
+CREATE FUNCTION new_comment(myRecord json) RETURNS int AS $$
+	INSERT INTO "comment" ("body", "note", "offer_id", "user_id")
+	VALUES (
+		myRecord->>'body',
+		(myRecord->>'note')::int,
+		(myRecord->>'offer_id')::int,
+		(myRecord->>'user_id')::int
+	) RETURNING id
+$$ LANGUAGE SQL STRICT;
+
+CREATE FUNCTION update_comment(json) RETURNS void AS $$
+	UPDATE "comment" SET
+		body=$1->>'body',
+        note=($1->>'note')::int,
 		offer_id=($1->>'offer_id')::int,
 		user_id=($1->>'user_id')::int
 	WHERE id=($1->>'id')::int;
