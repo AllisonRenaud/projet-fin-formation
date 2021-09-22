@@ -92,3 +92,42 @@ Content-Type: application/json
 
 ### Delete one offer
 DELETE {{host}}/offers/3
+
+
+
+# ------ MESSAGE
+
+### Get all messages
+GET {{host}}/messages
+
+### Get one messages
+GET {{host}}/messages/1
+
+### Create new message
+POST {{host}}/messages
+Content-Type: application/json
+
+{
+    "reservation_start": "2021-10-16 10:00:00+02",
+    "reservation_end": "2021-10-23 14:00:00+02",
+    "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dapibus gravida vestibulum. Curabitur ac elit a elit mattis lobortis. Maecenas lacinia nisl ut accumsan venenatis. Vivamus at enim tempor, dapibus enim eget, ultrices elit. Aliquam efficitur eleifend odio, suscipit vestibulum ipsum.",
+    "offer_id": 2,
+    "user_id": 1
+}
+
+### Update message
+POST {{host}}/messages
+Content-Type: application/json
+
+{
+    "id": 3,
+    "reservation_start": "2021-10-16 04:00:00+02",
+    "reservation_end": "2021-10-23 18:00:00+02",
+    "nb_persons": 12,
+    "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dapibus gravida vestibulum. Curabitur ac elit a elit mattis lobortis. Maecenas lacinia nisl ut accumsan venenatis. Vivamus at enim tempor, dapibus enim eget, ultrices elit. Aliquam efficitur eleifend odio, suscipit vestibulum ipsum.",
+    "offer_id": 2,
+    "user_id": 1
+}
+
+### Delete one message
+DELETE {{host}}/messages/3

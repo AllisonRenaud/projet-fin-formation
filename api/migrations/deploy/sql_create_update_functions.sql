@@ -2,6 +2,8 @@
 
 BEGIN;
 
+-- OFFER FUNCTIONS
+
 CREATE FUNCTION new_offer(myRecord json) RETURNS int AS $$
 	INSERT INTO "offer" ("title", "body", "zip_code", "city_name", "country", "street_name", "street_number", "price_ht", "tax", "main_picture", "location_id")
 	VALUES (
@@ -43,6 +45,28 @@ CREATE FUNCTION update_offer(json) RETURNS void AS $$
 $$ LANGUAGE SQL STRICT;
 
 
+-- MESSAGE FUNCTIONS
 
+CREATE FUNCTION new_message(myRecord json) RETURNS int AS $$
+	INSERT INTO "message" ("reservation_start", "reservation_end", "body", "offer_id", "user_id")
+	VALUES (
+		(myRecord->>'reservation_start')::timestamptz,
+		(myRecord->>'reservation_end')::timestamptz,
+		myRecord->>'body',
+		(myRecord->>'offer_id')::int,
+		(myRecord->>'user_id')::int
+	) RETURNING id
+$$ LANGUAGE SQL STRICT;
+
+CREATE FUNCTION update_message(json) RETURNS void AS $$
+	UPDATE "message" SET
+		reservation_start=($1->>'reservation_start')::timestamptz,
+		reservation_end=($1->>'reservation_end')::timestamptz,
+        nb_persons=($1->>'nb_persons')::int,
+		body=$1->>'body',
+		offer_id=($1->>'offer_id')::int,
+		user_id=($1->>'user_id')::int
+	WHERE id=($1->>'id')::int;
+$$ LANGUAGE SQL STRICT;
 
 COMMIT;

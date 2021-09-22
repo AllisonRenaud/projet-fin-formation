@@ -1,5 +1,5 @@
 const { json } = require('express');
-const User = require('../models/User');
+const {User} = require('../models');
 
 const userController = {
 
