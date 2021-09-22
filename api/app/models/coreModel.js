@@ -45,7 +45,7 @@ class CoreModel {
 
     static async delete(id) {
       try {
-        await db.query(`DELETE FROM "${this.constructor.tableName}" WHERE id = $1`, [id]);
+        await db.query(`DELETE FROM "${this.tableName}" WHERE id = $1`, [id]);
       } catch(error) {
         if(error.detail) {
           throw new Error(error.detail)
