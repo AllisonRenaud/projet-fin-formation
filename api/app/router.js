@@ -2,10 +2,11 @@ const {Router} = require('express');
 const router = Router();
 
 const {
-    userRoutes
+    userRoutes,
+    offerRoutes
 } = require('./routes/index');
 
-router.use(userRoutes)
+router.use(userRoutes, offerRoutes)
 
 // router.get('/test', (req, res) => {
 //     res.json('Good !');
