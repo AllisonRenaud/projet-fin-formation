@@ -1,7 +1,39 @@
-@host=http://localhost:5000
+@host=http://localhost:3000
 
 ### Test
 GET {{host}}/test
 
+
+
+
 ### Get all users
 GET {{host}}/user
+
+### Get one user
+GET {{host}}/user/1
+
+### Create new user
+POST {{host}}/user
+Content-Type: application/json
+
+{
+    "firstname": "Tony",
+    "lastname": "Montana",
+    "email": "toto@montana.ca",
+    "password": "qwerty"
+}
+
+### Update user
+POST {{host}}/user
+Content-Type: application/json
+
+{
+    "id": 4,
+    "firstname": "Maurice",
+    "lastname": "Montana",
+    "email": "toto@montana.ca",
+    "password": "azerty"
+}
+
+### Delete one user
+DELETE {{host}}/user/4

@@ -4,9 +4,10 @@ const userController = require("../controllers/userController")
 
 userRouter.route("/user")
 .get(userController.findAll)
-// .patch(userController.updateOne)
-// .delete(userController.deleteOne)
+.post(userController.save)
 
-
+userRouter.route("/user/:id")
+.get(userController.findById)
+.delete(userController.delete)
 
 module.exports = userRouter
