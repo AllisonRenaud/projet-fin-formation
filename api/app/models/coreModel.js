@@ -14,11 +14,14 @@ class CoreModel {
         }
     }
 
-    static findById(id, callback) {
-        db.query(`SELECT * FROM "${this.tableName}" WHERE id = $1`, [id], (error, result) => {
-            if(error) callback(error, null)
-            else callback(null, new this(result.rows[0]));
-        });
+    static async findById(id) {
+      try {
+        const {rows} = await db.query(`SELECT * FROM "${this.tableName}" WHERE id = $1`, [id]);
+        return new this(rows[0]);
+      } catch(error) {
+        if(error.detail) throw new Error(error.detail);
+        throw error;
+      }
     }
 
     async save() {
@@ -40,12 +43,16 @@ class CoreModel {
         }
     }
 
-    delete(callback) {
-        db.query(`DELETE FROM "${this.constructor.tableName
-        }" WHERE id = $1`, [this.id], (error, result) => {
-            if(error) callback(error, null);
-            else callback(null, true);
-        });
+    static async delete(id) {
+      try {
+        await db.query(`DELETE FROM "${this.constructor.tableName}" WHERE id = $1`, [id]);
+      } catch(error) {
+        if(error.detail) {
+          throw new Error(error.detail)
+        } else {
+            throw error;
+        }
+      }
     }
 }
 
