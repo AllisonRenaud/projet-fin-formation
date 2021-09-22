@@ -1,0 +1,23 @@
+.footer{
+    background-color: #08D9D6;
+    height: 5rem;
+    width: 100% ;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    bottom: 0;
+    
+    &__navigation{
+      display: flex;
+      justify-content: space-evenly;
+     
+  
+      &__link{
+        color: #EAEAEA;
+        font-weight: bold;
+        padding: 1rem;
+  
+      }
+    }
+  }
+  
