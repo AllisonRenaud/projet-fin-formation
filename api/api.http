@@ -1,0 +1,7 @@
+@host=http://localhost:5000
+
+### Test
+GET {{host}}/test
+
+### Get all users
+GET {{host}}/user
