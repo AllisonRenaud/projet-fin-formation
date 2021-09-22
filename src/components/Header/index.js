@@ -1,46 +1,69 @@
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { Image } from 'semantic-ui-react';
 
-import chalet from '../../assets/chalet.svg';
+import chalet from '../../assets/images/chalet.svg';
 import './header.scss';
 
-const Header = () => (
-  <header className="header">
-    <img src={chalet} alt="logo O'Chalet" className="header__logo" />
-    <nav className="header__navigation">
-      <NavLink
-        className="header__navigation__link"
-        activeClassName="header__navigation__link--active"
-        to="/"
-        exact
-      >
-        Accueil
-      </NavLink>
-      <NavLink
-        className="header__navigation__link"
-        activeClassName="header__navigation__link--active"
-        to="/offers"
-        exact
-      >
-        Annonces
-      </NavLink>
-      <NavLink
-        className="header__navigation__link"
-        activeClassName="header__navigation__link--active"
-        to="/signin"
-        exact
-      >
-        Connexion
-      </NavLink>
-      <NavLink
-        className="header__navigation__link"
-        activeClassName="header__navigation__link--active"
-        to="/signup"
-        exact
-      >
-        Inscription
-      </NavLink>
-    </nav>
-  </header>
-);
+const Header = () => {
+  const logged = useSelector((state) => state.user.logged);
+
+  return (
+    <header className="header">
+      <img src={chalet} alt="logo O'Chalet" className="header__logo" />
+      <nav className="header__navigation">
+        <NavLink
+          className="header__navigation__link"
+          activeClassName="header__navigation__link--active"
+          to="/"
+          exact
+        >
+          Accueil
+        </NavLink>
+        <NavLink
+          className="header__navigation__link"
+          activeClassName="header__navigation__link--active"
+          to="/offers"
+          exact
+        >
+          Annonces
+        </NavLink>
+        {!logged && (
+        <NavLink
+          className="header__navigation__link"
+          activeClassName="header__navigation__link--active"
+          to="/signin"
+          exact
+        >
+          Connexion
+        </NavLink>
+        )}
+        {!logged && (
+        <NavLink
+          className="header__navigation__link"
+          activeClassName="header__navigation__link--active"
+          to="/signup"
+          exact
+        >
+          Inscription
+        </NavLink>
+        )}
+        {logged && (
+        <NavLink
+          className="header__navigation__link"
+          activeClassName="header__navigation__link--active"
+          to="/account/profile"
+          exact
+        >
+          <div className="header__navigation__avatar">
+            <Image src="https://react.semantic-ui.com/images/wireframe/square-image.png" avatar />
+            <span>Username</span>
+          </div>
+        </NavLink>
+        )}
+      </nav>
+    </header>
+  );
+};
 
 export default Header;
