@@ -1,9 +1,6 @@
-import Alpes1 from '../../assets/Alpes-nord.svg';
-import Alpes2 from '../../assets/Alpes-sud.svg';
-import Jura from '../../assets/Jura.svg';
-import MassifCentral from '../../assets/Massif-central.svg';
-import Pyrénées from '../../assets/Pyrénées.svg';
-import Vosges from '../../assets/Vosges.svg';
+import Alpes1 from '../../assets/images/Alpes-nord.svg';
+import Alpes2 from '../../assets/images/Alpes-sud.svg';
+import MassifCentral from '../../assets/images/Massif-central.svg';
 
 import './main.scss';
 
