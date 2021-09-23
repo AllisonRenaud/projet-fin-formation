@@ -25,3 +25,56 @@ export const setUserPassword = (value) => (
     value,
   }
 );
+
+export const SET_USER_FIRSTNAME = 'SET_USER_FIRSTNAME';
+
+export const setUserFirstname = (value) => (
+  {
+    type: SET_USER_FIRSTNAME,
+    value,
+  }
+);
+
+export const SET_USER_LASTNAME = 'SET_USER_LASTNAME';
+
+export const setUserLastname = (value) => (
+  {
+    type: SET_USER_LASTNAME,
+    value,
+  }
+);
+
+export const SET_USER_PASSWORDCONFIRM = 'SET_USER_PASSWORDCONFIRM';
+
+export const setUserPasswordConfirm = (value) => (
+  {
+    type: SET_USER_PASSWORDCONFIRM,
+    value,
+  }
+);
+
+export const LOGIN = 'LOGIN';
+
+export const login = () => (
+  {
+    type: LOGIN,
+  }
+);
+
+export const CONNECT_USER = 'CONNECT_USER';
+
+export const connectUser = (data) =>(
+  {
+    type: CONNECT_USER,
+    data,
+  }
+);
+
+export const SIGNUP = 'SIGNUP';
+
+export const signup = (data) => (
+  {
+    type: SIGNUP,
+    data,
+  }
+);

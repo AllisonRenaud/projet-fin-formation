@@ -1,7 +1,7 @@
 import { Button, Checkbox, Form } from 'semantic-ui-react';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { setUserEmail, setUserPassword } from '../../actions/user';
+import { setUserEmail, setUserPassword, login } from '../../actions/user';
 
 import './signin.scss';
 
@@ -14,12 +14,16 @@ const Signin = () => {
 
   const changeUserEmail = (value) => {
     dispatch(setUserEmail(event.target.value));
-    console.log(email);
   };
 
   const changeUserPassword = (value) => {
     dispatch(setUserPassword(event.target.value));
-    console.log(password);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(login());
+    console.log('Test connexion');
   };
 
   // handleChange = (event) => {
@@ -30,11 +34,10 @@ const Signin = () => {
   return (
     <main className="signin">
       <img className="signin__logo" src={signinLogo} alt="signin" />
-      <Form className="signin__form">
+      <Form className="signin__form" autoComplete="on" onSubmit={handleSubmit}>
         <Form.Field>
          <label>Email</label>
           <input
-            autoComplete="on"
             type="email"
             value={email}
             placeholder="Email"
@@ -54,8 +57,14 @@ const Signin = () => {
           <Checkbox label="Se souvenir de moi" />
         </Form.Field>
         <div className="signin__form__buttons">
-          <Button className="signin__form__button" color="blue" type="submit">Se connecter</Button>
-          <Button className="signin__form__button" color="red">Mot de passe oublié</Button>
+          <Button
+            className="signin__form__button"
+            color="blue"
+            type="submit"
+          >
+            Se connecter
+          </Button>
+          {/* <Button className="signin__form__button" color="red">Mot de passe oublié</Button> */}
         </div>
       </Form>
     </main>
