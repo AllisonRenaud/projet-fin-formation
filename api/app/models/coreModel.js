@@ -10,14 +10,19 @@ class CoreModel {
                 }
             return instances
         } catch (error) {
-            console.log(error)
+          if(error.detail) {
+            throw new Error(error.detail)
+          } else {
+              throw error;
+          }
         }
     }
 
     static async findById(id) {
       try {
         const {rows} = await db.query(`SELECT * FROM "${this.tableName}" WHERE id = $1`, [id]);
-        return new this(rows[0]);
+        if(!rows[0]) throw new Error("no data with id " + id)
+        return new this(rows[0])
       } catch(error) {
         if(error.detail) throw new Error(error.detail);
         throw error;
@@ -28,6 +33,7 @@ class CoreModel {
         try {
             if (this.id) {
                 await db.query(`SELECT update_${this.constructor.tableName}($1)`, [this]);
+            
             } else {
                 const {rows} = await db.query(`SELECT new_${this.constructor.tableName}($1) AS id`, [this]);
                 this.id = rows[0].id;
