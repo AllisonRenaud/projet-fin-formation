@@ -5,8 +5,8 @@ module.exports = async (req, res, next) => {
     try {
         console.log("validator activated")
 
-        let urlSchemaMatch = req.url.split("/")[1]
-        
+        let urlSchemaMatch = req.url.split("/").find(element => element)
+                
         if(urlSchemaMatch.includes("?")) urlSchemaMatch = urlSchemaMatch.split("?").shift()
         
         const dataLocationsList = ["body", "query"]
@@ -42,7 +42,7 @@ const validate = (data, urlSchemaMatch, method) => {
            
             const {error, value} = schema[urlSchemaMatch][schemaName].validate(data)
             
-            if(error) return reject({message: error})
+            if(error) return reject(error.details[0])
             else return resolve(value)
 
   
@@ -51,7 +51,7 @@ const validate = (data, urlSchemaMatch, method) => {
             
 
             const {error, value} = schema.auth[urlSchemaMatch].validate(data)
-            if(error) return reject({message: error})
+            if(error) return reject(error.details[0])
             else return resolve(value)
             
         }

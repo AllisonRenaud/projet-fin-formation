@@ -14,7 +14,8 @@ class User extends CoreModel {
     static async findByEmail(email) {
         try {
           
-          return await db.query('SELECT * FROM "user" WHERE "email" = $1', [email]);
+          const {rows} = await db.query('SELECT * FROM "user" WHERE "email" = $1', [email]);
+          return rows[0]
           
 
         } catch(error) {
