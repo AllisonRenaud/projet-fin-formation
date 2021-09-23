@@ -1,12 +1,12 @@
 const { json } = require('express');
-const {User} = require('../models');
+const {Offer} = require('../models');
 
-const userController = {
+const offerController = {
 
     findAll: async (_, response) => {
         try {
-            const users = await User.findAll();
-            response.json(users);
+            const offers = await Offer.findAll();
+            response.json(offers);
         } catch(error) {
             response.status(500).send(error.message);
         }
@@ -14,36 +14,34 @@ const userController = {
 
     findById: async (request, response) => {
       try {
-          const user = await User.findById(parseInt(request.params.id, 10));
-          if(!user) response.status(404).send(`no user with id ${request.params.id}`)
-          response.json(user);
+          const offer = await Offer.findById(parseInt(request.params.id, 10));
+          response.json(offer);
       } catch(error) {
           response.status(500).send(error.message);
       }
-      
   },
 
   save: async (request, response) => {
       try {
-          const user = new User(request.body);
-          const newUser = await user.save();
-          if (newUser) {
+          const offer = new Offer(request.body);
+          const newOffer = await offer.save();
+          if (newOffer) {
               //on a une valeur de retour, il s'agit d'un INSERT
-              response.status(201).json(newUser);
+              response.status(201).json(newOffer);
           } else {
               //pas de valeur de retour, c'était un UPDATE
               response.status(204).json('Update done');
           }
       } catch (error) {
-        response.status(500).send(error.message);
+          response.status(500).send(error.message);
       }
   },
 
   delete: async (request, response) => {
       try {
-          const userID = parseInt(request.params.id, 10);
-          await User.delete(userID);
-          response.status(200).json(`User with id ${userID} deleted`);
+          const offerID = parseInt(request.params.id, 10);
+          await Offer.delete(offerID);
+          response.status(200).json(`Offer with id ${offerID} deleted`);
       } catch(error) {
           response.status(500).send(error.message);
       }
@@ -51,4 +49,4 @@ const userController = {
 
 }
 
-module.exports = userController;
+module.exports = offerController;

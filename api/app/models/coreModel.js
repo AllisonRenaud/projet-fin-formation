@@ -10,21 +10,30 @@ class CoreModel {
                 }
             return instances
         } catch (error) {
-            console.log(error)
+          if(error.detail) {
+            throw new Error(error.detail)
+          } else {
+              throw error;
+          }
         }
     }
 
-    static findById(id, callback) {
-        db.query(`SELECT * FROM "${this.tableName}" WHERE id = $1`, [id], (error, result) => {
-            if(error) callback(error, null)
-            else callback(null, new this(result.rows[0]));
-        });
+    static async findById(id) {
+      try {
+        const {rows} = await db.query(`SELECT * FROM "${this.tableName}" WHERE id = $1`, [id]);
+        if(!rows[0]) throw new Error("no data with id " + id)
+        return new this(rows[0])
+      } catch(error) {
+        if(error.detail) throw new Error(error.detail);
+        throw error;
+      }
     }
 
     async save() {
         try {
             if (this.id) {
                 await db.query(`SELECT update_${this.constructor.tableName}($1)`, [this]);
+            
             } else {
                 const {rows} = await db.query(`SELECT new_${this.constructor.tableName}($1) AS id`, [this]);
                 this.id = rows[0].id;
@@ -40,12 +49,16 @@ class CoreModel {
         }
     }
 
-    delete(callback) {
-        db.query(`DELETE FROM "${this.constructor.tableName
-        }" WHERE id = $1`, [this.id], (error, result) => {
-            if(error) callback(error, null);
-            else callback(null, true);
-        });
+    static async delete(id) {
+      try {
+        await db.query(`DELETE FROM "${this.tableName}" WHERE id = $1`, [id]);
+      } catch(error) {
+        if(error.detail) {
+          throw new Error(error.detail)
+        } else {
+            throw error;
+        }
+      }
     }
 }
 

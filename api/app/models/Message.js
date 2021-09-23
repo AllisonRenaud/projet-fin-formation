@@ -1,7 +1,7 @@
 const CoreModel = require('./coreModel');
 
-class User extends CoreModel {
-    static tableName = "user";
+class Message extends CoreModel {
+    static tableName = "message";
 
     constructor(obj={}) {
         super(obj);
@@ -11,4 +11,4 @@ class User extends CoreModel {
     }
 }
 
-module.exports = User;
+module.exports = Message;
