@@ -55,7 +55,7 @@ const Signin = () => {
         </Form.Field>
         <div className="signin__form__buttons">
           <Button className="signin__form__button" color="blue" type="submit">Se connecter</Button>
-          <Button className="signin__form__button" color="red" type="submit">Mot de passe oublié</Button>
+          <Button className="signin__form__button" color="red">Mot de passe oublié</Button>
         </div>
       </Form>
     </main>
