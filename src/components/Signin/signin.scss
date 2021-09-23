@@ -1,0 +1,24 @@
+.signin{
+  height: 71vh;
+  margin: 3rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__logo{
+    width: 400px;
+    height: 400px;
+  }
+
+  &__form{
+    width: 400px;
+    height: 200px;
+    margin-left: 3rem;
+  
+    &__buttons{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
+  }
+}

@@ -1,9 +1,9 @@
-export const initialState = {
+import { combineReducers } from 'redux';
 
-};
+import userReducer from './user';
 
-const reducer = (state = initialState, action = {}) => {
+const rootReducer = combineReducers({
+  user: userReducer,
+});
 
-};
-
-export default reducer;
+export default rootReducer;
