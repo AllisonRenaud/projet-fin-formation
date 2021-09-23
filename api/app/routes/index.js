@@ -3,5 +3,6 @@ module.exports = {
     offerRoutes: require('./offerRoutes'),
     messageRoutes: require('./messageRoutes'),
     bookingRoutes: require('./bookingRoutes'),
-    commentRoutes: require('./commentRoutes')
+    commentRoutes: require('./commentRoutes'),
+    authRoutes: require('./authRoutes')
 }

@@ -10,16 +10,6 @@ GET {{host}}/user
 ### Get one user
 GET {{host}}/user/78
 
-### Create new user
-POST {{host}}/user
-Content-Type: application/json
-
-{
-    "firstname": "Tony",
-    "lastname": "Montana",
-    "email": "toto@montana.ca",
-    "password": "Azerty123"
-}
 
 ### Update user
 POST {{host}}/user
@@ -34,4 +24,4 @@ Content-Type: application/json
 }
 
 ### Delete one user
-DELETE {{host}}/user/5
+DELETE {{host}}/user/12
