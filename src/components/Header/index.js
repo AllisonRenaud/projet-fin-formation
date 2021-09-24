@@ -58,7 +58,6 @@ const Header = () => {
           activeClassName="header__navigation__link--active"
           to="/profile"
           exact
-          onClick={dispatch(connectUser())}
         >
           <div className="header__navigation__avatar">
             {/* <Image src="https://react.semantic-ui.com/images/wireframe/square-image.png" avatar /> */}
