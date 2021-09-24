@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { connectUser, LOGIN, SIGNUP, signup } from '../actions/user';
+import { connectUser, LOGIN, SIGNUP, signup, SAVE_USER_DATA, saveUserData } from '../actions/user';
 
 const axiosInstance = axios.create({
   baseURL: 'https://ochalet-api.herokuapp.com',
@@ -17,9 +17,11 @@ export default (store) => (next) => (action) => {
         },
       ).then(
         (response) => {
-          store.dispatch(connectUser(response.data));
-          //axiosInstance.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
+          // store.dispatch(connectUser(response.data));
+          store.dispatch(saveUserData(response.data))
+          axiosInstance.defaults.headers.common.Authorization = `Bearer ${response.data.accessToken}`;
           console.log('Connexion OK !');
+          console.log(response.data.accessToken);
         },
       ).catch(
         () => console.log('error'),
@@ -47,7 +49,23 @@ export default (store) => (next) => (action) => {
       );
       next(action);
       break;
-    }
+    };
+    case SAVE_USER_DATA: {
+      axiosInstance.get('/user',
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
+      .then(
+        (response) => {
+          store.dispatch(connectUser(response.data));
+        },
+      ).catch(
+        (error) => console.log(error.message),
+      );
+    };
     default:
       next(action);
   }

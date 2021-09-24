@@ -63,7 +63,7 @@ export const login = () => (
 
 export const CONNECT_USER = 'CONNECT_USER';
 
-export const connectUser = (data) =>(
+export const connectUser = (data) => (
   {
     type: CONNECT_USER,
     data,
@@ -78,3 +78,12 @@ export const signup = (data) => (
     data,
   }
 );
+
+export const SAVE_USER_DATA = 'SAVE_USER_DATA';
+
+export const saveUserData = (data) => (
+  {
+    type: SAVE_USER_DATA,
+    data,
+  }
+)

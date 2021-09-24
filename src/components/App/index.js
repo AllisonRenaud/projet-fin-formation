@@ -10,6 +10,9 @@ import Offers from '../Offers';
 import Offer from '../Offer';
 import Signin from '../Signin';
 import Signup from '../Signup';
+import Profile from '../Profile';
+import Admin from '../Backoffice/Admin';
+import User from '../Backoffice/User';
 
 // == Composant
 const App = () => (
@@ -30,6 +33,15 @@ const App = () => (
       </Route>
       <Route path="/signin" exact>
         <Signin />
+      </Route>
+      <Route path="/profile" exact>
+        <Profile />
+      </Route>
+      <Route path="/account/admin" exact>
+        <Admin />
+      </Route>
+      <Route path="/account/user" exact>
+        <User />
       </Route>
     </Switch>
     <Footer />

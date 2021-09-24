@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './footer.scss';
 
 const Footer = () => (
-  <header className="footer">
+  <footer className="footer">
     <nav className="footer__navigation">
       <Link
         className="footer__navigation__link"
@@ -41,7 +41,7 @@ const Footer = () => (
         Politique de confidentialité
       </Link>
     </nav>
-  </header>
+  </footer>
 );
 
 export default Footer;
