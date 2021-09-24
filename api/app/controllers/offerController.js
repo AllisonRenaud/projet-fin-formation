@@ -1,4 +1,3 @@
-const { json } = require('express');
 const {Offer} = require('../models');
 
 const offerController = {

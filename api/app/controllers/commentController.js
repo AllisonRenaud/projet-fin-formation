@@ -1,4 +1,3 @@
-const { json } = require('express');
 const {Comment} = require('../models');
 
 const commentController = {
