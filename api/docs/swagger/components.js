@@ -18,7 +18,7 @@ module.exports = {
 
       Login: {
         type: "object",
-        required: ["pseudo","password"],
+        required: ["email","password"],
         properties: {
           pseudo:{
             type: "string",

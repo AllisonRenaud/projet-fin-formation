@@ -2,8 +2,8 @@ module.exports = {
     // operation's method
     post: {
       security: [{bearerAuth: []}],
-      tags: ["Subject"], // operation's tag
-      description: "Create subject {}", // short desc
+      tags: ["Booking"], // operation's tag
+      description: "Create booking {}", // short desc
      // expected params
       requestBody: {
         required:true,
@@ -37,12 +37,12 @@ module.exports = {
       responses: {
         // response code
         200: {
-          description: "Return new subject", // response desc.
+          description: "Return new booking", // response desc.
           content: {
             // content-type
             "application/json": {
               schema: {
-                $ref: "#/components/schemas/Subject",
+                $ref: "#/components/schemas/Booking",
               },
             },
           },
@@ -61,7 +61,7 @@ module.exports = {
         },
         // response code
         404: {
-          description: "Subject author not found or missing field",
+          description: "Booking not found or missing field",
           content: {
             // content-type
             "application/json": {

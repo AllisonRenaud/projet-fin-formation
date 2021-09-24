@@ -2,8 +2,8 @@ module.exports = {
     // method of operation
     get: {
       security: [{bearerAuth: []}],
-      tags: ["Subject"], // operation's tag.
-      description: "Get all subjects or filter by user_id or title using query parameter [{}]", // operation's desc.
+      tags: ["Booking"], // operation's tag.
+      description: "Get all bookings or filter by user_id or title using query parameter [{}]", // operation's desc.
       parameters: [
         // expected params.
         {
@@ -24,7 +24,7 @@ module.exports = {
       responses: {
         // response code
         200: {
-          description: "Return subjects with populated author path", // response desc.
+          description: "Return bookings with populated author path", // response desc.
           content: {
             // content-type
             "application/json": {
@@ -36,7 +36,7 @@ module.exports = {
         },
 
         404: {
-          description: "Subject not found", // response desc.
+          description: "Bookings not found", // response desc.
           content: {
             // content-type
             "application/json": {

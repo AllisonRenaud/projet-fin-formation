@@ -3,7 +3,7 @@
 module.exports = {
   // operation's method
   post: {
-    tags: ["Auth"], // operation's tag
+    tags: ["Authentification"], // operation's tag
     description: "Register", // short desc
     parameters: [], // expected params
     requestBody: {

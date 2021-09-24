@@ -1,27 +1,35 @@
 module.exports = {
-    // operation's method.
-    delete: {
+    // operation's method
+    get: {
       security: [{bearerAuth: []}],
-      tags: ["Subject"], // operation's tag
-      description: "Delete subject", // short desc
+      tags: ["Booking"], // operation's tag.
+      description: "Get a booking {}", // operation's desc.
       parameters: [
-        // expected parameters
+        // expected params.
         {
-          name: "_id", // name of param
-          in: "path", // location of param
+          name: "_id", // name of the param
+          in: "path", // location of the param
           schema: {
-            $ref: "#/components/schemas/_id", // id model
+            $ref: "#/components/schemas/_id", // data model of the param
           },
-          required: true, // mandatory
+          required: true, // Mandatory param
         },
       ],
       // expected responses
       responses: {
         // response code
         200: {
-          description: "Subject is deleted", // response desc.
+          description: "Return booking", // response desc.
+          content: {
+            // content-type
+            "application/json": {
+              schema: {
+                $ref: "#/components/schemas/Booking",
+              },
+            },
+          },
         },
-  
+
         401: {
           description: "Authorization missing", // response desc.
           content: {
@@ -35,7 +43,7 @@ module.exports = {
         },
         // response code
         404: {
-          description: "Subject not found",
+          description: "Booking not found",
           content: {
             // content-type
             "application/json": {
