@@ -7,6 +7,7 @@ import './header.scss';
 
 const Header = () => {
   const logged = useSelector((state) => state.user.logged);
+  const username = useSelector((state) => state.user.firstname);
 
   return (
     <header className="header">
@@ -56,8 +57,8 @@ const Header = () => {
           exact
         >
           <div className="header__navigation__avatar">
-            <Image src="https://react.semantic-ui.com/images/wireframe/square-image.png" avatar />
-            <span>Username</span>
+            {/* <Image src="https://react.semantic-ui.com/images/wireframe/square-image.png" avatar /> */}
+            <span>Bonjour {username}</span>
           </div>
         </NavLink>
         )}
