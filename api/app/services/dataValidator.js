@@ -5,9 +5,9 @@ module.exports = async (req, res, next) => {
     try {
         console.log("validator activated")
 
-        let urlSchemaMatch = req.url.split("/").find(element => element)
+        let urlSchemaMatch = req.url.split("/")
                 
-        if(urlSchemaMatch.includes("?")) urlSchemaMatch = urlSchemaMatch.split("?").shift()
+        if(urlSchemaMatch.includes("?")) urlSchemaMatch = urlSchemaMatch.split("?").shift().find(element => schema[element])
         
         const dataLocationsList = ["body", "query"]
 
@@ -32,9 +32,9 @@ const validate = (data, urlSchemaMatch, method) => {
             const schemaName = Object.keys(schema[urlSchemaMatch]).find(name => {
                 // if(method === "PATCH" && name.match(/update|Update/g)) return true
                    
-                if(method === "POST" && name.match(/create|Create|add|Add|[sS]ave/g)) return true
+                if(method === "POST" && name.match(/[cC]reate|[aD]dd|[sS]ave/g)) return true
 
-                if(method === 'GET' && name.match(/get|Get|filter|Filter/)) return true
+                if(method === 'GET' && name.match(/[gG]et|[fF]ilter/)) return true
 
             })
 

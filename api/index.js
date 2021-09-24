@@ -23,5 +23,5 @@ app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(docs));
 app.use(router);
 
 app.listen(port, () => {
-    console.log(`Server started on http://localhost:${port}`)
+    console.log(`Server started on http://localhost:${port}\nApi docs available on http://localhost:${port}/api-docs`)
 });

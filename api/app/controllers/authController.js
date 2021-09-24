@@ -1,6 +1,7 @@
 const {User} = require('../models');
 const bcrypt = require('bcrypt');
 
+
 const authController = {
     signin: async (request, response) => {
         try {
