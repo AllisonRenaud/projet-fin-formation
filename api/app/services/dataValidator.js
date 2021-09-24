@@ -38,6 +38,8 @@ const validate = (data, urlSchemaMatch, method) => {
 
                 if(method === 'GET' && name.match(/[gG]et|[fF]ilter/)) return true
 
+                if(method === 'DELETE' && name.match(/[gG]et|[fF]ilter/)) return true
+
             })
 
             if(!schemaName) return reject({message:"no schema match"})

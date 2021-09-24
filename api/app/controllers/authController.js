@@ -29,17 +29,20 @@ const authController = {
     
       },
 
-      singup: async (request, response) => {
+      signup: async (request, response) => {
         try {
-            const {email, password, passwordConfirm} = request.body
+            const {email, password} = request.body
 
             const registeredUser = await User.findByEmail(email)
             if(registeredUser) return response.status(400).end("already registered")
 
             delete request.body.passwordConfirm
             
+            console.log(request.body)
             const salt = await bcrypt.genSalt(10);
             request.body.password = await bcrypt.hash(password, salt);
+
+            
 
             const newUser = await new User(request.body).create();
             

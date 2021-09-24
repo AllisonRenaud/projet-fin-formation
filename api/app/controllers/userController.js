@@ -43,7 +43,7 @@ const userController = {
 
             let userID;
             userID = parseInt(request.token.id, 10);
-            if(request.token.role === "admin") userID = parseInt(request.params.id, 10);
+            if(request.token.role === "admin") userID = parseInt(request.query.id, 10);
             await User.delete(userID);
             response.status(200).json(`User with id ${userID} deleted`);
 
