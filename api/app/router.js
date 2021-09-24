@@ -7,12 +7,13 @@ const {
     offerRoutes,
     messageRoutes,
     bookingRoutes,
-    commentRoutes
+    commentRoutes,
+    authRoutes
 } = require('./routes/index');
 
 
 router.use(dataValidator)
-router.use(userRoutes, offerRoutes, messageRoutes, bookingRoutes, commentRoutes)
+router.use([userRoutes, offerRoutes, messageRoutes, bookingRoutes, commentRoutes, authRoutes])
 
 // router.get('/test', (req, res) => {
 //     res.json('Good !');

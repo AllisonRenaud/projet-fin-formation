@@ -4,7 +4,9 @@ module.exports = {
     comments: require('./comment'),
     messages: require('./message'),
     bookings: require('./booking'),
-    auth: require('./auth'),
+    auth: require('./auth')
+   
+
     
     
 }

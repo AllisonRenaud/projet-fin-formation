@@ -47,7 +47,8 @@ const validate = (data, urlSchemaMatch, method) => {
 
   
         }
-        else if(schema?.auth[urlSchemaMatch]){
+        else if(schema.auth[urlSchemaMatch]){
+            
 
             const {error, value} = schema.auth[urlSchemaMatch].validate(data)
             if(error) return reject({message: error})
