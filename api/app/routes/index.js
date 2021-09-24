@@ -4,5 +4,6 @@ module.exports = {
     messageRoutes: require('./messageRoutes'),
     bookingRoutes: require('./bookingRoutes'),
     commentRoutes: require('./commentRoutes'),
-    authRoutes: require('./authRoutes')
+    authRoutes: require('./authRoutes'),
+    adminRoutes: require('./adminRoutes')
 }

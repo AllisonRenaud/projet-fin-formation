@@ -12,7 +12,8 @@ module.exports = {
         if(!token) return response.status(403).send("Unauthorized")
         token = token.split(" ")[1]
         if(!token) return response.status(403).send("Unauthorized")
-          
+         
+        
             
         jwt.verify(token, secret, (err, data) => {
                 
@@ -21,6 +22,7 @@ module.exports = {
           response.status(403).send("Unauthorized")
         }
         else {
+          
             request.token = data
             next()
         }
@@ -32,7 +34,7 @@ module.exports = {
         return jwt.sign(
             obj, 
             secret, 
-            { expiresIn: '30m', algorithm: 'HS256' }
+            { expiresIn: '1y', algorithm: 'HS256' }
         )
 
     },

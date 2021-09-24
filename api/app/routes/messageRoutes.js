@@ -3,11 +3,11 @@ const messageController = require("../controllers/messageController")
 const {isAdmin} = require('../services/authJwt')
 
 messageRouter.route("/messages")
-.get(isAdmin, messageController.findAll)
-.post(messageController.save)
+.get(messageController.findByUserId)
+.post(messageController.create)
 
-messageRouter.route("/messages/:id")
-.get(messageController.findById)
-.delete(messageController.delete)
+
+
+
 
 module.exports = messageRouter

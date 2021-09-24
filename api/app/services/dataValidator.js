@@ -32,7 +32,7 @@ const validate = (data, urlSchemaMatch, method) => {
         if(schema[urlSchemaMatch]){
             
             const schemaName = Object.keys(schema[urlSchemaMatch]).find(name => {
-                // if(method === "PATCH" && name.match(/update|Update/g)) return true
+                if(method === "PATCH" && name.match(/[uU]pdate|[sS]ave/g)) return true
                    
                 if(method === "POST" && name.match(/[cC]reate|[aD]dd|[sS]ave/g)) return true
 

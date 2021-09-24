@@ -9,11 +9,11 @@ const cutoffDate = new Date(now - (1000 * 60 * 60 * 24 * 365 * 18));
 module.exports = {
     
     
-    saveUser: Joi.object({
-        id: Joi.number(),
-        firstname: Joi.string().max(40).trim().required(),
-        lastname: Joi.string().max(40).trim().required(),
-        email: Joi.string().email().max(50).trim().lowercase().required(),
+    updateUser: Joi.object({
+        id: Joi.number().positive(),
+        firstname: Joi.string().max(40).trim(),
+        lastname: Joi.string().max(40).trim(),
+        email: Joi.string().email().max(50).trim().lowercase(),
         phone: Joi.string().max(10).pattern(/(^0)([0-9])+$/),
         birth_date: Joi.date().max(cutoffDate),
         zip_code: joiPostalCode.string().postalCode("FR"),

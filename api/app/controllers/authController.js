@@ -41,7 +41,7 @@ const authController = {
             const salt = await bcrypt.genSalt(10);
             request.body.password = await bcrypt.hash(password, salt);
 
-            const newUser = await new User(request.body).save();
+            const newUser = await new User(request.body).create();
             
             delete newUser.password
 

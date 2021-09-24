@@ -3,9 +3,8 @@ const userController = require("../controllers/userController")
 const {isAdmin} = require('../services/authJwt')
 
 userRouter.route("/user")
-// .get(isAdmin, userController.findAll)
 .get(userController.findById)
-.post(userController.save)
+.patch(userController.update)
 .delete(userController.delete)
 
 
