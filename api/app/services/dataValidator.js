@@ -5,9 +5,11 @@ module.exports = async (req, res, next) => {
     try {
         console.log("validator activated")
 
-        let urlSchemaMatch = req.url.split("/")
+        let urlSchemaMatch = req.url.split("/").find(element => element)
                 
-        if(urlSchemaMatch.includes("?")) urlSchemaMatch = urlSchemaMatch.split("?").shift().find(element => schema[element])
+        if(urlSchemaMatch.includes("?")) urlSchemaMatch = urlSchemaMatch.split("?").shift()
+
+        console.log(urlSchemaMatch)
         
         const dataLocationsList = ["body", "query"]
 

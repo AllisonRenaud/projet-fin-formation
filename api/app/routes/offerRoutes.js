@@ -3,7 +3,7 @@ const offerController = require("../controllers/offerController")
 
 
 offerRouter.route("/offers")
-.get(offerController.findAll)
+.get(offerController.findAllOrFilter)
 .post(offerController.save)
 
 offerRouter.route("/offers/:id")

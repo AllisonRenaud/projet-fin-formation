@@ -22,7 +22,7 @@ class User extends CoreModel {
           if(error.detail) throw new Error(error.detail);
           throw error;
         }
-      }
+    }
 }
 
 module.exports = User;
