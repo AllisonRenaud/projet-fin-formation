@@ -6,19 +6,22 @@ const secret = process.env.ACCES_TOKEN_SECRET
 
 
 module.exports = {
-    verifyToken: (req, res, next) => {
+    verifyToken: (request, response, next) => {
        
-        let token = req.headers["authorization"];
-        if(!token) return res.status(403).send("Unauthorized")
+        let token = request.headers["authorization"];
+        if(!token) return response.status(403).send("Unauthorized")
         token = token.split(" ")[1]
-        if(!token) return res.status(403).send("Unauthorized")
-            
+        if(!token) return response.status(403).send("Unauthorized")
+          
             
         jwt.verify(token, secret, (err, data) => {
                 
-        if(err) res.status(403).json(err)
+        if(err) {
+          console.log(err)
+          response.status(403).send("Unauthorized")
+        }
         else {
-            req.token = data
+            request.token = data
             next()
         }
         })     
@@ -34,9 +37,9 @@ module.exports = {
 
     },
 
-    isAdmin: (req, res, next) => {
-        const isAdmin = req.token.role.find(role => role === 'admin')
-        if(!isAdmin) return res.status(403).end()
+    isAdmin: (request, response, next) => {
+        const isAdmin = request.token.role === "admin"
+        if(!isAdmin) return response.status(403).send("Unauthorized")
         next()
     }
 

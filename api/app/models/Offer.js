@@ -16,7 +16,6 @@ class Offer extends CoreModel {
         
         const {rows} = await db.query('SELECT * FROM "offer" WHERE "title" ILIKE $1', [`%${title}%`]);
         return rows[0]
-        
 
       } catch(error) {
         if(error.detail) throw new Error(error.detail);

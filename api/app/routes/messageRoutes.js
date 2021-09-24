@@ -1,9 +1,9 @@
 const messageRouter = require('express').Router()
 const messageController = require("../controllers/messageController")
-
+const {isAdmin} = require('../services/authJwt')
 
 messageRouter.route("/messages")
-.get(messageController.findAll)
+.get(isAdmin, messageController.findAll)
 .post(messageController.save)
 
 messageRouter.route("/messages/:id")

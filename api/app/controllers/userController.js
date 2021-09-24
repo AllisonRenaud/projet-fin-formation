@@ -13,8 +13,10 @@ const userController = {
 
     findById: async (request, response) => {
         try {
-            const user = await User.findById(parseInt(request.params.id, 10));
-            if(!user) response.status(404).send(`no user with id ${request.params.id}`)
+            const user = await User.findById(parseInt(request.token.id, 10));
+            delete user.password
+            for(const key in user) !user[key] ? delete user[key] : null
+
             response.json(user);
         } catch(error) {
             response.status(500).send(error.message);

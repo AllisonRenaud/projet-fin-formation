@@ -1,5 +1,6 @@
 const {User} = require('../models');
 const bcrypt = require('bcrypt');
+const {jwtSign} = require('../services/authJwt')
 
 
 const authController = {
@@ -15,10 +16,12 @@ const authController = {
 
           if(!compare) return response.status(404).end("auth error")
     
-        //   const token = jwtSign({_id: user._id, role: user.role})
-        //   if(!token) throw new Error("internal error sever")
+          const token = jwtSign({id: user.id, role: user.role})
+          if(!token) throw new Error("internal error sever")
+
+          response.json({accessToken: token})
           
-          response.json(user)
+         
     
         } catch (error) {
             response.status(500).end(error.message)
@@ -42,7 +45,7 @@ const authController = {
             
             delete newUser.password
 
-            response.json(newUser)
+            response.status(201).send("registration successfull")
 
           
         } catch (error) {
