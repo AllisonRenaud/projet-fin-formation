@@ -79,6 +79,15 @@ export const signup = (data) => (
   }
 );
 
+export const FETCH_USER_DATA = 'FETCH_USER_DATA';
+
+export const fetchUserData = (data) => (
+  {
+    type: FETCH_USER_DATA,
+    data,
+  }
+);
+
 export const SAVE_USER_DATA = 'SAVE_USER_DATA';
 
 export const saveUserData = (data) => (
@@ -86,4 +95,4 @@ export const saveUserData = (data) => (
     type: SAVE_USER_DATA,
     data,
   }
-)
+);

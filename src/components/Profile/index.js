@@ -1,5 +1,6 @@
 import { Button, Form } from 'semantic-ui-react';
 
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
@@ -9,6 +10,7 @@ import {
   setUserLastname,
   setUserPasswordConfirm,
   signup,
+  fetchUserData,
 } from '../../actions/user';
 
 import './profile.scss';
@@ -21,19 +23,19 @@ const Profile = () => {
     lastname,
     email,
     phone,
-    birth_date,
-    street_number,
-    street_name,
-    zip_code,
-    city_name,
+    birthDate,
+    streetNumber,
+    streetName,
+    zipCode,
+    cityName,
     country,
     role,
   } = useSelector((state) => state.user);
 
   let admin = false;
-  if (role === "admin") {
+  if (role === 'admin') {
     admin = true;
-  };
+  }
 
   const changeUserFirstname = (value) => {
     dispatch(setUserFirstname(event.target.value));
@@ -61,6 +63,14 @@ const Profile = () => {
     dispatch(signup());
     console.log('création user');
   };
+
+  useEffect(
+    () => {
+      dispatch(fetchUserData());
+    },
+    [],
+  );
+
   return (
     <main className="profile">
       <h2 className="profile__title">Bienvenue sur votre profil</h2>
@@ -106,8 +116,8 @@ const Profile = () => {
           <label>Date de naissance</label>
           <input
             type="text"
-            value={birth_date}
-            placeholder={birth_date}
+            value={birthDate}
+            placeholder={birthDate}
             onChange=""
           />
         </Form.Field>
@@ -117,8 +127,8 @@ const Profile = () => {
           <label>Numéro de rue</label>
           <input
             type="text"
-            value={street_number}
-            placeholder={street_number}
+            value={streetNumber}
+            placeholder={streetNumber}
             onChange=""
           />
         </Form.Field>
@@ -128,8 +138,8 @@ const Profile = () => {
           <label>Nom de rue</label>
           <input
             type="text"
-            value={street_name}
-            placeholder={street_name}
+            value={streetName}
+            placeholder={streetName}
             onChange=""
           />
         </Form.Field>
@@ -139,8 +149,8 @@ const Profile = () => {
           <label>Code postal</label>
           <input
             type="text"
-            value={zip_code}
-            placeholder={zip_code}
+            value={zipCode}
+            placeholder={zipCode}
             onChange=""
           />
         </Form.Field>
@@ -150,11 +160,12 @@ const Profile = () => {
           <label>Ville</label>
           <input
             type="text"
-            value={city_name}
-            placeholder={city_name}
+            value={cityName}
+            placeholder={cityName}
             onChange=""
           />
-        </Form.Field>)}
+        </Form.Field>
+        )}
         {!admin && (
         <Form.Field>
           <label>Pays</label>
