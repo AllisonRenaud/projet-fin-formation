@@ -17,9 +17,7 @@ module.exports = async (req, res, next) => {
           if(!data) key = req.url
           else key = req.url + data.id
     
-          
-           
-          
+
             if (keys.includes(key)) {
                 const value =  JSON.parse(await asyncClient.get(key));
                 console.log('cached response')
