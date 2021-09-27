@@ -1,7 +1,9 @@
 const {User} = require('../models');
 const bcrypt = require('bcrypt');
-const {jwtSign} = require('../services/authJwt')
+const {jwtSignAccess, jwtSignRefresh, decryptAccesToken, decryptRefreshToken} = require('../services/authJwt')
+const asyncClient = require('../utils/redis_promisify')
 
+const TIMEOUT = 60 * 30; // 30 minutes
 
 const authController = {
     signin: async (request, response) => {
@@ -16,10 +18,15 @@ const authController = {
 
           if(!compare) return response.status(404).end("auth error")
     
-          const token = jwtSign({id: user.id, role: user.role})
-          if(!token) throw new Error("internal error sever")
+          const accessToken = jwtSignAccess({id: user.id, role: user.role})
+          const refreshToken = jwtSignRefresh({id: user.id, role: user.role})
 
-          response.json({accessToken: token})
+          await asyncClient.setex("refreshTokenUser" + user.id, TIMEOUT, refreshToken)
+          
+
+          if(!accessToken || !refreshToken) throw new Error("internal error sever")
+
+          response.json({accessToken, refreshToken})
           
          
     
@@ -54,6 +61,23 @@ const authController = {
         } catch (error) {
             response.status(500).end(error.message)
         }
+      },
+
+      refreshToken: async (request, response) => {
+        const data = await decryptRefreshToken(request.body.refreshToken)
+        
+       
+        const cachedRefreshToken = await asyncClient.get("refreshTokenUser" + data.id)
+    
+        if(request.body.refreshToken.split(" ").pop() !== cachedRefreshToken) return response.status(401).send("Unauthorized")
+
+        const accessToken = jwtSignAccess({id: data.id, role: data.role})
+        const refreshToken = jwtSignRefresh({id: data.id, role: data.role})
+
+        await asyncClient.setex("refreshTokenUser" + data.id, TIMEOUT, refreshToken)
+
+        response.json({accessToken, refreshToken})
+
       }
 
 }

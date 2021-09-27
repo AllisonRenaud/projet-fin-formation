@@ -1,5 +1,5 @@
 const asyncClient = require('../utils/redis_promisify')
-const {decryptToken} = require('./authJwt')
+const {decryptAccesToken} = require('./authJwt')
 
 
 const TIMEOUT = 60 * 30; // 30 minutes
@@ -12,7 +12,7 @@ module.exports = async (req, res, next) => {
     
     try {
         if(req.method === "GET"){
-          const data = await decryptToken(req.headers['authorization'])
+          const data = await decryptAccesToken(req.headers['authorization'])
           let key;
           if(!data) key = req.url
           else key = req.url + data.id
@@ -61,7 +61,7 @@ module.exports = async (req, res, next) => {
 
     } catch (error) {
         console.log(error.message)
-        next(error)
+        res.status(401).send(error.message)
     }
 }
 

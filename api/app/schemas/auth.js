@@ -19,6 +19,10 @@ module.exports = {
         phone: Joi.string(),
         country: Joi.string()
 
+    }), 
+
+    refresh_token: Joi.object({
+      refreshToken: Joi.string().required()
     })
 
     
