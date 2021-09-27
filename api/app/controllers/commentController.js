@@ -35,7 +35,7 @@ const commentController = {
   delete: async (request, response) => {
       try {
           
-          const commentID = parseInt(request.params.id, 10);
+          const commentID = parseInt(request.query.id, 10);
           
           const comment = await Comment.findById(commentID)
 
