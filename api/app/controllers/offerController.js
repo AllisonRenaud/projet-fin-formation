@@ -39,8 +39,10 @@ const offerController = {
 
   update: async (request, response) => {
     try {
-      
-        await User.update(request.body)
+
+        await new Offer(request.body).update()
+         
+        // await Offer.update(request.body.id)
         response.status(204).json('Update done');
 
     } catch (error) {

@@ -1,10 +1,16 @@
-const {User} = require('../models');
+const {User, Comment, Message, Booking} = require('../models');
 
 const userController = {
 
     findAll: async (_, response) => {
         try {
             const users = await User.findAll();
+            for(const user of users) {
+              delete user.password
+              for(const field in user) !user[field] ? delete user[field] : null
+              
+            }
+            
             response.json(users);
         } catch(error) {
             response.status(500).send(error.message);
@@ -43,11 +49,21 @@ const userController = {
 
             let userID;
             userID = parseInt(request.token.id, 10);
+
+
             if(request.token.role === "admin") userID = parseInt(request.query.id, 10);
+
+            await Comment.setUserUnknown(userID)
+            
+            await Message.deleteByUserId(userID)
+
+            await Booking.setUserUnknown(userID)
+
             await User.delete(userID);
             response.status(200).json(`User with id ${userID} deleted`);
 
         } catch(error) {
+            console.log(error)
             response.status(500).send(error.message);
         }
     }

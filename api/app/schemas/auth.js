@@ -15,7 +15,9 @@ module.exports = {
         lastname: Joi.string().max(40).trim().required(),
         email: Joi.string().email().max(50).trim().lowercase().required(),
         password: Joi.string().trim().required().regex(new RegExp('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]){8,}$')),
-        passwordConfirm: Joi.string().trim().required().valid(Joi.ref('password'))
+        passwordConfirm: Joi.string().trim().required().valid(Joi.ref('password')),
+        phone: Joi.string(),
+        country: Joi.string()
 
     })
 

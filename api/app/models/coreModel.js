@@ -75,6 +75,17 @@ class CoreModel {
         else throw error;
       }
     }
+
+    static async setUserUnknown(id) {
+      try {
+        
+        await db.query(`UPDATE "${this.tableName}" SET "user_id" = 29 WHERE "user_id" = $1`, [id])
+
+      } catch (error) {
+        if(error.detail) throw new Error(error.detail);
+        throw error;
+      }
+    } 
 }
 
 module.exports = CoreModel;
