@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import axios from 'axios';
 
 import {
@@ -25,9 +26,10 @@ export default (store) => (next) => (action) => {
         .then(
           (response) => {
             store.dispatch(connectUser(response.data));
-            axiosInstance.defaults.headers.common.Authorization = `Bearer ${response.data.accesToken}`;
-            console.log('Connexion OK !');
-            console.log(response.data.accessToken);
+            axiosInstance.defaults.headers.common.Authorization = `Bearer ${response.data.accessToken}`;
+            // localStorage.setItem('token', response.data.accessToken);
+            console.log(localStorage);
+            console.log(response.data);
           },
         ).catch(
           () => console.log('error'),
@@ -62,6 +64,7 @@ export default (store) => (next) => (action) => {
     }
     case FETCH_USER_DATA: {
       const { user: { token } } = store.getState();
+      // const token = localStorage.getItem('token');
       axiosInstance
         .get('/user',
           {
@@ -71,10 +74,10 @@ export default (store) => (next) => (action) => {
           })
         .then(
           (response) => {
+            console.log(response);
             store.dispatch(saveUserData(response.data));
           },
-          localStorage.setItem('token', token),
-          console.log(localStorage),
+          // localStorage.setItem('token', token),
         )
         .catch(
           (error) => console.log(error),
