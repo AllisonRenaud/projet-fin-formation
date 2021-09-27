@@ -1,4 +1,5 @@
 const asyncClient = require('../utils/redis_promisify')
+const {decryptToken} = require('./authJwt')
 
 
 const TIMEOUT = 60 * 30; // 30 minutes
@@ -7,10 +8,18 @@ const keys = [];
 
 
 module.exports = async (req, res, next) => {
+  console.log(keys)
     
     try {
         if(req.method === "GET"){
-            const key = req.url;
+          const data = await decryptToken(req.headers['authorization'])
+          let key;
+          if(!data) key = req.url
+          else key = req.url + data.id
+    
+          
+           
+          
             if (keys.includes(key)) {
                 const value =  JSON.parse(await asyncClient.get(key));
                 console.log('cached response')

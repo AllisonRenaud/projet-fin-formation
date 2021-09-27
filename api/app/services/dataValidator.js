@@ -11,8 +11,6 @@ module.exports = async (req, res, next) => {
             .filter(element => element)
 
     
-                
-        console.log(urlSchemaMatch)
         
         const dataLocationsList = ["body", "query"]
 

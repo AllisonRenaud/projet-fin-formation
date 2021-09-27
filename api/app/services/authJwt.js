@@ -43,7 +43,35 @@ module.exports = {
         const isAdmin = request.token.role === "admin"
         if(!isAdmin) return response.status(403).send("Unauthorized")
         next()
+    },
+
+    decryptToken: (token) => {
+        return new Promise((resolve, reject) => {
+          if(!token) return resolve()
+        token = token.split(" ")[1]
+        if(!token) return resolve()
+        
+         
+        
+            
+        jwt.verify(token, secret, (err, data) => {
+                
+        if(err) {
+          console.log(err)
+          return reject(err)
+          
+        }
+        else {
+       
+           return resolve(data)
+        }
+        })
+        })
+      
+        
     }
+
+
 
     
         
