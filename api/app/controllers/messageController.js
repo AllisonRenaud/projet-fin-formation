@@ -33,8 +33,9 @@ const messageController = {
 
   update: async (request, response) => {
     try {
+
+        await new Message(request.body).update()
     
-        await Message.update(request.body)
         response.status(204).json('Update done');
 
     } catch (error) {
@@ -44,15 +45,13 @@ const messageController = {
 
   delete: async (request, response) => {
       try {
-          const messageID = parseInt(request.params.id, 10);
+        
+          const messageID = parseInt(request.query.id, 10);
           
-          const message = await Message.findById(messageID)
-
-          if(!request.token.id === message.user_id || !request.token.role === "admin") return response.status(403).send("Unauthorized") 
-          
-          // const messageID = parseInt(request.params.id, 10);
           await Message.delete(messageID);
+
           response.status(200).json(`Message with id ${messageID} deleted`);
+
       } catch(error) {
           response.status(500).send(error.message);
       }
