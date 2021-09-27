@@ -1,53 +1,48 @@
 module.exports = {
   // operation's method
-  patch: {
+  post: {
     security: [{bearerAuth: []}],
-    tags: ["Subject"], // operation's tag
-    description: "Update subject {}", // short desc
-    parameters: [
-      // expected params.
-      {
-        name: "_id", // name of the param
-        in: "path", // location of the param
-        schema: {
-          $ref: "#/components/schemas/_id", // data model of the param
-        },
-        required: true, // Mandatory param
-      },
-    ],
-    requestBody:{
-      description: "at least one field is requiered",
-      required: true,
-      content:{
-        "application/json":{
-          schema:{
+    tags: ["Offer"], // operation's tag
+    description: "Create offer {}", // short desc
+   // expected params
+    requestBody: {
+      required:true,
+      content: {
+        // content-type
+        "application/json": {
+          schema: {
             type: "object",
-            properties:{
+            properties: {
               title: {
-                type: "string",
+                type: "string"
               },
               description: {
-                type: "string",
+                type: "string"
               },
               date: {
-                type: "string",
-                format:'date-time'
+                type:"string",
+                format: "date-time"
               },
+              author: {
+                $ref: "#/components/schemas/_id",
+              }
             }
-          }
-        }
-      }
+            
+            
+          },
+        },
+      },
     },
     // expected responses
     responses: {
       // response code
       200: {
-        description: "return updated subject and populate author path", // response desc.
+        description: "Return new offer", // response desc.
         content: {
           // content-type
           "application/json": {
             schema: {
-              $ref: "#/components/schemas/Subject",
+              $ref: "#/components/schemas/Offer",
             },
           },
         },
@@ -66,7 +61,7 @@ module.exports = {
       },
       // response code
       404: {
-        description: "Subject not found",
+        description: "Offer not found or missing field",
         content: {
           // content-type
           "application/json": {

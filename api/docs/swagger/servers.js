@@ -1,7 +1,7 @@
 module.exports = {
     servers: [
       {
-        url: process.env.API_DOCS_SERVER, // url
+        url: "ochalet-api.herokuapp.com", // url
         description: "Local server", // name
       },
     ],

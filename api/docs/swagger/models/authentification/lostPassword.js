@@ -3,8 +3,8 @@
 module.exports = {
     // operation's method
     post: {
-      tags: ["Auth"], // operation's tag
-      description: "Login", // short desc
+      tags: ["Authentification"], // operation's tag
+      description: "Lost Password", // short desc
       parameters: [], // expected params
       requestBody: {
         required: true,
@@ -12,7 +12,32 @@ module.exports = {
           // content-type
           "application/json": {
             schema: {
-              $ref: "#/components/schemas/Login", // error data model
+              type: "object",
+              properties: {
+                  pseudo: {
+                      type: "string",
+                      description: "used pseudo for registration"
+                  },
+                  lastname: {
+                      type: "string",
+                      description: "used lastname for registration"
+                  },
+                  firstname: {
+                      type: "string",
+                      description: "used firstname for registration"
+                  },
+                  email: {
+                      type: "string",
+                      format: "email",
+                      description: "used email for registration"
+                  },
+                  newPassword: {
+                      type: "string"
+                  },
+                  newPasswordConfirm: {
+                      type: "string"
+                  }
+              }
             },
           },
         },

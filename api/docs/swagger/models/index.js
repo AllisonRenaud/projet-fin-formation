@@ -1,8 +1,10 @@
 const user = require("./user")
-const subject = require("./subject")
-const subjectReferences = require("./subject_references")
 const comment = require("./comment")
-const auth = require("./auth")
+const message = require("./message")
+const booking = require("./booking")
+const authentification = require("./authentification")
+const offer = require("./offer")
+const admin = require("./admin")
 
 module.exports = {
     paths:{
@@ -12,20 +14,37 @@ module.exports = {
             ...user.changePassword,
             ...user.deleteUser
         },
-        
-        '/subject':{
-            ...subject.getSubjects,
-            ...subject.createSubject
+        '/booking':{
+          ...booking.getBookings,
+          ...booking.createBooking
         },
-        '/subject/{_id}':{
-            ...subject.getSubject,
-            ...subject.updateSubject,
-            ...subject.deleteSubject
+        '/booking/{_id}':{
+          ...booking.getBooking,
+          ...booking.updateBooking,
+          ...booking.deleteBooking
         },
-        'subject/{_id}/reference': {
-            ...subjectReferences.createReference,
-            ...subjectReferences.deleteReference
+        '/offer':{
+          ...offer.getOffers,
+          ...booking.createOffer
         },
+        '/offer/{_id}':{
+          ...offer.getOffer,
+          ...offer.updateOffer,
+          ...offer.deleteOffer
+        },
+        '/message':{
+            ...message.getMessages,
+            ...message.createMessage
+        },
+        '/message/{_id}':{
+            ...message.getMessage,
+            ...message.updatemessage,
+            ...message.deletemessage
+        },
+       /* 'message/{_id}/reference': {
+            ...messageReferences.createReference,
+            ...messageReferences.deleteReference
+        },*/
         '/comment':{
             ...comment.getComments,
             ...comment.createComment
@@ -36,14 +55,20 @@ module.exports = {
             ...comment.deleteComment
         },
         '/login':{
-            ...auth.login
+            ...authentification.login
         },
         '/register':{
-            ...auth.register
+            ...authentification.register
         },
         '/recovery':{
-            ...auth.lostPassword
-        }
+            ...authentification.lostPassword
+        },
+        '/admin':{
+          ...admin.getAdmin,
+          ...admin.updateAdmin,
+          ...admin.changeAdmin,
+          ...admin.deleteAdmin 
+        },
 
     }
 }
