@@ -73,6 +73,8 @@ export default (store) => (next) => (action) => {
           (response) => {
             store.dispatch(saveUserData(response.data));
           },
+          localStorage.setItem('token', token),
+          console.log(localStorage),
         )
         .catch(
           (error) => console.log(error),

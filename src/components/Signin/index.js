@@ -1,5 +1,7 @@
 import { Button, Checkbox, Form } from 'semantic-ui-react';
 
+import { Redirect } from 'react-router-dom';
+
 import { useSelector, useDispatch } from 'react-redux';
 import { setUserEmail, setUserPassword, login } from '../../actions/user';
 
@@ -11,6 +13,7 @@ const Signin = () => {
   const dispatch = useDispatch();
   const email = useSelector((state) => state.user.email);
   const password = useSelector((state) => state.user.password);
+  const logged = useSelector((state) => state.user.logged);
 
   const changeUserEmail = (value) => {
     dispatch(setUserEmail(event.target.value));
@@ -31,12 +34,16 @@ const Signin = () => {
   //   console.log(email, password);
   // };
 
+  if (logged) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <main className="signin">
       <img className="signin__logo" src={signinLogo} alt="signin" />
       <Form className="signin__form" autoComplete="on" onSubmit={handleSubmit}>
         <Form.Field>
-         <label>Email</label>
+          <label>Email</label>
           <input
             type="email"
             value={email}
@@ -45,7 +52,7 @@ const Signin = () => {
           />
         </Form.Field>
         <Form.Field>
-         <label>Mot de passe</label>
+          <label>Mot de passe</label>
           <input
             value={password}
             type="password"
