@@ -5,6 +5,11 @@ const messageController = {
     findAll: async (_, response) => {
         try {
             const messages = await Message.findAll();
+            for(const message of messages) {
+              
+              for(const field in message) !message[field] ? delete message[field] : null
+              
+            }
             response.json(messages);
         } catch(error) {
             response.status(500).send(error.message);
@@ -45,7 +50,7 @@ const messageController = {
 
   delete: async (request, response) => {
       try {
-        
+
           const messageID = parseInt(request.query.id, 10);
           
           await Message.delete(messageID);

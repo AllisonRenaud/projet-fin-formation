@@ -7,8 +7,7 @@ const userController = {
             const users = await User.findAll();
             for(const user of users) {
               delete user.password
-              for(const field in user) !user[field] ? delete user[field] : null
-              
+              for(const field in user) !user[field] ? delete user[field] : null 
             }
             
             response.json(users);

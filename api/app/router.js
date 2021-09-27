@@ -14,10 +14,11 @@ const {
 } = require('./routes/index');
 
 router.use(dataValidator)
-router.use(authRoutes)
+
+router.use(authRoutes, offerRoutes)
 
 router.use(verifyToken)
-router.use([userRoutes, offerRoutes, messageRoutes, bookingRoutes, commentRoutes ])
+router.use([userRoutes, messageRoutes, bookingRoutes, commentRoutes ])
 router.use(isAdmin, adminRoutes)
 
 

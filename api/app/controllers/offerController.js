@@ -5,11 +5,19 @@ const offerController = {
     findAllOrFilter: async (request, response) => {
         try {
             if(!request.query.title){
+
               const offers = await Offer.findAll();
+              for(const offer of offers) {
+                for(const field in offer) !offer[field] ? delete offer[field] : null
+              }
               response.json(offers);
+              
             }else {
-              const offers = await Offer.findByTitle(request.query.title);
-              response.json(offers);
+
+              const offer = await Offer.findByTitle(request.query.title);
+              for(const field in offer) !offer[field] ? delete offer[field] : null
+              response.json(offer);
+
             }
             
         } catch(error) {
