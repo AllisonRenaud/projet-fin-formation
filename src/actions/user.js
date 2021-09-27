@@ -96,3 +96,11 @@ export const saveUserData = (data) => (
     data,
   }
 );
+
+export const SIGNOUT = 'SIGNOUT';
+
+export const signout = () => (
+  {
+    type: SIGNOUT,
+  }
+);

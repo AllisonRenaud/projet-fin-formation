@@ -16,6 +16,7 @@ import Signup from '../Signup';
 import Profile from '../Profile';
 import Admin from '../Backoffice/Admin';
 import User from '../Backoffice/User';
+import Signout from '../Signout';
 
 // == Composant
 const App = () => {
@@ -53,6 +54,9 @@ const App = () => {
         </Route>
         <Route path="/account/user" exact>
           <User />
+        </Route>
+        <Route path="/signout" exact>
+          <Signout />
         </Route>
       </Switch>
       <Footer />

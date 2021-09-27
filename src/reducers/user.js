@@ -6,6 +6,7 @@ import {
   SET_USER_LASTNAME,
   SET_USER_PASSWORDCONFIRM,
   SAVE_USER_DATA,
+  SIGNOUT,
 } from '../actions/user';
 
 export const initialState = {
@@ -89,6 +90,25 @@ const reducer = (state = initialState, action = {}) => {
         street_number: action.data.street_number,
         password: '',
         role: action.data.role,
+      };
+    case SIGNOUT:
+      return {
+        ...state,
+        logged: false,
+        id: '',
+        firstname: '',
+        lastname: '',
+        email: '',
+        phone: '',
+        birth_date: '',
+        zip_code: '',
+        city_name: '',
+        country: '',
+        street_name: '',
+        street_number: '',
+        password: '',
+        passwordConfirm: '',
+        role: '',
       };
     default:
       return state;
