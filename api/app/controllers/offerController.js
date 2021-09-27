@@ -1,12 +1,17 @@
-const { json } = require('express');
 const {Offer} = require('../models');
 
 const offerController = {
 
-    findAll: async (_, response) => {
+    findAllOrFilter: async (request, response) => {
         try {
-            const offers = await Offer.findAll();
-            response.json(offers);
+            if(!request.query.title){
+              const offers = await Offer.findAll();
+              response.json(offers);
+            }else {
+              const offers = await Offer.findByTitle(request.query.title);
+              response.json(offers);
+            }
+            
         } catch(error) {
             response.status(500).send(error.message);
         }
@@ -14,28 +19,36 @@ const offerController = {
 
     findById: async (request, response) => {
       try {
-          const offer = await Offer.findById(parseInt(request.params.id, 10));
+          const offer = await Offer.findById(parseInt(request.token.id, 10));
           response.json(offer);
       } catch(error) {
           response.status(500).send(error.message);
       }
-  },
+    },
 
-  save: async (request, response) => {
+  create: async (request, response) => {
       try {
-          const offer = new Offer(request.body);
-          const newOffer = await offer.save();
-          if (newOffer) {
-              //on a une valeur de retour, il s'agit d'un INSERT
-              response.status(201).json(newOffer);
-          } else {
-              //pas de valeur de retour, c'était un UPDATE
-              response.status(204).json('Update done');
-          }
+        
+        const newOffer = new Offer(request.body).create()
+        response.status(201).json(newOffer);
+
       } catch (error) {
           response.status(500).send(error.message);
       }
   },
+
+  update: async (request, response) => {
+    try {
+      
+        await User.update(request.body)
+        response.status(204).json('Update done');
+
+    } catch (error) {
+        response.status(500).send(error.message);
+    }
+  },
+
+  
 
   delete: async (request, response) => {
       try {

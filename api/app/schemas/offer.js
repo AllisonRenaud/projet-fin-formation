@@ -25,6 +25,10 @@ module.exports = {
         galery_picture_4: Joi.string().uri(),
         galery_picture_5: Joi.string().uri(),
         location_id: Joi.number().positive().required()
+    }),
+
+    filterByTitle: Joi.object({
+      title: Joi.string().required()
     })
 
     

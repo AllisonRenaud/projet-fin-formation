@@ -3,11 +3,12 @@ const bookingController = require("../controllers/bookingController")
 
 
 bookingRouter.route("/bookings")
-.get(bookingController.findAll)
-.post(bookingController.save)
+.get(bookingController.findByUserId)
+.post(bookingController.create)
 
-bookingRouter.route("/bookings/:id")
-.get(bookingController.findById)
-.delete(bookingController.delete)
+
+
+
+
 
 module.exports = bookingRouter

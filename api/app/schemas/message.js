@@ -10,7 +10,6 @@ module.exports = {
         reservation_end: Joi.date(),
         nb_persons: Joi.number().positive(),
         body: Joi.string().trim().required(),
-        user_id: Joi.number().positive().required(),
         offer_id: Joi.number().positive().required(),
         message_status: Joi.boolean()
     })

@@ -10,11 +10,8 @@ class CoreModel {
                 }
             return instances
         } catch (error) {
-          if(error.detail) {
-            throw new Error(error.detail)
-          } else {
-              throw error;
-          }
+          if(error.detail) throw new Error(error.detail)
+          else throw error;
         }
     }
 
@@ -29,35 +26,53 @@ class CoreModel {
       }
     }
 
-    async save() {
-        try {
-            if (this.id) {
-                await db.query(`SELECT update_${this.constructor.tableName}($1)`, [this]);
-            
-            } else {
-                const {rows} = await db.query(`SELECT new_${this.constructor.tableName}($1) AS id`, [this]);
-                this.id = rows[0].id;
-                return this;
-            }
-            return this;
-        } catch(error) {
-            if(error.detail) {
-                throw new Error(error.detail)
-            } else {
-                throw error;
-            }
-        }
+    static async findByUserId(id) {
+      try {
+        const {rows} = await db.query(`SELECT * FROM "${this.tableName}" WHERE "user_id" = $1`, [id]);
+        const instances = [];
+                for(const instance of rows) {
+                    instances.push(new this(instance));
+                }
+            return instances
+      } catch(error) {
+        if(error.detail) throw new Error(error.detail);
+        throw error;
+      }
+    }
+
+  
+    async create(){
+      try {
+
+        const {rows} = await db.query(`SELECT new_${this.constructor.tableName}($1) AS id`, [this]);
+        this.id = rows[0].id;
+        return this;
+
+      } catch (error) {
+
+        if(error.detail) throw new Error(error.detail)
+        else throw error;
+
+      }
+    }
+
+    async update(){
+      try {
+          await db.query(`SELECT update_${this.constructor.tableName}($1)`, [this]);
+      } catch (error) {
+        console.log(error)
+
+        if(error.detail) throw new Error(error.detail)
+        else throw error;
+      }
     }
 
     static async delete(id) {
       try {
         await db.query(`DELETE FROM "${this.tableName}" WHERE id = $1`, [id]);
       } catch(error) {
-        if(error.detail) {
-          throw new Error(error.detail)
-        } else {
-            throw error;
-        }
+        if(error.detail) throw new Error(error.detail)
+        else throw error;
       }
     }
 }

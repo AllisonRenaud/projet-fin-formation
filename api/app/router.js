@@ -1,6 +1,7 @@
 const {Router} = require('express');
 const router = Router();
 const dataValidator = require("./services/dataValidator")
+const {verifyToken, isAdmin} = require('./services/authJwt')
 
 const {
     userRoutes,
@@ -8,15 +9,16 @@ const {
     messageRoutes,
     bookingRoutes,
     commentRoutes,
-    authRoutes
+    authRoutes,
+    adminRoutes
 } = require('./routes/index');
 
-
 router.use(dataValidator)
-router.use([userRoutes, offerRoutes, messageRoutes, bookingRoutes, commentRoutes, authRoutes])
+router.use(authRoutes)
 
-// router.get('/test', (req, res) => {
-//     res.json('Good !');
-// })
+router.use(verifyToken)
+router.use([userRoutes, offerRoutes, messageRoutes, bookingRoutes, commentRoutes ])
+router.use(isAdmin, adminRoutes)
+
 
 module.exports = router;
