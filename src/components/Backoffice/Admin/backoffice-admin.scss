@@ -1,0 +1,83 @@
+.backoffice-admin{
+
+  &__name{
+    font-size: 2rem;
+    padding: 1rem 0;
+    text-align: center;
+  }
+
+  &__role{
+    font-size: 1.5rem;
+    padding: 1rem 0;
+    text-align: center;
+  }
+
+  &__notifications{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    &__message{
+      margin: 2rem;
+      padding: 2rem;
+      width: 30%;
+      height: 20%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      &__new{
+        padding-bottom: 1rem;
+      }
+    }
+  
+    &__reservation{
+      margin: 2rem;
+      padding: 2rem;
+      width: 30%;
+      height: 20%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      &__new{
+        padding-bottom: 1rem;
+      }
+    }
+  }
+
+  &__card-list{
+    display: flex;
+    justify-content:space-evenly;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+
+  &__card{
+    margin: 1rem;
+    width: 30%;
+    height: 40%;
+    border: 1px solid lightgray;
+    display: flex;
+
+    &__image{
+      width: 250px;
+      height: 150px;
+    }
+
+    &__details{
+      font-size: 1rem;
+      padding: 1rem;
+      margin-left: 1rem;
+      margin-right: 1rem;
+  }
+  }
+
+  &__button{
+        
+  }
+}
