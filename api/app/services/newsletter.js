@@ -1,10 +1,10 @@
 const db = require('../databases/postgres')
 const sendEmail = require('./nodemail')
 const newsLetterTemplate = require('../utils/email-templates/newsletter.Templatejs')
+const cron = require('node-cron');
 
 
-
-const mails = async () => {
+const sendNewsLetter = async () => {
   try {
 
     const {rows} = await db.query('SELECT "email" FROM "user"')
@@ -12,7 +12,8 @@ const mails = async () => {
     emails.forEach(async email => {
       const emailBody = newsLetterTemplate("jerome")
       
-      await sendEmail("ochaleto@gmail.com", "newsletter", emailBody)
+      // await sendEmail("ochaleto@gmail.com", "newsletter", emailBody)
+      console.log(emailBody)
       
     })
   
@@ -24,4 +25,6 @@ const mails = async () => {
 
 }
 
-mails()
+cron.schedule('0,15,30,45 * * * * *', sendNewsLetter)
+
+
