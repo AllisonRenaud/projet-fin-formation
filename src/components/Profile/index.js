@@ -1,4 +1,4 @@
-import { Button, Form } from 'semantic-ui-react';
+import { Button, Icon, Form } from 'semantic-ui-react';
 
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -141,8 +141,27 @@ const Profile = () => {
         />
         )}
         <div className="profile__form__buttons">
-          <Button color="blue" className="profile__form__button__modify" type="submit">Modifier</Button>
-          <Button color="red" className="profile__form__button__delete">Supprimer mon compte</Button>
+          <Button
+            animated
+            className="signup__form__button__modify"
+            color="brown"
+            type="submit"
+          >
+            <Button.Content visible>Modifier</Button.Content>
+            <Button.Content hidden>
+              <Icon name='save' />
+            </Button.Content>
+          </Button>
+          <Button
+            animated
+            className="signup__form__button__delete"
+            color="red"
+          >
+            <Button.Content visible>Supprimer mon compte</Button.Content>
+            <Button.Content hidden>
+              <Icon name='trash' />
+            </Button.Content>
+          </Button>
         </div>
       </Form>
     </main>

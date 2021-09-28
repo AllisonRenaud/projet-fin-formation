@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 
-import { Button, Form } from 'semantic-ui-react';
+import { Button, Icon, Form } from 'semantic-ui-react';
 
 import { Redirect } from 'react-router-dom';
 
@@ -12,8 +12,6 @@ import {
 import './signin.scss';
 
 import Field from '../Field';
-
-import signinLogo from '../../assets/images/signin-logo.svg';
 
 const Signin = () => {
   const dispatch = useDispatch();
@@ -36,7 +34,6 @@ const Signin = () => {
 
   return (
     <main className="signin">
-      <img className="signin__logo" src={signinLogo} alt="signin" />
       <Form className="signin__form" autoComplete="on" onSubmit={handleSubmit}>
         <Field
           name="email"
@@ -54,11 +51,15 @@ const Signin = () => {
         />
         <div className="signin__form__buttons">
           <Button
+            animated
             className="signin__form__button"
-            color="blue"
+            color="brown"
             type="submit"
           >
-            Se connecter
+            <Button.Content visible>Se connecter</Button.Content>
+            <Button.Content hidden>
+              <Icon name='sign in' />
+            </Button.Content>
           </Button>
         </div>
       </Form>
