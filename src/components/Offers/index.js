@@ -14,7 +14,7 @@ const Offers = () => (
         <p className="offers__card__city">Ville</p>
         <p className="offers__card__capacity">Capacité d'accueil</p>
         <p className="offers__card__price">Prix par semaine</p>
-        <Button color="blue"><Link to="/offer/:1" className="offers__card__button">Voir plus</Link></Button>
+        <Link to="/offer/:1" className="offers__card__button"><Button color="blue">Voir plus</Button></Link>
       </div>
     </div>
     <div className="offers__card">
@@ -24,7 +24,7 @@ const Offers = () => (
         <p className="offers__card__city">Ville</p>
         <p className="offers__card__capacity">Capacité d'accueil</p>
         <p className="offers__card__price">Prix par semaine</p>
-        <Button color="blue"><Link to="/offer/:1" className="offers__card__button">Voir plus</Link></Button>
+        <Link to="/offer/:1" className="offers__card__button"><Button color="blue">Voir plus</Button></Link>
       </div>
     </div>
     <div className="offers__card">
@@ -34,7 +34,7 @@ const Offers = () => (
         <p className="offers__card__city">Ville</p>
         <p className="offers__card__capacity">Capacité d'accueil</p>
         <p className="offers__card__price">Prix par semaine</p>
-        <Button color="blue"><Link to="/offer/:1" className="offers__card__button">Voir plus</Link></Button>
+        <Link to="/offer/:1" className="offers__card__button"><Button color="blue">Voir plus</Button></Link>
       </div>
     </div>
     <div className="offers__card">
@@ -44,7 +44,7 @@ const Offers = () => (
         <p className="offers__card__city">Ville</p>
         <p className="offers__card__capacity">Capacité d'accueil</p>
         <p className="offers__card__price">Prix par semaine</p>
-        <Button color="blue"><Link to="/offer/:1" className="offers__card__button">Voir plus</Link></Button>
+        <Link to="/offer/:1" className="offers__card__button"><Button color="blue">Voir plus</Button></Link>
       </div>
     </div>
   </section>

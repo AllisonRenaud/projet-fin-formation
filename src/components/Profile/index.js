@@ -35,6 +35,8 @@ const Profile = () => {
     admin = true;
   }
 
+  const updateMode = true;
+
   const changeField = (value, name) => {
     dispatch(setUserField(value, name));
   };
@@ -61,6 +63,7 @@ const Profile = () => {
           type="text"
           placeholder="Nom"
           onChange={changeField}
+          updateMode={!updateMode}
         />
         <Field
           name="firstname"
