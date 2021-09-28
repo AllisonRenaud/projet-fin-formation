@@ -45,7 +45,7 @@ const authController = {
 
             delete request.body.passwordConfirm
             
-            console.log(request.body)
+            
             const salt = await bcrypt.genSalt(10);
             request.body.password = await bcrypt.hash(password, salt);
 
@@ -64,19 +64,26 @@ const authController = {
       },
 
       refreshToken: async (request, response) => {
-        const data = await decryptRefreshToken(request.body.refreshToken)
         
-       
-        const cachedRefreshToken = await asyncClient.get("refreshTokenUser" + data.id)
+        try {
+          const data = await decryptRefreshToken(request.headers['authorization'])
+
+          const cachedRefreshToken = await asyncClient.get("refreshTokenUser" + data.id)
+
     
-        if(request.body.refreshToken.split(" ").pop() !== cachedRefreshToken) return response.status(401).send("Unauthorized")
+          if(request.headers["authorization"].split(" ").pop() !== cachedRefreshToken) return response.status(401).send("Unauthorized")
 
-        const accessToken = jwtSignAccess({id: data.id, role: data.role})
-        const refreshToken = jwtSignRefresh({id: data.id, role: data.role})
+          const accessToken = jwtSignAccess({id: data.id, role: data.role})
+          const refreshToken = jwtSignRefresh({id: data.id, role: data.role})
 
-        await asyncClient.setex("refreshTokenUser" + data.id, TIMEOUT, refreshToken)
+          await asyncClient.setex("refreshTokenUser" + data.id, TIMEOUT, refreshToken)
 
-        response.json({accessToken, refreshToken})
+          response.json({accessToken, refreshToken})
+
+        } catch (error) {
+            console.log(error)
+            response.status(500).send(error.message)
+        }
 
       }
 

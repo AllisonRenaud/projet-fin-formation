@@ -18,7 +18,7 @@ class CoreModel {
     static async findById(id) {
       try {
         const {rows} = await db.query(`SELECT * FROM "${this.tableName}" WHERE id = $1`, [id]);
-        if(!rows[0]) throw new Error("no data with id " + id)
+        if(!rows[0]) return
         return new this(rows[0])
       } catch(error) {
         if(error.detail) throw new Error(error.detail);

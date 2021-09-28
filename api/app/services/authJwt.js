@@ -55,8 +55,8 @@ module.exports = {
     decryptAccesToken: (token) => {
         return new Promise((resolve, reject) => {
           if(!token) return resolve()
-        token = token.split(" ")[1]
-        if(!token) return resolve()
+          token = token.split(" ")[1]
+          if(!token) return resolve()
         
          
         
@@ -91,7 +91,7 @@ module.exports = {
       jwt.verify(token, process.env.REFRESH_TOKEN_SECRET, (err, data) => {
               
       if(err) {
-        console.log(err)
+       
         return reject(err)
         
       }
