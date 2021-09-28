@@ -1,13 +1,9 @@
 import {
   SET_USER_FIELD,
-  SET_USER_EMAIL,
-  SET_USER_PASSWORD,
   CONNECT_USER,
-  SET_USER_FIRSTNAME,
-  SET_USER_LASTNAME,
-  SET_USER_PASSWORDCONFIRM,
   SAVE_USER_DATA,
   SIGNOUT,
+  SET_UPDATE_MODE,
 } from '../actions/user';
 
 export const initialState = {
@@ -17,15 +13,16 @@ export const initialState = {
   lastname: '',
   email: '',
   phone: '',
-  birthDate: '',
-  zipCode: '',
-  cityName: '',
+  birth_date: '',
+  zip_code: '',
+  city_name: '',
   country: '',
-  streetName: '',
-  streetNumber: '',
+  street_name: '',
+  street_number: '',
   password: '',
   passwordConfirm: '',
   role: '',
+  updateMode: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -35,49 +32,12 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         [action.name]: action.value,
       };
-    case SET_USER_EMAIL:
-      return {
-        ...state,
-        email: action.value,
-      };
-    case SET_USER_PASSWORD:
-      return {
-        ...state,
-        password: action.value,
-      };
-    case SET_USER_FIRSTNAME:
-      return {
-        ...state,
-        firstname: action.value,
-      };
-    case SET_USER_LASTNAME:
-      return {
-        ...state,
-        lastname: action.value,
-      };
-    case SET_USER_PASSWORDCONFIRM:
-      return {
-        ...state,
-        passwordConfirm: action.value,
-      };
     case CONNECT_USER:
       return {
         ...state,
         logged: true,
         token: action.data.accessToken,
-        // id: action.data.id,
-        // firstname: action.data.firstname,
-        // lastname: action.data.lastname,
-        // email: action.data.email,
-        // phone: action.data.phone,
-        // birth_date: action.data.birth_date,
-        // zip_code: action.data.zip_code,
-        // city_name: action.data.city_name,
-        // country: action.data.country,
-        // street_name: action.data.street_name,
-        // street_number: action.data.street_number,
         password: '',
-        // role: action.data.role,
       };
     case SAVE_USER_DATA:
       return {
@@ -115,6 +75,11 @@ const reducer = (state = initialState, action = {}) => {
         password: '',
         passwordConfirm: '',
         role: '',
+      };
+    case SET_UPDATE_MODE:
+      return {
+        ...state,
+        updateMode: !state.updateMode,
       };
     default:
       return state;

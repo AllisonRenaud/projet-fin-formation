@@ -32,11 +32,15 @@ const Field = ({
 
 Field.propTypes = {
   name: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   type: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   updateMode: PropTypes.bool.isRequired,
+};
+
+Field.defaultProps = {
+  value: '',
 };
 
 export default Field;
