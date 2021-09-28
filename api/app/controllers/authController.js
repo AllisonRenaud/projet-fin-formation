@@ -85,6 +85,10 @@ const authController = {
             response.status(500).send(error.message)
         }
 
+      },
+
+      resetPassword: async (request, response) => {
+
       }
 
 }
