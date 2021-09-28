@@ -1,3 +1,4 @@
+const { type } = require('../databases/redis');
 const asyncClient = require('../utils/redis_promisify')
 const {decryptAccesToken} = require('./authJwt')
 
@@ -55,15 +56,11 @@ module.exports = async (req, res, next) => {
         }else {
           
             const cachedKeys = keys.filter(key => {
-              if(key.includes(req.url)) return true 
-              if(key.includes(req.url.split("?").shift())) return true 
+              const count = (key.match(/.*[0-9]/g) || []).length;
+            
+              if(req.url.includes(key.split("?").shift().slice(count,-1))) return true
               if(req.url === "/signup" && key.includes("/admin/user")) return true
-              if(req.url === "/offers" && key.includes("/admin/offers")) return true
-              if(req.url === "/bookings" && key.includes("/admin/bookings")) return true
-              if(req.url === "/messages" && key.includes("/admin/messages")) return true
-              if(req.url === "/comments" && key.includes("/admin/comments")) return true
-              if(req.url === "/user" && key.includes("/admin/user")) return true
-              if(req.url === "/admin/offers" && key.includes("/offers")) return true
+              
             })
             
             if(!cachedKeys.length) return next()
