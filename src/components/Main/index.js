@@ -9,7 +9,7 @@ import './main.scss';
 
 const Main = () => (
   <main className="main">
-    <div className="main__card">
+    {/* <div className="main__card">
       <img src={Alpes1} alt="mountain" className="main__card__image" />
       <h2 className="main__card__title">Alpes du Nord</h2>
     </div>
@@ -32,7 +32,7 @@ const Main = () => (
     <div className="main__card">
       <img src={Vosges} alt="mountain" className="main__card__image" />
       <h2 className="main__card__title">Vosges</h2>
-    </div>
+    </div> */}
   </main>
 );
 
