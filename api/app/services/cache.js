@@ -69,7 +69,10 @@ module.exports = async (req, res, next) => {
 
             await asyncClient.del(cachedKeys);
             
+            
             for(const key of cachedKeys) keys.splice(keys.indexOf(key), 1)
+            cachedKeys.length = 0
+            
            
             next();
         }
