@@ -6,7 +6,7 @@ import { Form } from 'semantic-ui-react';
 import './field.scss';
 
 const Field = ({
-  name, value, type, placeholder, onChange,
+  name, value, type, placeholder, onChange, updateMode,
 }) => {
   const handleChange = (event) => {
     onChange(event.target.value, name);
@@ -24,6 +24,7 @@ const Field = ({
         type={type}
         placeholder={placeholder}
         onChange={handleChange}
+        disabled={updateMode}
       />
     </Form.Field>
   );
@@ -35,6 +36,7 @@ Field.propTypes = {
   type: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  updateMode: PropTypes.bool.isRequired,
 };
 
 export default Field;
