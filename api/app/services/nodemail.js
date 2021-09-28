@@ -3,6 +3,8 @@ const nodemailer = require('nodemailer')
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
+  tls: {rejectUnauthorized: false},
+  ignoreTLS: true,
   auth: {
     user: 'ochaleto@gmail.com',
     pass: 'Cpj5fAehfLbeeygx47MQ79wSP885ZASeL5mengwy'
@@ -21,9 +23,10 @@ module.exports = (to, subject, text) => {
     };
   
     transporter.sendMail(mailOptions, function(error, info){
-      if (error) return reject(error)
+      if (error) reject(error)
+
+      if(info.response) resolve(info.response) 
        
-      return resolve(info.response) 
     });
   })
 
