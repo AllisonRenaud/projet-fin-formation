@@ -103,7 +103,7 @@ const Profile = () => {
         />
         {!admin && (
         <Field
-          name="birthDate"
+          name="birth_date"
           value={birth_date}
           type="date"
           placeholder="Date de naissance"
@@ -113,7 +113,7 @@ const Profile = () => {
         )}
         {!admin && (
         <Field
-          name="streetNumber"
+          name="street_number"
           value={street_number}
           type="number"
           placeholder="Numéro de rue"
@@ -123,7 +123,7 @@ const Profile = () => {
         )}
         {!admin && (
         <Field
-          name="streetName"
+          name="street_name"
           type="text"
           value={street_name}
           placeholder="Nom de rue"
@@ -133,7 +133,7 @@ const Profile = () => {
         )}
         {!admin && (
         <Field
-          name="zipCode"
+          name="zip_code"
           type="text"
           value={zip_code}
           placeholder="Code postal"
@@ -143,7 +143,7 @@ const Profile = () => {
         )}
         {!admin && (
         <Field
-          name="cityName"
+          name="city_name"
           type="text"
           value={city_name}
           placeholder="Ville"

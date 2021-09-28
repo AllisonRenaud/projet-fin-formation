@@ -32,8 +32,8 @@ export default (store) => (next) => (action) => {
             const token = response.data.accessToken;
             const decoded = jwt_decode(token);
             store.dispatch(connectUser(response.data));
-            // axiosInstance.defaults.headers.common.Authorization = `Bearer ${response.data.accessToken}`;
-            localStorage.setItem('token', response.data.accessToken);
+            axiosInstance.defaults.headers.common.Authorization = `Bearer ${response.data.accessToken}`;
+            localStorage.setItem('token', token);
             localStorage.setItem('id', decoded.id);
             localStorage.setItem('role', decoded.role);
           },
@@ -122,6 +122,7 @@ export default (store) => (next) => (action) => {
             city_name,
             country,
             password,
+          }, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
