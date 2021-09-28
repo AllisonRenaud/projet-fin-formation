@@ -19,6 +19,7 @@
     "joi": "^17.4.2",
     "joi-postalcode": "^2.0.0",
     "jsonwebtoken": "^8.5.1",
+    "nodemailer": "^6.6.5",
     "pg": "^8.7.1",
     "redis": "^3.1.2",
     "swagger-ui-express": "^4.1.6"

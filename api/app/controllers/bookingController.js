@@ -1,4 +1,5 @@
-const {Booking} = require('../models');
+const {Booking, User} = require('../models');
+const sendMail = require("../services/nodemail")
 
 const bookingController = {
 
@@ -30,6 +31,10 @@ const bookingController = {
       try {
         request.body.user_id = request.token.id
         const newBooking = new Booking(request.body).create()
+        const user = await User.findById(request.token.id)
+        await sendMail("ochaleto@gmail.com", "test", "test")
+        
+
         response.status(201).json(newBooking);
 
       } catch (error) {
