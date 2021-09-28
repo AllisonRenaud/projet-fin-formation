@@ -40,7 +40,8 @@ CREATE FUNCTION update_offer(json) RETURNS void AS $$
 		galery_picture_3=$1->>'galery_picture_3',
 		galery_picture_4=$1->>'galery_picture_4',
 		galery_picture_5=$1->>'galery_picture_5',
-        location_id=($1->>'location_id')::int
+        location_id=($1->>'location_id')::int,
+        offer_status=($1->>'offer_status')::boolean
 	WHERE id=($1->>'id')::int;
 $$ LANGUAGE SQL STRICT;
 

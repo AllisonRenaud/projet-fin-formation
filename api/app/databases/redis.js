@@ -1,12 +1,15 @@
 const redis = require('redis');
-const url = process.env.REDIS_URL
 
-client = redis.createClient({url})
+
+const client = redis.createClient(process.env.REDIS_TLS_URL, {
+  tls: {
+      rejectUnauthorized: false
+  }
+})
 
 client.GET("ping", (err, data) => {
   if(err) console.log(err)
-  console.log(data)
-  if(data === "PONG") console.log('redis database connected')
+  console.log('redis database connected')
 })
 
 client.on("error", (error) => {

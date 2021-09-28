@@ -1,4 +1,5 @@
 const CoreModel = require('./coreModel');
+const db = require('../databases/postgres.js');
 
 class Comment extends CoreModel {
     static tableName = "comment";
@@ -9,6 +10,9 @@ class Comment extends CoreModel {
             this[propName] = obj[propName];
         }
     }
+
 }
+
+
 
 module.exports = Comment;

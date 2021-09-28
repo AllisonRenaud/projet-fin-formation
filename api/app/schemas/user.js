@@ -24,6 +24,10 @@ module.exports = {
         password: Joi.string(),
         passwordConfirm: Joi.string()
 
+    }),
+
+    deleteUser: Joi.object({
+      id: Joi.number().positive()
     })
 
     
