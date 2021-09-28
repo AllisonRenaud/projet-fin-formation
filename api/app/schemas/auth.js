@@ -23,6 +23,15 @@ module.exports = {
 
     refresh_token: Joi.object({
       refreshToken: Joi.string().required()
+    }),
+
+    reset_password: Joi.object({
+      email: Joi.string().email().required()
+    }),
+
+    confirm_reset: Joi.object({
+      password: Joi.string().trim().required().regex(new RegExp('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]){8,}$')),
+      passwordConfirm: Joi.string().trim().required().valid(Joi.ref('password'))
     })
 
     

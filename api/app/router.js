@@ -1,7 +1,7 @@
 const {Router} = require('express');
 const router = Router();
 const dataValidator = require("./services/dataValidator")
-const {verifyToken, isAdmin} = require('./services/authJwt')
+const {verifyAccessToken, isAdmin} = require('./services/authJwt')
 const redis = require("./services/cache")
 
 const {
@@ -18,7 +18,7 @@ router.use(redis, dataValidator)
 
 router.use(authRoutes, offerRoutes)
 
-router.use(verifyToken)
+router.use(verifyAccessToken)
 router.use([userRoutes, messageRoutes, bookingRoutes, commentRoutes ])
 router.use(isAdmin, adminRoutes)
 
