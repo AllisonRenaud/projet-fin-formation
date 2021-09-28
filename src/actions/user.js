@@ -1,12 +1,12 @@
-// export const SET_USER_FIELD = 'SET_USER_FIELD';
+export const SET_USER_FIELD = 'SET_USER_FIELD';
 
-// export const setUserField = (value, name) => (
-//   {
-//     type: SET_USER_FIELD,
-//     value,
-//     name,
-//   }
-// );
+export const setUserField = (value, name) => (
+  {
+    type: SET_USER_FIELD,
+    value,
+    name,
+  }
+);
 
 export const SET_USER_EMAIL = 'SET_USER_EMAIL';
 
@@ -94,5 +94,13 @@ export const saveUserData = (data) => (
   {
     type: SAVE_USER_DATA,
     data,
+  }
+);
+
+export const SIGNOUT = 'SIGNOUT';
+
+export const signout = () => (
+  {
+    type: SIGNOUT,
   }
 );

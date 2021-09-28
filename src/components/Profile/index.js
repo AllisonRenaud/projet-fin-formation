@@ -4,14 +4,12 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
-  setUserEmail,
-  setUserPassword,
-  setUserFirstname,
-  setUserLastname,
-  setUserPasswordConfirm,
+  setUserField,
   signup,
   fetchUserData,
 } from '../../actions/user';
+
+import Field from '../Field';
 
 import './profile.scss';
 
@@ -37,31 +35,13 @@ const Profile = () => {
     admin = true;
   }
 
-  const changeUserFirstname = (value) => {
-    dispatch(setUserFirstname(event.target.value));
-    console.log(firstname);
-  };
-
-  const changeUserLastname = (value) => {
-    dispatch(setUserLastname(event.target.value));
-  };
-
-  const changeUserEmail = (value) => {
-    dispatch(setUserEmail(event.target.value));
-  };
-
-  const changeUserPassword = (value) => {
-    dispatch(setUserPassword(event.target.value));
-  };
-
-  const changeUserPasswordConfirm = (value) => {
-    dispatch(setUserPasswordConfirm(event.target.value));
+  const changeField = (value, name) => {
+    dispatch(setUserField(value, name));
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(signup());
-    console.log('création user');
   };
 
   useEffect(
@@ -75,107 +55,87 @@ const Profile = () => {
     <main className="profile">
       <h2 className="profile__title">Bienvenue sur votre profil</h2>
       <Form className="profile__form" onSubmit={handleSubmit}>
-        <Form.Field>
-          <label>Nom</label>
-          <input
-            type="text"
-            value={lastname}
-            placeholder={role}
-            onChange={changeUserLastname}
-          />
-        </Form.Field>
-        <Form.Field>
-          <label>Prénom</label>
-          <input
-            type="text"
-            value={firstname}
-            placeholder={firstname}
-            onChange={changeUserFirstname}
-          />
-        </Form.Field>
-        <Form.Field>
-          <label>Email</label>
-          <input
-            type="text"
-            value={email}
-            placeholder={email}
-            onChange={changeUserEmail}
-          />
-        </Form.Field>
-        <Form.Field>
-          <label>Téléphone</label>
-          <input
-            type="text"
-            value={phone}
-            placeholder={phone}
-            onChange=""
-          />
-        </Form.Field>
+        <Field
+          name="lastname"
+          value={lastname}
+          type="text"
+          placeholder="Nom"
+          onChange={changeField}
+        />
+        <Field
+          name="firstname"
+          value={firstname}
+          type="text"
+          placeholder="Prénom"
+          onChange={changeField}
+        />
+        <Field
+          name="email"
+          value={email}
+          type="email"
+          placeholder="Email"
+          onChange={changeField}
+        />
+        <Field
+          name="phone"
+          value={phone}
+          type="tel"
+          placeholder="Téléphone"
+          onChange={changeField}
+        />
         {!admin && (
-        <Form.Field>
-          <label>Date de naissance</label>
-          <input
-            type="text"
-            value={birthDate}
-            placeholder={birthDate}
-            onChange=""
-          />
-        </Form.Field>
+        <Field
+          name="birthDate"
+          value={birthDate}
+          type="date"
+          placeholder="Date de naissance"
+          onChange={changeField}
+        />
         )}
         {!admin && (
-        <Form.Field>
-          <label>Numéro de rue</label>
-          <input
-            type="text"
-            value={streetNumber}
-            placeholder={streetNumber}
-            onChange=""
-          />
-        </Form.Field>
+        <Field
+          name="streetNumber"
+          value={streetNumber}
+          type="number"
+          placeholder="Numéro de rue"
+          onChange={changeField}
+        />
         )}
         {!admin && (
-        <Form.Field>
-          <label>Nom de rue</label>
-          <input
-            type="text"
-            value={streetName}
-            placeholder={streetName}
-            onChange=""
-          />
-        </Form.Field>
+        <Field
+          name="streetName"
+          type="text"
+          value={streetName}
+          placeholder="Nom de rue"
+          onChange={changeField}
+        />
         )}
         {!admin && (
-        <Form.Field>
-          <label>Code postal</label>
-          <input
-            type="text"
-            value={zipCode}
-            placeholder={zipCode}
-            onChange=""
-          />
-        </Form.Field>
+        <Field
+          name="zipCode"
+          type="text"
+          value={zipCode}
+          placeholder="Code postal"
+          onChange={changeField}
+        />
         )}
         {!admin && (
-        <Form.Field>
-          <label>Ville</label>
-          <input
-            type="text"
-            value={cityName}
-            placeholder={cityName}
-            onChange=""
-          />
-        </Form.Field>
+        <Field
+          name="cityName"
+          type="text"
+          value={cityName}
+          placeholder="Ville"
+          onChange={changeField}
+        />
         )}
         {!admin && (
-        <Form.Field>
-          <label>Pays</label>
-          <input
-            type="text"
-            value={country}
-            placeholder={country}
-            onChange=""
-          />
-        </Form.Field>
+        <Field
+          name="country"
+          type="text"
+          value={country}
+          placeholder="Pays"
+          onChange={changeField}
+        />
         )}
         <div className="profile__form__buttons">
           <Button color="blue" className="profile__form__button__modify" type="submit">Modifier</Button>

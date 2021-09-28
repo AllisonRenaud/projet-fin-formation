@@ -1,4 +1,5 @@
 import {
+  SET_USER_FIELD,
   SET_USER_EMAIL,
   SET_USER_PASSWORD,
   CONNECT_USER,
@@ -6,6 +7,7 @@ import {
   SET_USER_LASTNAME,
   SET_USER_PASSWORDCONFIRM,
   SAVE_USER_DATA,
+  SIGNOUT,
 } from '../actions/user';
 
 export const initialState = {
@@ -15,12 +17,12 @@ export const initialState = {
   lastname: '',
   email: '',
   phone: '',
-  birth_date: '',
-  zip_code: '',
-  city_name: '',
+  birthDate: '',
+  zipCode: '',
+  cityName: '',
   country: '',
-  street_name: '',
-  street_number: '',
+  streetName: '',
+  streetNumber: '',
   password: '',
   passwordConfirm: '',
   role: '',
@@ -28,6 +30,11 @@ export const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case SET_USER_FIELD:
+      return {
+        ...state,
+        [action.name]: action.value,
+      };
     case SET_USER_EMAIL:
       return {
         ...state,
@@ -76,7 +83,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         // token: action.data.accessToken,
-        id: action.data.id,
+        // id: action.data.id,
         firstname: action.data.firstname,
         lastname: action.data.lastname,
         email: action.data.email,
@@ -89,6 +96,25 @@ const reducer = (state = initialState, action = {}) => {
         street_number: action.data.street_number,
         password: '',
         role: action.data.role,
+      };
+    case SIGNOUT:
+      return {
+        ...state,
+        logged: false,
+        id: '',
+        firstname: '',
+        lastname: '',
+        email: '',
+        phone: '',
+        birth_date: '',
+        zip_code: '',
+        city_name: '',
+        country: '',
+        street_name: '',
+        street_number: '',
+        password: '',
+        passwordConfirm: '',
+        role: '',
       };
     default:
       return state;
