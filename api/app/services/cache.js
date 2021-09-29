@@ -57,11 +57,12 @@ module.exports = async (req, res, next) => {
           
             const cachedKeys = keys.filter(key => {
               const count = (key.match(/.*[0-9]/g) || []).length;
-            
-              if(req.url.includes(key.split("?").shift().slice(count,-1))) return true
+              
+              if(req.url.includes(key.split("?").shift().slice(count,-1).split("/").shift())) return true
               if(req.url === "/signup" && key.includes("/admin/user")) return true
               
             })
+            
             
             if(!cachedKeys.length) return next()
             

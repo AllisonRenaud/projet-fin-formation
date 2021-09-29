@@ -2,22 +2,31 @@ const {Offer} = require('../models');
 
 const offerController = {
 
-    findAllOrFilter: async (request, response) => {
+    findAllorFilter: async (request, response) => {
         try {
-            if(!request.query.title){
+            if(request.query.title){
 
+              const offers = await Offer.findByTitle(request.query.title);
+              for(const offer of offers) {
+                for(const field in offer) !offer[field] ? delete offer[field] : null
+                
+              }
+              response.json(offers);
+              
+            }else if(request.query.location_id) {
+
+              const offers = await Offer.findByLocation(request.query.location_id);
+              for(const offer of offers) {
+                for(const field in offer) !offer[field] ? delete offer[field] : null
+              }
+              response.json(offers);
+
+            }else {
               const offers = await Offer.findAll();
               for(const offer of offers) {
                 for(const field in offer) !offer[field] ? delete offer[field] : null
               }
               response.json(offers);
-              
-            }else {
-
-              const offer = await Offer.findByTitle(request.query.title);
-              for(const field in offer) !offer[field] ? delete offer[field] : null
-              response.json(offer);
-
             }
             
         } catch(error) {
@@ -34,14 +43,6 @@ const offerController = {
       }
     },
 
-    findByLocation: async (request, response) => {
-      try {
-          const offers = await Offer.findByLocation(parseInt(request.query.location_id, 10));
-          response.json(offers);
-      } catch(error) {
-          response.status(500).send(error.message);
-      }
-    },
 
   create: async (request, response) => {
       try {
