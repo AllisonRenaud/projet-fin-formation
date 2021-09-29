@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken")
 
 
 module.exports = {
-    verifyToken: (request, response, next) => {
+    verifyAccessToken: (request, response, next) => {
        
         let token = request.headers["authorization"];
         if(!token) return response.status(403).send("Unauthorized")
@@ -46,13 +46,21 @@ module.exports = {
     )
     },
 
+    jwtSignResetPassword: obj => {
+      return jwt.sign(
+        obj, 
+        process.env.RESET_PASSWORD_TOKEN_SECRET, 
+        { expiresIn: '1h', algorithm: 'HS256' }
+    )
+    },
+
     isAdmin: (request, response, next) => {
         const isAdmin = request.token.role === "admin"
         if(!isAdmin) return response.status(403).send("Unauthorized")
         next()
     },
 
-    decryptAccesToken: (token) => {
+    decryptAccessToken: (token) => {
         return new Promise((resolve, reject) => {
           if(!token) return resolve()
           token = token.split(" ")[1]
@@ -103,6 +111,23 @@ module.exports = {
       })
     
       
+  },
+
+  decryptResetPasswordToken: (token) => {
+    
+    return new Promise((resolve, reject) => {
+      if(!token) return resolve()
+      token = token.split(" ")[1]
+      if(!token) return resolve()
+      
+      jwt.verify(token, process.env.RESET_PASSWORD_TOKEN_SECRET, (err, data) => {
+            
+      if(err) return reject(err)
+      
+      else return resolve(data)
+    
+      })
+    })   
   }
 
 
