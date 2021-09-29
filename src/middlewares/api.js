@@ -1,5 +1,8 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-console */
 import axios from 'axios';
+
+import jwt_decode from 'jwt-decode';
 
 import {
   connectUser,
@@ -8,6 +11,7 @@ import {
   LOGIN,
   SIGNUP,
   signup,
+  UPDATE_USER,
 } from '../actions/user';
 
 const axiosInstance = axios.create({
@@ -25,11 +29,13 @@ export default (store) => (next) => (action) => {
         })
         .then(
           (response) => {
+            const token = response.data.accessToken;
+            const decoded = jwt_decode(token);
             store.dispatch(connectUser(response.data));
             axiosInstance.defaults.headers.common.Authorization = `Bearer ${response.data.accessToken}`;
-            // localStorage.setItem('token', response.data.accessToken);
-            console.log(localStorage);
-            console.log(response.data);
+            localStorage.setItem('token', token);
+            localStorage.setItem('id', decoded.id);
+            localStorage.setItem('role', decoded.role);
           },
         ).catch(
           () => console.log('error'),
@@ -54,7 +60,6 @@ export default (store) => (next) => (action) => {
         .then(
           (response) => {
             store.dispatch(signup(response.data));
-            console.log('Utilisateur enregistré !');
           },
         ).catch(
           (error) => console.log(error.message),
@@ -63,8 +68,8 @@ export default (store) => (next) => (action) => {
       break;
     }
     case FETCH_USER_DATA: {
-      const { user: { token } } = store.getState();
-      // const token = localStorage.getItem('token');
+      // const { user: { token } } = store.getState();
+      const token = localStorage.getItem('token');
       axiosInstance
         .get('/user',
           {
@@ -74,7 +79,56 @@ export default (store) => (next) => (action) => {
           })
         .then(
           (response) => {
-            console.log(response);
+            store.dispatch(saveUserData(response.data));
+          },
+          // localStorage.setItem('token', token),
+        )
+        .catch(
+          (error) => console.log(error),
+        );
+      next(action);
+      break;
+    }
+    case UPDATE_USER: {
+      const token = localStorage.getItem('token');
+      const {
+        user: {
+          firstname,
+          lastname,
+          email,
+          phone,
+          birth_date,
+          street_number,
+          street_name,
+          zip_code,
+          city_name,
+          country,
+          password,
+        },
+      } = store.getState();
+      const id = localStorage.getItem('id');
+      axiosInstance
+        .patch('/user',
+          {
+            id,
+            firstname,
+            lastname,
+            email,
+            phone,
+            birth_date,
+            street_number,
+            street_name,
+            zip_code,
+            city_name,
+            country,
+            password,
+          }, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+        .then(
+          (response) => {
             store.dispatch(saveUserData(response.data));
           },
           // localStorage.setItem('token', token),

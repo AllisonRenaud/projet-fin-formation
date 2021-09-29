@@ -5,6 +5,7 @@ const cors = require('cors');
 const swaggerUI = require("swagger-ui-express");
 const rateLimit = require('express-rate-limit');
 const docs = require('./docs/swagger');
+if(process.env.NEWSLETTER) require("./app/services/newsletter")
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(limiter);
 app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(docs));
 
 app.use(router);
+
 
 app.listen(port, () => {
     console.log(`Server started on http://localhost:${port}\nApi docs available on http://localhost:${port}/api-docs`)
