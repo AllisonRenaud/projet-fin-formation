@@ -13,13 +13,13 @@ const transporter = nodemailer.createTransport({
 
 
 
-module.exports = (to, subject, text) => {
+module.exports = (to, subject, html) => {
   return new Promise((resolve, reject) => {
     const mailOptions = {
       from: 'ochaleto@gmail.com',
       to,
       subject,
-      html: `<h1 style="color:red">${text}</h1>`
+      html
     };
   
     transporter.sendMail(mailOptions, function(error, info){

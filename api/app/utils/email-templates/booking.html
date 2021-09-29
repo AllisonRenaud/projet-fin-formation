@@ -1,21 +1,19 @@
-module.exports = (user, booking, offer) => {
-  return `
-    <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-  </head>
-  <body style="height: 600px;">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body style="height: 600px;">
 
 	<header>
 		<a href="https://ochalet-api.herokuapp.com/">O'chalet</a>
 	</header>
 
 	<main style="height: 100%; display:flex; flex-direction: column; justify-content: space-evenly; align-items: center;">
-		<h1>${user.firstname} ${user.lastname}, O'chalet vous remercie pour votre réservation</h1>
+		<h1>firstname lastname, O'chalet vous remercie pour votre réservation</h1>
 		<h2>Vous trouverez le récapitualtif de votre réservation ci-dessous</h2>
 
 		<table>
@@ -30,10 +28,10 @@ module.exports = (user, booking, offer) => {
 			</thead>
 			<tbody>
 				<tr>
-					<td>${booking.id}</td>
-					<td>${booking.reservation_start}</td>
-					<td>${offer.title}</td>
-					<td>${offer.price_ht * offer.tax}€</td>
+					<td>id</td>
+					<td>start</td>
+					<td>title</td>
+					<td>price * price_ht</td>
 				</tr>
 			</tbody>
 		</table>
@@ -47,5 +45,4 @@ module.exports = (user, booking, offer) => {
 	</footer>
 	
 </body>
-</html>`
-}
+</html>
