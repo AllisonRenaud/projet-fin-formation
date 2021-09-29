@@ -1,5 +1,5 @@
+/* eslint-disable camelcase */
 import { Button, Icon, Form } from 'semantic-ui-react';
-
 
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -181,7 +181,7 @@ const Profile = () => {
           >
             <Button.Content visible>Modifier</Button.Content>
             <Button.Content hidden>
-              <Icon name='save' />
+              <Icon name="save" />
             </Button.Content>
           </Button>
           {updateMode && (
@@ -195,7 +195,7 @@ const Profile = () => {
           >
             <Button.Content visible>Supprimer mon compte</Button.Content>
             <Button.Content hidden>
-              <Icon name='trash' />
+              <Icon name="trash" />
             </Button.Content>
           </Button>
         </div>
