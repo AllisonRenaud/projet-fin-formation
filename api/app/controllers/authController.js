@@ -98,10 +98,7 @@ const authController = {
         
         const emailBody = resetPasswordTemplate({resetPasswordToken})
 
-        
-
         await sendEmail(user.email, "Reset Password", emailBody)
-
 
       },
 
