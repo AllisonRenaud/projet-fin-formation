@@ -24,7 +24,7 @@ module.exports = {
       },
       // response code
       404: {
-        description: "User not found",
+        description: "admin not found",
         content: {
           // content-type
           "application/json": {

@@ -10,10 +10,10 @@ module.exports = {
     schemas: {
       // id model
       _id: {
-        type: "string",
+        type: "number",
         format: "object_id",
-        description: "An mongo id", // desc
-        example: "45cbc4a0e4123f6920000002", // example of an id
+        description: "An psql id", // desc
+        example: "45", // example of an id
       },
 
       Login: {
@@ -75,7 +75,7 @@ module.exports = {
         
         properties: {
           _id: {
-            type: "string",
+            type: "number",
             format: "object_id",
             description: "_id", // desc
             example: "45cbc4a0e4123f6920000002", // example of an id,
@@ -131,19 +131,19 @@ module.exports = {
         type: "object", // data type
         properties: {
           _id: {
-            type: "string",
+            type: "number",
             format: "object_id",
             description: "Booking identification", // desc
             example: "45cbc4a0e4123f6920000002", // example of an id
           },
           user_id: {
-            type: "string",
+            type: "number",
             format: "object_id",
             description: "User identification", // desc
             example: "45cbc4a0e4123f6920000002", // example of an id
           },
           offer_id: {
-            type: "string", // data-type
+            type: "number", // data-type
             description: "Offer title", // desc
             example: "catman", // example of a title
           },
@@ -169,7 +169,7 @@ module.exports = {
         type: "object", // data type
         properties: {
           _id: {
-            type: "string", // data-type
+            type: "number", // data-type
             format: "object_id",
             description: "Comment identification", // desc
             example: "45cbc4a0e4123f6920000002", // example of an id
@@ -186,13 +186,13 @@ module.exports = {
             example: "4", // example of a title
           },
           user_id: {
-            type: "string", // data-type
+            type: "number", // data-type
             format:'object_id',
             description: "User id", // desc
             example: "45cbc4a0e4123f6920000002", // example of a title
           },
           offer_id: {
-            type: "string", // data-type
+            type: "number", // data-type
             format:'object_id',
             description: "Offer id", // desc
             example: "45cbc4a0e4123f6920000002",
@@ -218,7 +218,7 @@ module.exports = {
         type: "object", // data type
         properties: {
           _id: {
-            type: "string", // data-type
+            type: "number", // data-type
             format: "object_id",
             description: "Comment identification", // desc
             example: "45cbc4a0e4123f6920000002", // example of an id
@@ -230,13 +230,13 @@ module.exports = {
           },
           
           user_id: {
-            type: "string", // data-type
+            type: "number", // data-type
             format:'object_id',
             description: "User id", // desc
             example: "45cbc4a0e4123f6920000002", // example of a title
           },
           offer_id: {
-            type: "string", // data-type
+            type: "number", // data-type
             format:'object_id',
             description: "Offer id", // desc
             example: "45cbc4a0e4123f6920000002",

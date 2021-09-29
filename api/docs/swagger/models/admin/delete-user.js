@@ -1,22 +1,14 @@
 module.exports = {
   // operation's method
-  get: {
+  delete: {
     security: [{bearerAuth: []}],
     tags: ["Admin"], // operation's tag.
-    description: "Get logged admin, admin ID is automaticly send throught token in request headers {}", // operation's desc.
+    description: "Delete logged user, user ID is automaticly send throught token in request headers", // operation's desc.
 
     responses: {
       // response code
       200: {
-        description: "Return user without password field and if admin have subjects they are populated", // response desc.
-        content: {
-          // content-type
-          "application/json": {
-            schema: {
-              $ref: "#/components/schemas/Admin",
-            },
-          },
-        },
+        description: "User deleted", // response desc.
       },
 
       401: {
@@ -32,7 +24,7 @@ module.exports = {
       },
       // response code
       404: {
-        description: "Admin not found",
+        description: "User not found",
         content: {
           // content-type
           "application/json": {

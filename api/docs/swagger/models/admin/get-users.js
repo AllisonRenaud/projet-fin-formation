@@ -3,7 +3,7 @@ module.exports = {
   get: {
     security: [{bearerAuth: []}],
     tags: ["Admin"], // operation's tag.
-    description: "Get logged admin, admin ID is automaticly send throught token in request headers {}", // operation's desc.
+    description: "Get logged user, user ID is automaticly send throught token in request headers {}", // operation's desc.
 
     responses: {
       // response code
@@ -32,7 +32,7 @@ module.exports = {
       },
       // response code
       404: {
-        description: "Admin not found",
+        description: "User not found",
         content: {
           // content-type
           "application/json": {
