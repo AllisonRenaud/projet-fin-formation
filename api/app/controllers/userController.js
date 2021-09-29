@@ -34,7 +34,7 @@ const userController = {
         try {
 
             request.body.id = request.token.id
-            console.log(request.body)
+         
             await new User(request.body).update()
             response.status(204).json('Update done');
 

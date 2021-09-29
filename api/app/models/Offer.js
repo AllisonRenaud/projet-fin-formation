@@ -13,8 +13,11 @@ class Offer extends CoreModel {
 
     static async findByTitle(title) {
       try {
+
+        title = title.split(" ").map(word => `(${word}?[ ]?)`).join("")
         
-        const {rows} = await db.query('SELECT * FROM "offer" WHERE "title" ILIKE $1', [`%${title}%`]);
+        
+        const {rows} = await db.query('SELECT * FROM "offer" WHERE "title" ~* $1', [title]);
         return rows[0]
 
       } catch(error) {
