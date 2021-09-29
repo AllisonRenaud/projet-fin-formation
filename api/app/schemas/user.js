@@ -21,8 +21,8 @@ module.exports = {
         country: Joi.string().max(40).trim(),
         street_name: Joi.string().trim(),
         street_number: Joi.string().alphanum().max(10).trim(),
-        password: Joi.string(),
-        passwordConfirm: Joi.string()
+        password: Joi.string().trim().regex(new RegExp('^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]){8,}$')),
+        passwordConfirm: Joi.string().trim().valid(Joi.ref('password')),
 
     }),
 
