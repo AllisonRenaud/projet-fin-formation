@@ -7,6 +7,7 @@ const redis = require("./services/cache")
 const {
     userRoutes,
     offerRoutes,
+    locationRoutes,
     messageRoutes,
     bookingRoutes,
     commentRoutes,
@@ -16,7 +17,7 @@ const {
 
 router.use(redis, dataValidator)
 
-router.use(authRoutes, offerRoutes)
+router.use(authRoutes, offerRoutes, locationRoutes)
 
 router.use(verifyAccessToken)
 router.use([userRoutes, messageRoutes, bookingRoutes, commentRoutes ])
