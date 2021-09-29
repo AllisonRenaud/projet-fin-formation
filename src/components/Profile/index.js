@@ -29,7 +29,6 @@ const Profile = () => {
     zip_code,
     city_name,
     country,
-    password,
     updateMode,
   } = useSelector((state) => state.user);
 
@@ -157,16 +156,6 @@ const Profile = () => {
           type="text"
           value={country}
           placeholder="Pays"
-          onChange={changeField}
-          updateMode={!updateMode}
-        />
-        )}
-        {updateMode && (
-        <Field
-          name="password"
-          type="password"
-          value={password}
-          placeholder="Mot de passe"
           onChange={changeField}
           updateMode={!updateMode}
         />

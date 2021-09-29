@@ -103,7 +103,6 @@ export default (store) => (next) => (action) => {
           zip_code,
           city_name,
           country,
-          password,
         },
       } = store.getState();
       const id = localStorage.getItem('id');
@@ -121,7 +120,6 @@ export default (store) => (next) => (action) => {
             zip_code,
             city_name,
             country,
-            password,
           }, {
             headers: {
               Authorization: `Bearer ${token}`,
