@@ -1,6 +1,6 @@
 const { type } = require('../databases/redis');
 const asyncClient = require('../utils/redis_promisify')
-const {decryptAccesToken} = require('./authJwt')
+const {decryptAccessToken} = require('./authJwt')
 
 
 const TIMEOUT = 60 * 30; // 30 minutes
@@ -20,7 +20,7 @@ module.exports = async (req, res, next) => {
           
           if(!req.headers["authorization"] || req.url.includes("admin") || req.url === "/refresh_token") key = req.url
           else {
-            const data = await decryptAccesToken(req.headers['authorization'])
+            const data = await decryptAccessToken(req.headers['authorization'])
             key = req.url + data.id
           }
     
