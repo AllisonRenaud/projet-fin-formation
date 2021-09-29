@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Button, Form } from 'semantic-ui-react';
+import { Button, Icon, Form } from 'semantic-ui-react';
 
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -11,8 +11,6 @@ import {
 import './signup.scss';
 
 import Field from '../Field';
-
-import signupLogo from '../../assets/images/signup-logo.svg';
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -33,7 +31,6 @@ const Signup = () => {
 
   return (
     <main className="signup">
-      <img className="signup__logo" src={signupLogo} alt="signup" />
       <Form className="signup__form" onSubmit={handleSubmit}>
         <Field
           name="lastname"
@@ -71,8 +68,30 @@ const Signup = () => {
           onChange={changeField}
         />
         <div className="signup__form__buttons">
-          <Button color="blue" className="signup__form__button__signup" type="submit">S'inscrire</Button>
-          <Button color="red"><Link to="/signin" className="signup__button__signin">J'ai déjà un compte</Link></Button>
+          <Button
+            animated
+            className="signup__form__button__signup"
+            color="brown"
+            type="submit"
+          >
+            <Button.Content visible>S'inscrire</Button.Content>
+            <Button.Content hidden>
+              <Icon name='plus' />
+            </Button.Content>
+          </Button>
+          <Link to="/signin" className="signup__button__signin">
+            <Button
+              animated
+              className="signup__form__button__signup"
+              color="teal"
+              type="submit"
+            >
+              <Button.Content visible>J'ai déjà un compte</Button.Content>
+              <Button.Content hidden>
+                <Icon name='sign in' />
+              </Button.Content>
+            </Button>
+          </Link>
         </div>
       </Form>
     </main>

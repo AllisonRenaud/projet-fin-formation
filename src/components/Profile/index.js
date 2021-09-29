@@ -1,5 +1,5 @@
-/* eslint-disable camelcase */
 import { Button, Form } from 'semantic-ui-react';
+
 
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -172,11 +172,32 @@ const Profile = () => {
         />
         )}
         <div className="profile__form__buttons">
-          <Button color="blue" className="profile__form__button__modify" onClick={toggleUpdateMode}>Modifier</Button>
+          <Button
+            animated
+            className="signup__form__button__modify"
+            color="brown"
+            onClick={toggleUpdateMode}
+            type="submit"
+          >
+            <Button.Content visible>Modifier</Button.Content>
+            <Button.Content hidden>
+              <Icon name='save' />
+            </Button.Content>
+          </Button>
           {updateMode && (
           <Button color="blue" className="profile__form__button__validate" type="submit">Valider</Button>
           )}
-          <Button color="red" className="profile__form__button__delete" onClick={deleteAccount}>Supprimer mon compte</Button>
+          <Button
+            animated
+            className="signup__form__button__delete"
+            color="red"
+            onClick={deleteAccount}
+          >
+            <Button.Content visible>Supprimer mon compte</Button.Content>
+            <Button.Content hidden>
+              <Icon name='trash' />
+            </Button.Content>
+          </Button>
         </div>
       </Form>
     </main>

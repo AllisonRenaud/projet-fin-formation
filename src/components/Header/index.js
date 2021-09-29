@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 import { Dropdown } from 'semantic-ui-react';
 
-import chalet from '../../assets/images/chalet.svg';
+import chalet from '../../assets/images/logo-ochalet.png';
 import './header.scss';
 
 const options = [

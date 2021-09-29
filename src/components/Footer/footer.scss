@@ -1,5 +1,5 @@
 .footer{
-    background-color: #08D9D6;
+    // background-color: #08D9D6;
     height: 5rem;
     width: 100% ;
     display: flex;
@@ -16,6 +16,12 @@
         color: #EAEAEA;
         font-weight: bold;
         padding: 1rem;
+        transition: .3s;
+
+        &:hover {
+          color: #a5673f;
+          text-shadow: 0 0 3px #000;
+        }
   
       }
     }
