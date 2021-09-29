@@ -9,12 +9,15 @@ const admin = require("./admin")
 module.exports = {
     paths:{
         '/user':{
+            ...user.getUsers
+        },
+        '/user/{_id}':{
             ...user.getUser,
             ...user.updateUser,
             ...user.changePassword,
             ...user.deleteUser
         },
-        '/booking':{
+        '/bookings':{
           ...booking.getBookings,
           ...booking.createBooking
         },
@@ -23,20 +26,20 @@ module.exports = {
           ...booking.updateBooking,
           ...booking.deleteBooking
         },
-        '/offer':{
+        '/offers':{
           ...offer.getOffers,
           ...booking.createOffer
         },
-        '/offer/{_id}':{
+        '/offers/{_id}':{
           ...offer.getOffer,
           ...offer.updateOffer,
           ...offer.deleteOffer
         },
-        '/message':{
+        '/messages':{
             ...message.getMessages,
             ...message.createMessage
         },
-        '/message/{_id}':{
+        '/messages/{_id}':{
             ...message.getMessage,
             ...message.updatemessage,
             ...message.deletemessage
@@ -45,19 +48,19 @@ module.exports = {
             ...messageReferences.createReference,
             ...messageReferences.deleteReference
         },*/
-        '/comment':{
+        '/comments':{
             ...comment.getComments,
             ...comment.createComment
         },
-        '/comment/{_id}':{
+        '/comments/{_id}':{
             ...comment.getComment,
             ...comment.updateComment,
             ...comment.deleteComment
         },
-        '/login':{
+        '/signin':{
             ...authentification.login
         },
-        '/register':{
+        '/signup':{
             ...authentification.register
         },
         '/recovery':{

@@ -14,10 +14,7 @@ module.exports = {
             schema: {
               type: "object",
               properties: {
-                  pseudo: {
-                      type: "string",
-                      description: "used pseudo for registration"
-                  },
+                  
                   lastname: {
                       type: "string",
                       description: "used lastname for registration"
@@ -66,7 +63,7 @@ module.exports = {
 
         // response code
         404: {
-          description: "User not found or pseudo/password not matching",
+          description: "User not found/password not matching",
           content: {
             // content-type
             "application/json": {
