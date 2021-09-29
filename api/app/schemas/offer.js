@@ -50,7 +50,8 @@ module.exports = {
   }),
 
     filterByTitle: Joi.object({
-      title: Joi.string().required()
+      title: Joi.string(), 
+      location_id: Joi.number().positive()
     })
 
     

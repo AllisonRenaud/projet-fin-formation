@@ -3,7 +3,11 @@ const offerController = require("../controllers/offerController")
 
 
 offerRouter.route("/offers")
-.get(offerController.findAllOrFilter)
+.get(offerController.findByLocation)
+
+offerRouter.route("/offers/:id")
+.get(offerController.findById)
+
 
 
 module.exports = offerRouter
