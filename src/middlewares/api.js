@@ -3,6 +3,9 @@
 import axios from 'axios';
 
 import jwt_decode from 'jwt-decode';
+import {
+  FETCH_LOCATIONS, saveLocations,
+} from '../actions/offers';
 
 import {
   connectUser,
@@ -137,6 +140,19 @@ export default (store) => (next) => (action) => {
       next(action);
       break;
     }
+    case FETCH_LOCATIONS:
+      axiosInstance
+        .get(
+          '/locations',
+        )
+        .then(
+          (response) => {
+            store.dispatch(saveLocations(response.data));
+            console.log(response.data);
+          },
+        );
+      next(action);
+      break;
     default:
       next(action);
   }
