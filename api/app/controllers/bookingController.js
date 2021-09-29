@@ -1,5 +1,6 @@
-const {Booking, User} = require('../models');
+const {Booking, User, Offer} = require('../models');
 const sendMail = require("../services/nodemail")
+const bookingMailTemplate = require('../utils/email-templates/bookingTemplate')
 
 const bookingController = {
 
@@ -30,9 +31,16 @@ const bookingController = {
     create: async (request, response) => {
       try {
         request.body.user_id = request.token.id
-        const newBooking = new Booking(request.body).create()
+        const newBooking = await new Booking(request.body).create()
+        
         const user = await User.findById(request.token.id)
-        await sendMail("ochaleto@gmail.com", "test", "test")
+        const offer = await Offer.findById(newBooking.offer_id)
+        
+     
+
+        const emailBody = bookingMailTemplate(user, newBooking, offer)
+        
+        await sendMail("ochaleto@gmail.com", "Booking", emailBody)
         
 
         response.status(201).json(newBooking);

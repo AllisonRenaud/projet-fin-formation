@@ -28,6 +28,29 @@ module.exports = {
         })     
     },
 
+    verifyResetPasswordToken: (request, response, next) => {
+       
+      let token = request.headers["authorization"];
+      if(!token) return response.status(403).send("Unauthorized")
+      token = token.split(" ")[1]
+      if(!token) return response.status(403).send("Unauthorized")
+       
+      
+          
+      jwt.verify(token, process.env.RESET_PASSWORD_TOKEN_SECRET, (err, data) => {
+              
+      if(err) {
+        console.log(err)
+        response.status(403).send("Unauthorized")
+      }
+      else {
+        
+          request.token = data
+          next()
+      }
+      })     
+  },
+
     jwtSignAccess: obj => {
         
         return jwt.sign(

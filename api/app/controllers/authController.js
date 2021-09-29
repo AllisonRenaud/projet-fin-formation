@@ -90,25 +90,33 @@ const authController = {
 
         const resetPasswordToken = jwtSignResetPassword({id: user.id})
         
-        const emailBody = resetPasswordTemplate({resetPasswordToken})
+        const emailBody = resetPasswordTemplate(resetPasswordToken)
 
-        await sendEmail(user.email, "Reset Password", emailBody)
+        await sendEmail("ochaleto@gmail.com", "Reset Password", emailBody)
+
+        response.send("email sent")
 
       },
 
       confirmResetPassword: async (request, response) => {
           try {
+
+            
             delete request.body.passwordConfirm
-            const tokenData = await decryptResetPasswordToken(request.headers["authorization"])
-          
+           
+            const user = await User.findById(request.token.id)
+           
             const salt = await bcrypt.genSalt(10);
-            request.body.password = await bcrypt.hash(request.body.password, salt);
-            request.body.id = tokenData.id
-            await new User(request.body).update()
+            user.password = await bcrypt.hash(request.body.password, salt);
+
+            await user.update()
+
+
+            response.send("Password updated")
 
           } catch (error) {
               console.log(error)
-              response.status(500).send(error)
+              response.status(500).send(error.message)
           }
 
           
