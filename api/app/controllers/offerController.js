@@ -27,8 +27,17 @@ const offerController = {
 
     findById: async (request, response) => {
       try {
-          const offer = await Offer.findById(parseInt(request.token.id, 10));
+          const offer = await Offer.findById(parseInt(request.params.id, 10));
           response.json(offer);
+      } catch(error) {
+          response.status(500).send(error.message);
+      }
+    },
+
+    findByLocation: async (request, response) => {
+      try {
+          const offers = await Offer.findByLocation(parseInt(request.query.location_id, 10));
+          response.json(offers);
       } catch(error) {
           response.status(500).send(error.message);
       }

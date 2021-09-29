@@ -1,4 +1,5 @@
 const {User, Comment, Message, Booking} = require('../models');
+const bcrypt = require('bcrypt')
 
 const userController = {
 
@@ -32,7 +33,15 @@ const userController = {
 
     update: async (request, response) => {
         try {
-
+            if(request.body.password) {
+              delete request.body.passwordConfirm
+              const salt = await bcrypt.genSalt(10);
+              request.body.password = await bcrypt.hash(request.body.password, salt);
+            }else {
+              const user = await User.findById(request.token.id)
+              request.body.password = user.password
+            }
+            
             request.body.id = request.token.id
          
             await new User(request.body).update()

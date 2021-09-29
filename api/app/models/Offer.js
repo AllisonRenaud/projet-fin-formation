@@ -18,13 +18,25 @@ class Offer extends CoreModel {
         
         
         const {rows} = await db.query('SELECT * FROM "offer" WHERE "title" ~* $1', [title]);
-        return rows[0]
+        return rows
 
       } catch(error) {
         if(error.detail) throw new Error(error.detail);
         throw error;
       }
-  }
+    }
+
+    static async findByLocation(location_id) {
+      try {
+
+        const {rows} = await db.query('SELECT * FROM "offer" WHERE "location_id" = $1', [location_id]);
+        return rows
+
+      } catch(error) {
+        if(error.detail) throw new Error(error.detail);
+        throw error;
+      }
+    }
 }
 
 module.exports = Offer;
