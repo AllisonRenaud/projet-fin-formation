@@ -10,6 +10,7 @@ import Header from '../Header';
 import Footer from '../Footer';
 import Main from '../Main';
 import Offers from '../Offers';
+import Locations from '../Locations';
 import Offer from '../Offer';
 import Signin from '../Signin';
 import Signup from '../Signup';
@@ -17,6 +18,9 @@ import Profile from '../Profile';
 import Admin from '../Backoffice/Admin';
 import User from '../Backoffice/User';
 import Signout from '../Signout';
+import Cgv from '../CGV';
+import Legal from '../Legal';
+import Copyright from '../Copyright';
 
 // == Composant
 const App = () => {
@@ -34,10 +38,13 @@ const App = () => {
         <Route path="/" exact>
           <Main />
         </Route>
-        <Route path="/offers" exact>
+        <Route path="/locations" exact>
+          <Locations />
+        </Route>
+        <Route path="/offers/location/:id" exact>
           <Offers />
         </Route>
-        <Route path="/offer/:1" exact>
+        <Route path="/offers/:id" exact>
           <Offer />
         </Route>
         <Route path="/signup" exact>
@@ -54,6 +61,15 @@ const App = () => {
         </Route>
         <Route path="/account/user" exact>
           <User />
+        </Route>
+        <Route path="/cgv" exact>
+          <Cgv />
+        </Route>
+        <Route path="/legal" exact>
+          <Legal />
+        </Route>
+        <Route path="/copyright" exact>
+          <Copyright />
         </Route>
         <Route path="/signout" exact>
           <Signout />

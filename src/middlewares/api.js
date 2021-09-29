@@ -4,7 +4,10 @@ import axios from 'axios';
 
 import jwt_decode from 'jwt-decode';
 import {
-  FETCH_LOCATIONS, saveLocations,
+  FETCH_OFFERS,
+  saveOffers,
+  FETCH_LOCATIONS,
+  saveLocations,
 } from '../actions/offers';
 
 import {
@@ -148,7 +151,18 @@ export default (store) => (next) => (action) => {
         .then(
           (response) => {
             store.dispatch(saveLocations(response.data));
-            console.log(response.data);
+          },
+        );
+      next(action);
+      break;
+    case FETCH_OFFERS:
+      axiosInstance
+        .get(
+          '/offers',
+        )
+        .then(
+          (response) => {
+            store.dispatch(saveOffers(response.data));
           },
         );
       next(action);

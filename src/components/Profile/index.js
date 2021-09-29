@@ -8,6 +8,7 @@ import {
   setUserField,
   updateUser,
   fetchUserData,
+  saveUserData,
   setUpdateMode,
 } from '../../actions/user';
 
@@ -46,6 +47,7 @@ const Profile = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(updateUser());
+    dispatch(setUpdateMode());
   };
 
   const toggleUpdateMode = (event) => {

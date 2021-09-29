@@ -7,7 +7,7 @@ const Footer = () => (
     <nav className="footer__navigation">
       <Link
         className="footer__navigation__link"
-        to="/legals"
+        to="/legal"
         exact
       >
         Mentions légales
@@ -32,13 +32,6 @@ const Footer = () => (
         exact
       >
         CGV
-      </Link>
-      <Link
-        className="footer__navigation__link"
-        to="/confidential"
-        exact
-      >
-        Politique de confidentialité
       </Link>
     </nav>
   </footer>
