@@ -13,25 +13,19 @@ const authController = {
           const {email, password} = request.body
           
           const user = await User.findByEmail(email)
-
           if(!user) return response.status(404).end("auth error")
     
           const compare = await bcrypt.compare(password, user.password)
-
           if(!compare) return response.status(404).end("auth error")
     
           const accessToken = jwtSignAccess({id: user.id, role: user.role})
           const refreshToken = jwtSignRefresh({id: user.id, role: user.role})
+          if(!accessToken || !refreshToken) throw new Error("internal error sever")
 
           await asyncClient.setex("refreshTokenUser" + user.id, TIMEOUT, refreshToken)
-          
-
-          if(!accessToken || !refreshToken) throw new Error("internal error sever")
 
           response.json({accessToken, refreshToken})
           
-         
-    
         } catch (error) {
             response.status(500).end(error.message)
         }
