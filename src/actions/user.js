@@ -8,51 +8,6 @@ export const setUserField = (value, name) => (
   }
 );
 
-export const SET_USER_EMAIL = 'SET_USER_EMAIL';
-
-export const setUserEmail = (value) => (
-  {
-    type: SET_USER_EMAIL,
-    value,
-  }
-);
-
-export const SET_USER_PASSWORD = 'SET_USER_PASSWORD';
-
-export const setUserPassword = (value) => (
-  {
-    type: SET_USER_PASSWORD,
-    value,
-  }
-);
-
-export const SET_USER_FIRSTNAME = 'SET_USER_FIRSTNAME';
-
-export const setUserFirstname = (value) => (
-  {
-    type: SET_USER_FIRSTNAME,
-    value,
-  }
-);
-
-export const SET_USER_LASTNAME = 'SET_USER_LASTNAME';
-
-export const setUserLastname = (value) => (
-  {
-    type: SET_USER_LASTNAME,
-    value,
-  }
-);
-
-export const SET_USER_PASSWORDCONFIRM = 'SET_USER_PASSWORDCONFIRM';
-
-export const setUserPasswordConfirm = (value) => (
-  {
-    type: SET_USER_PASSWORDCONFIRM,
-    value,
-  }
-);
-
 export const LOGIN = 'LOGIN';
 
 export const login = () => (
@@ -102,5 +57,22 @@ export const SIGNOUT = 'SIGNOUT';
 export const signout = () => (
   {
     type: SIGNOUT,
+  }
+);
+
+export const SET_UPDATE_MODE = 'SET_UPDATE_MODE';
+
+export const setUpdateMode = () => (
+  {
+    type: SET_UPDATE_MODE,
+  }
+);
+
+export const UPDATE_USER = 'UPDATE_USER';
+
+export const updateUser = (data) => (
+  {
+    type: UPDATE_USER,
+    data,
   }
 );
