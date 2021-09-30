@@ -42,7 +42,8 @@ module.exports = {
                 type:"number",
               },
               main_picture:{
-                type:"string"
+                type:"string",
+                
               },
               location_id:{
                 type:"number"

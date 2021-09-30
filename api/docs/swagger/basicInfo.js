@@ -4,9 +4,9 @@ module.exports = {
       title: "Ochalet API", // short title.
       version: "1.1.0", // version number
       contact: {
-        name: "Jerome KARABENLI", // your name
+        name: "O'chalet", // your name
         email: "contact@jerome-karabenli.fr", // your email
-        url: "https://jerome-karabenli.fr", // your website
+        url: "https://ochalet-api.herokuapp.com", // your website
       },
     },
   };
