@@ -29,14 +29,18 @@ const Legal = () => (
       sous réserve du respect des conditions définies ci-après. Votre utilisation de
       ce Site implique votre acceptation pleine et entière de l'ensemble de ses
       Conditions d'Utilisation.
-      Vous ne pouvez utiliser ce Site que si vous êtes âgé de plus de 18 ans et habilité
-      à signer des contrats qui engagent votre responsabilité (l'utilisation de notre Site
-      par les mineurs est interdite). Vous serez financièrement responsable de toutes vos
-      utilisations du Site.
+    </p>
+    Vous ne pouvez utiliser ce Site que si vous êtes âgé de plus de 18 ans et habilité
+    à signer des contrats qui engagent votre responsabilité (l'utilisation de notre Site
+    par les mineurs est interdite). Vous serez financièrement responsable de toutes vos
+    utilisations du Site.
+    <p>
       Vous ne pouvez utiliser le Site que pour faire des réservations et des achats dans un but
       légitime. Ce site est destiné notamment à la réservation de séjours et aucune utilisation,
       ou détournement de finalité n’est autorisée, notamment pour des finalités contraires à
       l’Ordre Public et aux Bonnes Mœurs.
+    </p>
+    <p>
       A défaut de respect des présentes, nous nous réservons le droit, à tout moment, sans préavis,
       de vous interdire ou de vous restreindre l'accès à tout ou partie du Site, sans préjudice de
       tous dommages – intérêts.
@@ -49,6 +53,8 @@ const Legal = () => (
       ou des omissions pourront être constatées dues notamment à des erreurs typographiques ou de
       mise en page. Si vous constatez quelques erreurs vous êtes invités à nous les indiquer pour
       qu’il soit procédé aux corrections appropriées.
+    </p>
+    <p>
       O’Chalet se réserve le droit, à sa seule discrétion, de modifier tout élément du site. Dans
       le cadre de sa politique de mise à jour et d'optimisation du site, O'Chalet peut décider
       de modifier les présentes conditions.
@@ -88,6 +94,8 @@ const Legal = () => (
       informations relatives à la navigation de votre ordinateur sur notre site (les pages que
       vous avez consultées, la date et l’heure de la consultation, etc…) que nous pourrons lire
       lors de vos visites ultérieures.
+    </p>
+    <p>
       Ces cookies facilitent la navigation et améliorent la convivialité du site internet.
       Vous pouvez choisir d’accepter ou de refuser tout ou partie des cookies, à l’exception
       des cookies de navigation, ceux-ci étant nécessaires au fonctionnement du Site.

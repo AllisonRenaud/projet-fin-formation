@@ -2,14 +2,14 @@
 import { Button, Icon, Form } from 'semantic-ui-react';
 
 import { useEffect } from 'react';
+
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
   setUserField,
   updateUser,
-  fetchUserData,
-  saveUserData,
   setUpdateMode,
+  saveUserData,
 } from '../../actions/user';
 
 import Field from '../Field';
@@ -59,9 +59,12 @@ const Profile = () => {
     event.preventDefault();
   };
 
+  const user = localStorage.getItem('user');
+  const parsedUser = JSON.parse(user);
+
   useEffect(
     () => {
-      dispatch(fetchUserData());
+      dispatch(saveUserData(parsedUser));
     },
     [],
   );

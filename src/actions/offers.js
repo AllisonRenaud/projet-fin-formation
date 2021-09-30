@@ -21,3 +21,39 @@ export const saveLocations = (data) => ({
   type: SAVE_LOCATIONS,
   data,
 });
+
+export const UPDATE_OFFER = 'UPDATE_OFFER';
+
+export const updateOffer = (data) => (
+  {
+    type: UPDATE_OFFER,
+    data,
+  }
+);
+
+export const SAVE_OFFER_DATA = 'SAVE_OFFER_DATA';
+
+export const saveOfferData = (data) => (
+  {
+    type: SAVE_OFFER_DATA,
+    data,
+  }
+);
+
+export const SET_UPDATE_MODE = 'SET_UPDATE_MODE';
+
+export const setUpdateMode = () => (
+  {
+    type: SET_UPDATE_MODE,
+  }
+);
+
+export const SET_OFFER_FIELD = 'SET_OFFER_FIELD';
+
+export const setOfferField = (value, name) => (
+  {
+    type: SET_OFFER_FIELD,
+    value,
+    name,
+  }
+);

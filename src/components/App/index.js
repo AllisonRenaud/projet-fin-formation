@@ -1,8 +1,10 @@
 // == Import
-import { Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 import { connectUser } from '../../actions/user';
+import { fetchLocations, fetchOffers } from '../../actions/offers';
 
 import './styles.css';
 
@@ -21,19 +23,43 @@ import Signout from '../Signout';
 import Cgv from '../CGV';
 import Legal from '../Legal';
 import Copyright from '../Copyright';
+import Createoffer from '../Createoffer';
 
 // == Composant
 const App = () => {
   const dispatch = useDispatch();
   const accessToken = localStorage.getItem('token');
 
+  const logged = useSelector((state) => state.user.logged);
+
   if (accessToken) {
     dispatch(connectUser(accessToken));
   }
 
+  const role = useSelector((state) => state.user.role);
+
+  let admin = false;
+  if (role === 'admin') {
+    admin = true;
+  }
+
+  useEffect(
+    () => {
+      dispatch(fetchLocations());
+    },
+    [],
+  );
+
+  useEffect(
+    () => {
+      dispatch(fetchOffers());
+    },
+    [],
+  );
+
   return (
     <div className="app">
-      <Header />
+      <Header logged={logged} />
       <Switch>
         <Route path="/" exact>
           <Main />
@@ -47,17 +73,28 @@ const App = () => {
         <Route path="/offers/:id" exact>
           <Offer />
         </Route>
+        <Route path="/account/new-offer" exact>
+          <Createoffer />
+        </Route>
         <Route path="/signup" exact>
           <Signup />
         </Route>
         <Route path="/signin" exact>
           <Signin />
         </Route>
-        <Route path="/profile" exact>
-          <Profile />
-        </Route>
-        <Route path="/account/admin" exact>
-          <Admin />
+        {logged ? (
+          <Route path="/profile" exact>
+            <Profile />
+          </Route>
+        ) : (
+          <Redirect to="/signin" />
+        )}
+        <Route path="/account" exact>
+          {admin ? (
+            <Admin />
+          ) : (
+            <User />
+          )}
         </Route>
         <Route path="/account/user" exact>
           <User />

@@ -58,7 +58,7 @@ const Signin = () => {
           >
             <Button.Content visible>Se connecter</Button.Content>
             <Button.Content hidden>
-              <Icon name='sign in' />
+              <Icon name="sign in" />
             </Button.Content>
           </Button>
         </div>
