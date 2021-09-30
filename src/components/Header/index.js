@@ -7,13 +7,13 @@ import './header.scss';
 
 const options = [
   {
-    key: 1, text: 'Mon profil', as: Link, to: '/profile',
+    key: 1, text: 'Mon profil', as: Link, to: '/profile', value: 1,
   },
   {
-    key: 2, text: 'Mes réservations', as: Link, to: '/account/user',
+    key: 2, text: 'Mes réservations', as: Link, to: '/account/user', value: 2,
   },
   {
-    key: 3, text: 'Déconnexion', as: Link, to: '/signout',
+    key: 3, text: 'Déconnexion', as: Link, to: '/signout', value: 3,
   },
 ];
 
@@ -22,7 +22,14 @@ const Header = () => {
 
   return (
     <header className="header">
-      <img src={chalet} alt="logo O'Chalet" className="header__logo" />
+      <NavLink
+        className="header__navigation__link"
+        activeClassName="header__navigation__link--active"
+        to="/"
+        exact
+      >
+        <img src={chalet} alt="logo O'Chalet" className="header__logo" />
+      </NavLink>
       <nav className="header__navigation">
         <NavLink
           className="header__navigation__link"
@@ -35,7 +42,7 @@ const Header = () => {
         <NavLink
           className="header__navigation__link"
           activeClassName="header__navigation__link--active"
-          to="/offers"
+          to="/locations"
           exact
         >
           Annonces

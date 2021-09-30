@@ -9,7 +9,6 @@
       font-size: 2rem;
       font-weight: bold;
       text-align: center;
-  
     }
   
     &__city{
@@ -30,10 +29,17 @@
     width: 80%;
     height: 20rem;
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     margin: 3rem auto;
 
+    &__calendar{
+      margin: 2rem auto;
+    }
+
     &__buttons{
+      width: 30%;
+      margin: 2rem auto;
       display: flex;
       justify-content:space-evenly;
       align-items: center;
