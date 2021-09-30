@@ -1,4 +1,9 @@
-import { SAVE_OFFERS, SAVE_LOCATIONS, SET_OFFER_FIELD } from '../actions/offers';
+import {
+  SAVE_OFFERS,
+  SAVE_LOCATIONS,
+  SET_OFFER_FIELD,
+  SET_UPDATE_MODE,
+} from '../actions/offers';
 
 export const initialState = {
   offers: [],
@@ -20,6 +25,7 @@ export const initialState = {
     galery_picture_4: '',
     galery_picture_5: '',
     location_id: '',
+    updateMode: false,
   },
 };
 
@@ -41,6 +47,14 @@ const reducer = (state = initialState, action = {}) => {
         newoffer: {
           ...state.newoffer,
           [action.name]: action.value,
+        },
+      };
+    case SET_UPDATE_MODE:
+      return {
+        ...state,
+        newoffer: {
+          ...state.newoffer,
+          updateMode: !state.updateMode,
         },
       };
     default:
