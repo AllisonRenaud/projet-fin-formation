@@ -31,3 +31,24 @@
     }
   }
 }
+
+@media screen and (max-width: 680px) {
+  .backoffice-user {
+    & .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    &__reservation {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  
+      & p {
+        margin: 0;
+        margin-bottom: .4rem;
+      }
+    }
+  }
+}

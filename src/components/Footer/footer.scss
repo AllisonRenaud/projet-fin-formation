@@ -1,16 +1,12 @@
 .footer{
-    // background-color: #08D9D6;
-    height: 5rem;
     width: 100% ;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    bottom: 0;
     
     &__navigation{
       display: flex;
       justify-content: space-evenly;
-     
   
       &__link{
         color: #EAEAEA;
@@ -27,3 +23,8 @@
     }
   }
   
+  @media screen and (max-width: 550px) {
+    .footer__navigation__link {
+      font-size: .68rem;
+    }
+  }

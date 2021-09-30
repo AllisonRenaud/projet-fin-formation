@@ -165,7 +165,7 @@ const Profile = () => {
         <div className="profile__form__buttons">
           <Button
             animated
-            className="signup__form__button__modify"
+            className="signup__form__buttons__modify"
             color="brown"
             onClick={toggleUpdateMode}
             type="submit"
@@ -179,7 +179,7 @@ const Profile = () => {
           <Button
             animated
             color="teal"
-            className="profile__form__button__validate"
+            className="profile__form__buttons__validate"
           >
             <Button.Content visible>Valider</Button.Content>
             <Button.Content hidden>
@@ -189,7 +189,7 @@ const Profile = () => {
           )}
           <Button
             animated
-            className="signup__form__button__delete"
+            className="signup__form__buttons__delete"
             color="red"
             onClick={deleteAccount}
           >
