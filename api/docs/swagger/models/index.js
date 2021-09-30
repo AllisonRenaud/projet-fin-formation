@@ -8,67 +8,99 @@ const admin = require("./admin")
 
 module.exports = {
     paths:{
+        
         '/user':{
             ...user.getUser,
             ...user.updateUser,
-            ...user.changePassword,
+        //  ...user.changePassword,
             ...user.deleteUser
         },
-        '/booking':{
+        '/bookings':{
           ...booking.getBookings,
           ...booking.createBooking
         },
-        '/booking/{_id}':{
+        /*'/booking/{_id}':{
           ...booking.getBooking,
           ...booking.updateBooking,
           ...booking.deleteBooking
-        },
-        '/offer':{
+        },*/
+        '/offers':{
           ...offer.getOffers,
-          ...booking.createOffer
+         // ...booking.createOffer
         },
-        '/offer/{_id}':{
+        '/offers/offers?title=_':{
           ...offer.getOffer,
-          ...offer.updateOffer,
-          ...offer.deleteOffer
+         // ...offer.updateOffer,
+         // ...offer.deleteOffer
         },
-        '/message':{
+        '/messages':{
             ...message.getMessages,
             ...message.createMessage
         },
-        '/message/{_id}':{
+       /* '/messages/{_id}':{
             ...message.getMessage,
             ...message.updatemessage,
             ...message.deletemessage
-        },
+        },*/
        /* 'message/{_id}/reference': {
             ...messageReferences.createReference,
             ...messageReferences.deleteReference
         },*/
-        '/comment':{
+        '/comments':{
             ...comment.getComments,
             ...comment.createComment
         },
-        '/comment/{_id}':{
+        /*'/comments/{_id}':{
             ...comment.getComment,
             ...comment.updateComment,
             ...comment.deleteComment
-        },
-        '/login':{
+        },*/
+        '/signin':{
             ...authentification.login
         },
-        '/register':{
+        '/signup':{
             ...authentification.register
         },
-        '/recovery':{
+        /*'/recovery':{
             ...authentification.lostPassword
-        },
+        },*/
         '/admin':{
           ...admin.getAdmin,
           ...admin.updateAdmin,
           ...admin.changeAdmin,
           ...admin.deleteAdmin 
         },
-
-    }
+        '/admin/user':{
+          ...admin.getUsers
+        },
+        '/admin/user?id=_':{
+          ...admin.deleteUser
+        },
+        '/admin/offers':{
+          ...admin.createOffer,
+          ...admin.updateOffer
+        },
+        '/admin/messages':{
+          ...admin.getMessages,
+          
+          ...admin.deleteMessages
+        },
+        '/admin/messages?id=_':{
+          ...admin.updateMessages
+        },
+        '/admin/comments?id=_':{
+          ...admin.deleteComment
+        },
+        '/admin/comments':{
+          ...admin.getComments
+        },
+        '/admin/booking?id=_':{
+          ...admin.deleteBooking
+        },
+        '/admin/bookings':{
+          ...admin.updateBooking,
+          ...admin.getBookings
+        }
+        
+  }
 }

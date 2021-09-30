@@ -1,19 +1,47 @@
 module.exports = {
-  // operation's method
+  // method of operation
   get: {
     security: [{bearerAuth: []}],
     tags: ["Admin"], // operation's tag.
-    description: "Get logged admin, admin ID is automaticly send throught token in request headers {}", // operation's desc.
-
+    description: "Get all bookings or filter by user_id or title using query parameter [{}]", // operation's desc.
+    parameters: [
+      // expected params.
+      {
+        name: "author", // name of the param
+        in: "query", // location of the param
+        schema: {
+          $ref: "#/components/schemas/_id", // data model of the param
+        }, 
+      },
+      {
+        name: "title", // name of the param
+        in: "query", // location of the param
+        description: "no need to exact title, regex is used" 
+      },
+    ],
+    
+    // expected responses
     responses: {
       // response code
       200: {
-        description: "Return user without password field and if admin have subjects they are populated", // response desc.
+        description: "Return bookings with populated author path", // response desc.
         content: {
           // content-type
           "application/json": {
             schema: {
-              $ref: "#/components/schemas/Admin",
+              $ref: "#/components/schemas/Subject",
+            },
+          },
+        },
+      },
+
+      404: {
+        description: "Bookings not found", // response desc.
+        content: {
+          // content-type
+          "application/json": {
+            schema: {
+              $ref: "#/components/schemas/Error", // error data model
             },
           },
         },
@@ -31,17 +59,6 @@ module.exports = {
         },
       },
       // response code
-      404: {
-        description: "Admin not found",
-        content: {
-          // content-type
-          "application/json": {
-            schema: {
-              $ref: "#/components/schemas/Error", // error data model
-            },
-          },
-        },
-      },
       500: {
         description: "Server error", // response desc.
         content: {

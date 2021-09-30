@@ -23,9 +23,7 @@ module.exports = {
                   type:"string",
                   format: "date-time"
                 },
-                author: {
-                  $ref: "#/components/schemas/_id",
-                }
+               
               }
               
               

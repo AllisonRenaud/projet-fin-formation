@@ -1,19 +1,19 @@
 module.exports = {
-  // operation's method
+  // method of operation
   get: {
     security: [{bearerAuth: []}],
-    tags: ["Admin"], // operation's tag.
-    description: "Get logged admin, admin ID is automaticly send throught token in request headers {}", // operation's desc.
-
+    tags: ["Admin"],
+    description: "Get messages [{}]", // operation's desc.
+    
     responses: {
       // response code
       200: {
-        description: "Return user without password field and if admin have subjects they are populated", // response desc.
+        description: "Return messages and populate author + subject path  [{}]", // response desc.
         content: {
           // content-type
           "application/json": {
             schema: {
-              $ref: "#/components/schemas/Admin",
+              $ref: "#/components/schemas/Message",
             },
           },
         },
@@ -31,17 +31,6 @@ module.exports = {
         },
       },
       // response code
-      404: {
-        description: "Admin not found",
-        content: {
-          // content-type
-          "application/json": {
-            schema: {
-              $ref: "#/components/schemas/Error", // error data model
-            },
-          },
-        },
-      },
       500: {
         description: "Server error", // response desc.
         content: {

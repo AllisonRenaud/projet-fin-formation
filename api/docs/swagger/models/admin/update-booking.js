@@ -1,19 +1,53 @@
 module.exports = {
   // operation's method
-  get: {
+  patch: {
     security: [{bearerAuth: []}],
-    tags: ["Admin"], // operation's tag.
-    description: "Get logged admin, admin ID is automaticly send throught token in request headers {}", // operation's desc.
-
+    tags: ["Admin"], // operation's tag
+    description: "Update booking {}", // short desc
+    parameters: [
+      // expected params.
+      {
+        name: "_id", // name of the param
+        in: "path", // location of the param
+        schema: {
+          $ref: "#/components/schemas/_id", // data model of the param
+        },
+        required: true, // Mandatory param
+      },
+    ],
+    requestBody:{
+      description: "at least one field is requiered",
+      required: true,
+      content:{
+        "application/json":{
+          schema:{
+            type: "object",
+            properties:{
+              title: {
+                type: "string",
+              },
+              description: {
+                type: "string",
+              },
+              date: {
+                type: "string",
+                format:'date-time'
+              },
+            }
+          }
+        }
+      }
+    },
+    // expected responses
     responses: {
       // response code
       200: {
-        description: "Return user without password field and if admin have subjects they are populated", // response desc.
+        description: "return updated booking ", // response desc.
         content: {
           // content-type
           "application/json": {
             schema: {
-              $ref: "#/components/schemas/Admin",
+              $ref: "#/components/schemas/Booking",
             },
           },
         },
@@ -32,7 +66,7 @@ module.exports = {
       },
       // response code
       404: {
-        description: "Admin not found",
+        description: "Booking not found",
         content: {
           // content-type
           "application/json": {

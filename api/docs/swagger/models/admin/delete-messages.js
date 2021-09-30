@@ -1,22 +1,25 @@
 module.exports = {
-  // operation's method
-  get: {
+  // operation's method.
+  delete: {
     security: [{bearerAuth: []}],
-    tags: ["Admin"], // operation's tag.
-    description: "Get logged admin, admin ID is automaticly send throught token in request headers {}", // operation's desc.
-
+    tags: ["Admin"], // operation's tag
+    description: "Delete message", // short desc
+    parameters: [
+      // expected parameters
+      {
+        name: "_id", // name of param
+        in: "path", // location of param
+        schema: {
+          $ref: "#/components/schemas/_id", // id model
+        },
+        required: true, // mandatory
+      },
+    ],
+    // expected responses
     responses: {
       // response code
       200: {
-        description: "Return user without password field and if admin have subjects they are populated", // response desc.
-        content: {
-          // content-type
-          "application/json": {
-            schema: {
-              $ref: "#/components/schemas/Admin",
-            },
-          },
-        },
+        description: "Message is deleted", // response desc.
       },
 
       401: {
@@ -32,7 +35,7 @@ module.exports = {
       },
       // response code
       404: {
-        description: "Admin not found",
+        description: "Message is not found",
         content: {
           // content-type
           "application/json": {
