@@ -1,7 +1,9 @@
 import './copyright.scss';
 
 const Copyright = () => (
-  <h1>A faire</h1>
+  <section className="copyright">
+    <h1>L'équipe O'chalet</h1>
+  </section>
 );
 
 export default Copyright;

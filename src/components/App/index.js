@@ -20,6 +20,7 @@ import User from '../Backoffice/User';
 import Signout from '../Signout';
 import Cgv from '../CGV';
 import Legal from '../Legal';
+import Faq from '../FAQ';
 import Copyright from '../Copyright';
 
 // == Composant
@@ -64,6 +65,9 @@ const App = () => {
         </Route>
         <Route path="/cgv" exact>
           <Cgv />
+        </Route>
+        <Route path="/faq" exact>
+          <Faq />
         </Route>
         <Route path="/legal" exact>
           <Legal />

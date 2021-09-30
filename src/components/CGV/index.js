@@ -1,7 +1,7 @@
 import './cgv.scss';
 
 const Cgv = () => (
-  <section>
+  <section className="cgv">
     <h1>Conditions Générales de Vente</h1>
     <h2>ARTICLE 1 - RESERVATION / PAIEMENT</h2>
     <p>

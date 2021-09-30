@@ -1,4 +1,4 @@
-import { Button } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 
 import { withRouter } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -40,12 +40,30 @@ const Offer = ({ match }) => {
           </p>
         </div>
         <div className="offer__main__calendar">
-          <Calendar />
+          <Calendar className="offer__main__calendar__item" />
         </div>
       </div>
       <div className="offer__main__buttons">
-        <Button className="offer__main__buttons__contact" color="blue">Contacter le propriétaire</Button>
-        <Button className="offer__main__button__book" color="blue">Réserver</Button>
+        <Button
+          animated
+          className="offer__main__buttons__contact"
+          color="brown"
+        >
+          <Button.Content visible>Contacter le propriétaire</Button.Content>
+          <Button.Content hidden>
+            <Icon name='envelope' />
+          </Button.Content>
+        </Button>
+        <Button
+          animated
+          className="offer__main__buttons__book"
+          color="teal"
+        >
+          <Button.Content visible>Réserver</Button.Content>
+          <Button.Content hidden>
+            <Icon name='bookmark' />
+          </Button.Content>
+        </Button>
       </div>
     </section>
   );

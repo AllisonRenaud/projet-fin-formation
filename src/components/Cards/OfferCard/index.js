@@ -2,13 +2,12 @@
 import { Link } from 'react-router-dom';
 
 import PropTypes from 'prop-types';
-import './offercard.scss';
 
 const OfferCard = ({ title, main_picture, id }) => (
 
-  <Link className="main__card" to={`/offers/${id}`}>
-    <img src={main_picture} alt="mountain" className="main__card__image" />
-    <h2 className="main__card__title">{title}</h2>
+  <Link className="offers__card" to={`/offers/${id}`}>
+    <img src={main_picture} alt="mountain" className="offers__card__image" />
+    <h2 className="offers__card__title">{title}</h2>
   </Link>
 );
 

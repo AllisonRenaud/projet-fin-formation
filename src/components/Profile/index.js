@@ -68,7 +68,7 @@ const Profile = () => {
 
   return (
     <main className="profile">
-      <h2 className="profile__title">Bienvenue sur votre profil</h2>
+      <h2 className="profile__title">Vos informations</h2>
       <Form className="profile__form" onSubmit={handleSubmit}>
         <Field
           name="lastname"
@@ -176,7 +176,16 @@ const Profile = () => {
             </Button.Content>
           </Button>
           {updateMode && (
-          <Button color="blue" className="profile__form__button__validate" type="submit">Valider</Button>
+          <Button
+            animated
+            color="teal"
+            className="profile__form__button__validate"
+          >
+            <Button.Content visible>Valider</Button.Content>
+            <Button.Content hidden>
+              <Icon name="checkmark" />
+            </Button.Content>
+          </Button>
           )}
           <Button
             animated

@@ -1,7 +1,9 @@
 import './faq.scss';
 
 const Faq = () => (
-  <h1>A faire</h1>
+  <section className="faq">
+    <h1>Foire aux questions</h1>
+  </section>
 );
 
 export default Faq;

@@ -1,7 +1,7 @@
 import './legal.scss';
 
 const Legal = () => (
-  <section>
+  <section className="legal">
     <h1>Mentions légales</h1>
     <h2>Informations éditeur</h2>
     <p>

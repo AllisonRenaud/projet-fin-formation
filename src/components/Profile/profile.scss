@@ -1,13 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
 .profile {
-  height: 100%;
+  flex: 1;
   width: 500px;
   margin: 3rem auto;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 
   &__title{
+    font-family: 'Patrick Hand', cursive;
+    color: #EAEAEA;
     margin: 3rem auto;
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: bold;
   }
 
