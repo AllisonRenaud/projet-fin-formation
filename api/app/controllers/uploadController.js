@@ -9,7 +9,7 @@ cloudinary.config({
 const uploadController = {
     upload: async (request, response) => {
       try {
-        const result = await cloudinary.v2.uploader.upload(request.body.picture)
+        const result = await cloudinary.v2.uploader.upload(request.body.picture);
         response.json(result);
       } catch (error) {
           response.status(500).end(error.message)
