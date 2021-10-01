@@ -5,7 +5,7 @@ import './main.scss';
 
 const Main = () => (
   <main className="main">
-    <p className="main__text">Vous vous sentez stressé.e ? fatigué.e ? Vous avez sûrement besoin de changer d'air...</p>
+    <p className="main__text">Vous vous sentez stressé.e ? Fatigué.e ? Vous avez sûrement besoin de changer d'air...</p>
     <Link to="/locations" className="main__link">
       <Button
         animated
