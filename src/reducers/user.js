@@ -38,6 +38,7 @@ const reducer = (state = initialState, action = {}) => {
         logged: true,
         token: action.data.accessToken,
         password: '',
+        role: action.data.role,
       };
     case SAVE_USER_DATA:
       return {

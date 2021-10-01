@@ -1,29 +1,29 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+// import { useEffect } from 'react';
 
-import { fetchLocations, fetchOffers } from '../../actions/offers';
+// import { fetchLocations, fetchOffers } from '../../actions/offers';
 
 import LocationCard from '../Cards/LocationCard';
 
 import './locations.scss';
 
 const Locations = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const locations = useSelector((state) => state.offers.locations);
 
-  useEffect(
-    () => {
-      dispatch(fetchLocations());
-    },
-    [],
-  );
+  // useEffect(
+  //   () => {
+  //     dispatch(fetchLocations());
+  //   },
+  //   [],
+  // );
 
-  useEffect(
-    () => {
-      dispatch(fetchOffers());
-    },
-    [],
-  );
+  // useEffect(
+  //   () => {
+  //     dispatch(fetchOffers());
+  //   },
+  //   [],
+  // );
 
   return (
     <section className="offers">
