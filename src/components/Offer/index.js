@@ -35,9 +35,11 @@ const Offer = ({ match }) => {
       </div>
       <div className="offer__main">
         <div className="offer__main__description">
-          <p>
-            {offer.body}
-          </p>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: offer.body,
+            }}
+          />
         </div>
         <div className="offer__main__calendar">
           <Calendar className="offer__main__calendar__item" />
