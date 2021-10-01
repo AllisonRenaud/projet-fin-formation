@@ -12,8 +12,11 @@ const {
     bookingRoutes,
     commentRoutes,
     authRoutes,
-    adminRoutes
+    adminRoutes,
+    uploadRoutes
 } = require('./routes/index');
+
+router.use(uploadRoutes)
 
 router.use(redis, dataValidator)
 

@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
+import { Image, CloudinaryContext } from 'cloudinary-react';
+
 import Field from '../Field';
 
 import {
@@ -93,11 +95,16 @@ const Createoffer = () => {
         <Field
           name="main_picture"
           value={main_picture}
-          type="text"
+          type="file"
           placeholder="Photo principale"
           onChange={changeField}
           updateMode={!updateMode}
         />
+        <CloudinaryContext cloudName="dudxvl1m3">
+          <div>
+            <Image publicId="re9lk6cnrgxl4ofopcei" width="50" />
+          </div>
+        </CloudinaryContext>
         <Field
           name="galery_picture_1"
           value={galery_picture_1}
