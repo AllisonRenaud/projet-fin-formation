@@ -20,15 +20,15 @@ module.exports = {
           ...booking.createBooking
         },
         /*'/booking/{_id}':{
-          ...booking.getBooking,
+          ...booking.deleteBooking,
           ...booking.updateBooking,
-          ...booking.deleteBooking
+          ...booking.getBooking
         },*/
         '/offers':{
           ...offer.getOffers,
          // ...booking.createOffer
         },
-        '/offers/offers?title=_':{
+        '/offers?title=_':{
           ...offer.getOffer,
          // ...offer.updateOffer,
          // ...offer.deleteOffer
@@ -65,10 +65,10 @@ module.exports = {
             ...authentification.lostPassword
         },*/
         '/admin':{
-          ...admin.getAdmin,
-          ...admin.updateAdmin,
-          ...admin.changeAdmin,
-          ...admin.deleteAdmin 
+         // ...admin.getAdmin,
+          //...admin.updateAdmin,
+          //...admin.changeAdmin,
+          //...admin.deleteAdmin 
         },
         '/admin/user':{
           ...admin.getUsers
