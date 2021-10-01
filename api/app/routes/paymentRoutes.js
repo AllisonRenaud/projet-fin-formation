@@ -6,7 +6,10 @@ paymentRouter.route("/payment_intent")
 .post(paymentController.createPaymentIntent)
 .patch(paymentController.updatePaymentIntent)
 .delete(paymentController.deletePaymentIntent)
-.get(paymentController.deleteAbandonedPaymentIntent)
+
+paymentRouter.route("/intents_list")
+// .get(paymentController.getIntentsList)
+.delete(paymentController.deleteAbandonedPaymentIntent)
 
 
 module.exports = paymentRouter
