@@ -83,13 +83,13 @@ const App = () => {
         <Route path="/signin" exact>
           <Signin />
         </Route>
-        {logged ? (
-          <Route path="/profile" exact>
+        <Route path="/profile" exact>
+          {logged ? (
             <Profile />
-          </Route>
-        ) : (
-          <Redirect to="/signin" />
-        )}
+          ) : (
+            <Signin />
+          )}
+        </Route>
         <Route path="/account" exact>
           {admin ? (
             <Admin />
