@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { Button, Icon } from 'semantic-ui-react';
 
 import { withRouter } from 'react-router-dom';
@@ -52,7 +54,7 @@ const Offer = ({ match }) => {
         >
           <Button.Content visible>Contacter le propriétaire</Button.Content>
           <Button.Content hidden>
-            <Icon name='envelope' />
+            <Icon name="envelope" />
           </Button.Content>
         </Button>
         <Button
@@ -62,12 +64,20 @@ const Offer = ({ match }) => {
         >
           <Button.Content visible>Réserver</Button.Content>
           <Button.Content hidden>
-            <Icon name='bookmark' />
+            <Icon name="bookmark" />
           </Button.Content>
         </Button>
       </div>
     </section>
   );
+};
+
+Offer.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+    }),
+  }).isRequired,
 };
 
 export default withRouter(Offer);

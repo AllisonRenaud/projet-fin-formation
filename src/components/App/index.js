@@ -1,5 +1,5 @@
 // == Import
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
@@ -37,12 +37,8 @@ const App = () => {
     dispatch(connectUser(accessToken));
   }
 
-  const role = useSelector((state) => state.user.role);
-
-  let admin = false;
-  if (role === 'admin') {
-    admin = true;
-  }
+  // const role = localStorage.getItem('role');
+  // const role = useSelector((state) => state.user.role);
 
   useEffect(
     () => {
@@ -90,12 +86,8 @@ const App = () => {
             <Signin />
           )}
         </Route>
-        <Route path="/account" exact>
-          {admin ? (
-            <Admin />
-          ) : (
-            <User />
-          )}
+        <Route path="/account/admin" exact>
+          <Admin />
         </Route>
         <Route path="/account/user" exact>
           <User />
