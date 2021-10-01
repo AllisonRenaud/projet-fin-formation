@@ -5,7 +5,7 @@ module.exports = {
     messages: require('./message'),
     bookings: require('./booking'),
     auth: require('./auth'),
-    payment: require('./payment')
+    payment_intent: require('./paymentIntent')
    
 
     
