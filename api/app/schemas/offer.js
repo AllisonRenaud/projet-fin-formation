@@ -18,7 +18,8 @@ module.exports = {
         price_ht: Joi.number().positive().required(),
         tax: Joi.number().positive().required(),
         main_picture: Joi.string().uri().required(),
-        galery_picture_1: Joi.string().uri(),
+         
+        galery_picture_1:Joi.string().uri(),
         galery_picture_2: Joi.string().uri(),
         galery_picture_3: Joi.string().uri(),
         galery_picture_4: Joi.string().uri(),

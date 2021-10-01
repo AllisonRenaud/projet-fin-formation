@@ -1,9 +1,9 @@
 module.exports = {
   // method of operation
   get: {
-    security: [{bearerAuth: []}],
+    
     tags: ["Offer"], // operation's tag.
-    description: "Get all offers or filter by user_id or title using query parameter [{}]", // operation's desc.
+    description: "Get all offers ", // operation's desc.
     parameters: [
       // expected params.
       {

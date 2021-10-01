@@ -5,7 +5,7 @@ const Cgv = () => (
     <h1>Conditions Générales de Vente</h1>
     <h2>ARTICLE 1 - RESERVATION / PAIEMENT</h2>
     <p>
-      1.1. Conditions d'inscription et de réservation
+      <h3>1.1. Conditions d'inscription et de réservation</h3>
       Toute réservation implique, outre l'acceptation des présentes
       Conditions Générales de Vente, un versement incluant :
       Les frais de dossier: pour toute réservation auprès de O’Chalet
@@ -31,7 +31,7 @@ const Cgv = () => (
       valide. A défaut, nous ne pourrons traiter votre demande.
       Le devis ne constitue pas une réservation, ou une option sur une date ou
       un prix donné. Seul le règlement permet de réserver un logement.
-      1.2. Paiement du solde
+      <h3>1.2. Paiement du solde</h3>
       Quel que soit le mode de paiement que vous avez choisi vous disposez lors
       de l'inscription de la possibilité de régler soit (i) l'intégralité du coût
       du séjour, options comprises, (ii) soit uniquement, dans un premier temps,
@@ -55,7 +55,7 @@ const Cgv = () => (
       sans qu'il ne soit nécessaire que O’Chalet n'effectue de relance auprès du client, et
       d'appliquer en conséquence les conditions de l'annulation prévues à cet effet et définies
       ci-après.
-      1.3. Modes de paiement
+      <h3>1.3. Modes de paiement</h3>
       Lorsque le contrat comporte une possibilité expresse de révision du prix, dans les limites
       prévues à l'article L. 211-12, il doit mentionner les modalités précises de calcul,
       tant à la hausse qu'à la baisse, des variations des prix, et notamment le montant des
@@ -92,7 +92,7 @@ const Cgv = () => (
       en aucun cas l'objet d'un quelconque remboursement, notamment en cas d'annulation d'un séjour.
       Délais de paiement : Des délais de paiement peuvent vous être octroyés sans frais ou bien
       avec frais avec notre partenaire établissement bancaire, sous certaines conditions.
-      1.4. Votre documents de voyage
+      <h3>1.4. Votre documents de voyage</h3>
       Sous réserve de l'acquittement du solde de votre séjour, vous recevrez votre document
       de voyage dans les 24 heures suivant le règlement total du séjour avant le début de
       votre séjour, soit par courrier électronique vous renvoyant sur un lien dédié à votre
@@ -102,14 +102,14 @@ const Cgv = () => (
     </p>
     <h2>ARTICLE 2 - PRIX</h2>
     <p>
-      2.1. Prix
+      <h3>2.1. Prix</h3>
       Les prix des prestations sont établis en fonction des données économiques en vigueur
       à la date de leur fixation. Une modification des taxes applicables peut nous amener à
       modifier le prix desdites prestations. Ils sont flexibles et variables en application
       de différents critères personnalisables tels que la date de réservation, la date de
       début de séjour, la durée du séjour, la typologie de l'hébergement, l'ajout de
       prestations annexes.
-      2.2. Hébergement
+      <h3>2.2. Hébergement</h3>
       Nos prix s'entendent toutes taxes comprises et incluent la sous-location du logement,
       charges comprises (eau, électricité, chauffage), à l'exception de la taxe de séjour,
       des prestations annexes et des primes d'assurances facultatives, et des frais de dossier,
@@ -121,14 +121,14 @@ const Cgv = () => (
       Attention : En cas de non-respect de la capacité maximale de l'hébergement, le fournisseur
       sera en droit de refuser catégoriquement l'accès au logement et aucun remboursement ne
       sera envisageable.
-      2.3. Prestations Optionnelles
+      <h3>2.3. Prestations Optionnelles</h3>
       Nos tarifs hébergement ne comprennent pas les prestations optionnelles supplémentaires
       proposées en catalogue, sur notre site Internet ou sur place.
       Dans l'éventualité d'une prestation de voyage liée, nous vous informons que :
       1) les droits applicables aux forfaits touristiques ne s'appliquent pas ;
       2) le prestataire sera responsable de la bonne exécution contractuelle du service ;
       3) vous bénéficiez d'une protection en cas d'insolvabilité.
-      2.4 Réduction
+      <h3>2.4 Réduction</h3>
       Les réductions mentionnées sur nos supports de vente ne sont applicables que sur la
       partie hébergement ; sont donc exclues toutes autres prestations (restauration,
       sports et loisirs...). Ces offres sont soumises à des conditions particulières,
@@ -182,7 +182,7 @@ const Cgv = () => (
       d'empêchement suivants : plages, bars et restaurants fermés, inquiétude personnelle,
       infrastructures partiellement fermées. Les montants versés dans le cadre du règlement
       du séjour seront remboursés déduction faite des frais de dossiers qui s’élèvent à 18€ TTC.
-      4.3. Annulation et modification d'option
+      <h3>4.3. Annulation et modification d'option</h3>
       En cas d'annulation d'une prestation de location de matériel de ski, de forfaits remontées
       mécaniques ou toutes autres options commandées, l'annulation doit nous être notifiée
       impérativement par téléphone et email au plus tard 15 jours avant le début du séjour pour
@@ -193,7 +193,7 @@ const Cgv = () => (
       (matériel de ski, forfaits ou autres) des frais de 15 euros seront appliqués ; En cas
       d'annulation d'options (notamment de matériel de ski, forfaits ou autres) le barème de
       frais d'annulation de dossier ci-dessus sera appliqué.
-      4.4 - Non présentation sur le lieu du séjour
+      <h3>4.4 - Non présentation sur le lieu du séjour</h3>
       Si vous ne vous présentez pas sur le lieu de votre séjour, nous retenons les frais de
       dossier initialement versées le cas échéant et le montant des primes d'assurance
       éventuellement souscrites auxquels s'ajouteront les indemnités suivantes :

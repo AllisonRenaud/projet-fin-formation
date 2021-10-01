@@ -35,10 +35,14 @@ export default (store) => (next) => (action) => {
         })
         .then(
           (response) => {
+            console.log(response.data);
+            console.log(localStorage);
             const token = response.data.accessToken;
             const decoded = jwt_decode(token);
             store.dispatch(connectUser(response.data));
-            axiosInstance.defaults.headers.common.Authorization = `Bearer ${response.data.accessToken}`;
+            store.dispatch(saveUserData(response.data.user));
+            localStorage.setItem('user', JSON.stringify(response.data.user));
+            axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
             localStorage.setItem('token', token);
             localStorage.setItem('id', decoded.id);
             localStorage.setItem('role', decoded.role);

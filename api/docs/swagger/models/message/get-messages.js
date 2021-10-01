@@ -3,7 +3,7 @@ module.exports = {
   get: {
     security: [{bearerAuth: []}],
     tags: ["Message"],
-    description: "Get messages [{}]", // operation's desc.
+    description: "Get logged user messages [{}]", // operation's desc.
     
     responses: {
       // response code
