@@ -83,7 +83,7 @@ const Copyright = () => (
         <img className="card__image" src={christophe} alt="Christophe en personnage de South Park" />
         <div className="card__content">
           <div className="card__content__header">
-            Vincent
+            Christophe
           </div>
           <div className="card__content__description">
             Petit description pour chaque membre de l'équipe.
