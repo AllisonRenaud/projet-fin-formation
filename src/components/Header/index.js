@@ -7,12 +7,26 @@ import chalet from '../../assets/images/logo-ochalet.png';
 import './header.scss';
 
 const Header = ({ logged }) => {
-  const options = [
+  const role = localStorage.getItem('role');
+
+  const adminOptions = [
     {
       key: 1, text: 'Mon profil', as: Link, to: '/profile', value: 1,
     },
     {
-      key: 2, text: 'Mes réservations', as: Link, to: '/account', value: 2,
+      key: 2, text: 'Mes annonces', as: Link, to: '/account/admin', value: 2,
+    },
+    {
+      key: 3, text: 'Déconnexion', as: Link, to: '/signout', value: 3,
+    },
+  ];
+
+  const userOptions = [
+    {
+      key: 1, text: 'Mon profil', as: Link, to: '/profile', value: 1,
+    },
+    {
+      key: 2, text: 'Mes réservations', as: Link, to: '/account/user', value: 2,
     },
     {
       key: 3, text: 'Déconnexion', as: Link, to: '/signout', value: 3,
@@ -71,7 +85,7 @@ const Header = ({ logged }) => {
           <Dropdown
             className="header__navigation__link"
             text="Mon compte"
-            options={options}
+            options={role === 'user' ? userOptions : adminOptions}
             simple
             item
           />
