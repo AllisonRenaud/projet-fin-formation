@@ -93,7 +93,7 @@ const Createoffer = () => {
         <Field
           name="main_picture"
           value={main_picture}
-          type="text"
+          type="file"
           placeholder="Photo principale"
           onChange={changeField}
           updateMode={!updateMode}
