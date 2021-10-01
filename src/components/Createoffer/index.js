@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 
-import { Form, Button } from 'semantic-ui-react';
+import { Form, Button, Select } from 'semantic-ui-react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -9,8 +9,9 @@ import Field from '../Field';
 import {
   // saveOfferData,
   setOfferField,
-  updateOffer,
+  createOffer,
   setUpdateMode,
+  selectLocation,
 } from '../../actions/offers';
 
 import './createoffer.scss';
@@ -35,16 +36,30 @@ const Createoffer = () => {
     galery_picture_4,
     galery_picture_5,
     updateMode,
+    location_id,
   } = useSelector((state) => state.offers.newoffer);
+
+  const locationOptions = [
+    { key: 1, value: 1, text: 'Jura' },
+    { key: 2, value: 2, text: 'Alpes du Nord' },
+    { key: 3, value: 3, text: 'Alpes du Sud' },
+    { key: 4, value: 4, text: 'Pyrénées' },
+    { key: 5, value: 5, text: 'Massif Central' },
+    { key: 6, value: 6, text: 'Vosges' },
+  ];
 
   const changeField = (value, name) => {
     dispatch(setOfferField(value, name));
   };
 
+  const changeLocation = (event, { value }) => {
+    dispatch(selectLocation(value));
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(updateOffer());
-    dispatch(setUpdateMode());
+    dispatch(createOffer());
+    // dispatch(setUpdateMode());
   };
 
   const toggleUpdateMode = (event) => {
@@ -176,12 +191,19 @@ const Createoffer = () => {
           onChange={changeField}
           updateMode={!updateMode}
         />
-        <Button color="brown" className="create-offer__form__button__modify" type="submit" onClick={toggleUpdateMode}>Modifier</Button>
+        <Select
+          placeholder="Où se situe le chalet ?"
+          options={locationOptions}
+          name="location_id"
+          onChange={changeLocation}
+          value={location_id}
+        />
+        <Button color="brown" className="create-offer__form__button__modify" onClick={toggleUpdateMode}>Modifier</Button>
         {updateMode && (
         <Button color="blue" className="create-offer__form__button__validate" type="submit">Valider</Button>
         )}
-        <Button color="blue" className="create-offer__form__button__save" type="submit">Sauvegarder</Button>
-        <Button color="green" className="create-offer__form__button__publish" type="submit">Publier</Button>
+        <Button color="blue" className="create-offer__form__button__save">Sauvegarder</Button>
+        <Button color="green" className="create-offer__form__button__publish">Publier</Button>
       </Form>
     </main>
   );

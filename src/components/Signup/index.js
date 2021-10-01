@@ -76,7 +76,7 @@ const Signup = () => {
           >
             <Button.Content visible>S'inscrire</Button.Content>
             <Button.Content hidden>
-              <Icon name='plus' />
+              <Icon name="plus" />
             </Button.Content>
           </Button>
           <Link to="/signin" className="signup__button__signin">
@@ -88,7 +88,7 @@ const Signup = () => {
             >
               <Button.Content visible>J'ai déjà un compte</Button.Content>
               <Button.Content hidden>
-                <Icon name='sign in' />
+                <Icon name="sign in" />
               </Button.Content>
             </Button>
           </Link>

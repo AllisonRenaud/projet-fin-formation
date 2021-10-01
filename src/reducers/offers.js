@@ -3,6 +3,7 @@ import {
   SAVE_LOCATIONS,
   SET_OFFER_FIELD,
   SET_UPDATE_MODE,
+  SELECT_LOCATION,
 } from '../actions/offers';
 
 export const initialState = {
@@ -47,6 +48,14 @@ const reducer = (state = initialState, action = {}) => {
         newoffer: {
           ...state.newoffer,
           [action.name]: action.value,
+        },
+      };
+    case SELECT_LOCATION:
+      return {
+        ...state,
+        newoffer: {
+          ...state.newoffer,
+          location_id: action.value,
         },
       };
     case SET_UPDATE_MODE:

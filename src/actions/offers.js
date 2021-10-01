@@ -57,3 +57,21 @@ export const setOfferField = (value, name) => (
     name,
   }
 );
+
+export const SELECT_LOCATION = 'SELECT_LOCATION';
+
+export const selectLocation = (value) => (
+  {
+    type: SELECT_LOCATION,
+    value,
+  }
+);
+
+export const CREATE_OFFER = 'CREATE_OFFER';
+
+export const createOffer = (data) => (
+  {
+    type: CREATE_OFFER,
+    data,
+  }
+);

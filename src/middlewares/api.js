@@ -8,6 +8,8 @@ import {
   saveOffers,
   FETCH_LOCATIONS,
   saveLocations,
+  CREATE_OFFER,
+  // createOffer,
 } from '../actions/offers';
 
 import {
@@ -171,6 +173,62 @@ export default (store) => (next) => (action) => {
         );
       next(action);
       break;
+    case CREATE_OFFER: {
+      const token = localStorage.getItem('token');
+      const {
+        title,
+        body,
+        zip_code,
+        city_name,
+        country,
+        street_name,
+        street_number,
+        price_ht,
+        tax,
+        main_picture,
+        galery_picture_1,
+        galery_picture_2,
+        galery_picture_3,
+        galery_picture_4,
+        galery_picture_5,
+        location_id,
+      } = store.getState().offers.newoffer;
+      axiosInstance
+        .post(
+          '/admin/offers',
+          {
+            title,
+            body,
+            zip_code,
+            city_name,
+            country,
+            street_name,
+            street_number,
+            price_ht,
+            tax,
+            main_picture,
+            galery_picture_1,
+            galery_picture_2,
+            galery_picture_3,
+            galery_picture_4,
+            galery_picture_5,
+            location_id,
+          }, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        )
+        .then(
+          (response) => {
+            console.log(response.data);
+          },
+        ).catch(
+          (error) => console.log(error.message),
+        );
+      next(action);
+      break;
+    }
     default:
       next(action);
   }
