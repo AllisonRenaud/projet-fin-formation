@@ -2,12 +2,16 @@ import { Button, Icon } from 'semantic-ui-react';
 
 import { withRouter } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+import 'react-date-range/dist/styles.css';
+import 'react-date-range/dist/theme/default.css';
+import { DateRange } from 'react-date-range';
+
 import Carousel from 'nuka-carousel';
 
 import './offer.scss';
+
 import { findOffer } from '../../selectors/offers';
 
 const Offer = ({ match }) => {
@@ -16,6 +20,12 @@ const Offer = ({ match }) => {
   const offer = useSelector(
     (state) => findOffer(state.offers.offers, id),
   );
+
+  const [dateRange, setDateRange] = useState([{
+    startDate: null,
+    endDate: null,
+    key: 'selection',
+  }]);
 
   return (
     <section className="offer">
@@ -40,7 +50,12 @@ const Offer = ({ match }) => {
           </p>
         </div>
         <div className="offer__main__calendar">
-          <Calendar className="offer__main__calendar__item" />
+          <DateRange
+            editableDateInputs="true"
+            onChange={(item) => setDateRange([item.selection])}
+            moveRangeOnFirstSelection={false}
+            ranges={dateRange}
+          />
         </div>
       </div>
       <div className="offer__main__buttons">
@@ -51,7 +66,7 @@ const Offer = ({ match }) => {
         >
           <Button.Content visible>Contacter le propriétaire</Button.Content>
           <Button.Content hidden>
-            <Icon name='envelope' />
+            <Icon name="envelope" />
           </Button.Content>
         </Button>
         <Button
@@ -61,7 +76,7 @@ const Offer = ({ match }) => {
         >
           <Button.Content visible>Réserver</Button.Content>
           <Button.Content hidden>
-            <Icon name='bookmark' />
+            <Icon name="bookmark" />
           </Button.Content>
         </Button>
       </div>
