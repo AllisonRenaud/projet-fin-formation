@@ -25,6 +25,7 @@ import Legal from '../Legal';
 import Faq from '../FAQ';
 import Copyright from '../Copyright';
 import Createoffer from '../Createoffer';
+import Error from '../Error';
 
 // == Composant
 const App = () => {
@@ -106,6 +107,9 @@ const App = () => {
         </Route>
         <Route path="/signout" exact>
           <Signout />
+        </Route>
+        <Route>
+          <Error />
         </Route>
       </Switch>
       <Footer />
