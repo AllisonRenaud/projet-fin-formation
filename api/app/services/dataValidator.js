@@ -11,7 +11,7 @@ module.exports = async (req, res, next) => {
             .filter(element => element)
 
     
-        
+        console.log(urlSchemaMatch)
         const dataLocationsList = ["body", "query"]
 
         const dataLocation = dataLocationsList.find(location => Object.keys(req[location]).length)
@@ -64,7 +64,7 @@ const validate = (data, urlSchemaMatch, method) => {
 
               if(method === 'GET' && name.match(/[gG]et|[fF]ilter/)) return true
 
-              if(method === 'DELETE' && name.match(/[gG]et|[fF]ilter|[dD]elete/)) return true
+              if(method === 'DELETE' && name.match(/delete/gi)) return true
 
           })
           

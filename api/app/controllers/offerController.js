@@ -72,7 +72,7 @@ const offerController = {
 
   delete: async (request, response) => {
       try {
-          const offerID = parseInt(request.params.id, 10);
+          const offerID = parseInt(request.query.id, 10);
           await Offer.delete(offerID);
           response.status(200).json(`Offer with id ${offerID} deleted`);
       } catch(error) {
