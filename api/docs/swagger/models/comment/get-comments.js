@@ -1,9 +1,9 @@
 module.exports = {
   // method of operation
   get: {
-    security: [{bearerAuth: []}],
+    
     tags: ["Comment"],
-    description: "Get comments [{}]", // operation's desc.
+    description: "Get logged user comments [{}]", // operation's desc.
     
     responses: {
       // response code

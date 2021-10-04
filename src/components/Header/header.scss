@@ -1,6 +1,4 @@
 .header{
-  // background-color: #08D9D6;
-  height: 5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -31,6 +29,17 @@
         color: #a5673f;
         text-shadow: 0 0 3px #000;
       }
+    }
+  }
+}
+
+
+@media screen and (max-width: 680px) {
+  .header {
+    flex-direction: column;
+
+    &__logo, &__navigation {
+      margin: 0;
     }
   }
 }

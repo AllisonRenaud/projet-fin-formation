@@ -2,14 +2,14 @@
 import { Button, Icon, Form } from 'semantic-ui-react';
 
 import { useEffect } from 'react';
+
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
   setUserField,
   updateUser,
-  fetchUserData,
-  saveUserData,
   setUpdateMode,
+  saveUserData,
 } from '../../actions/user';
 
 import Field from '../Field';
@@ -59,16 +59,19 @@ const Profile = () => {
     event.preventDefault();
   };
 
+  const user = localStorage.getItem('user');
+  const parsedUser = JSON.parse(user);
+
   useEffect(
     () => {
-      dispatch(fetchUserData());
+      dispatch(saveUserData(parsedUser));
     },
     [],
   );
 
   return (
     <main className="profile">
-      <h2 className="profile__title">Bienvenue sur votre profil</h2>
+      <h2 className="profile__title">Vos informations</h2>
       <Form className="profile__form" onSubmit={handleSubmit}>
         <Field
           name="lastname"
@@ -165,7 +168,7 @@ const Profile = () => {
         <div className="profile__form__buttons">
           <Button
             animated
-            className="signup__form__button__modify"
+            className="signup__form__buttons__modify"
             color="brown"
             onClick={toggleUpdateMode}
             type="submit"
@@ -176,11 +179,20 @@ const Profile = () => {
             </Button.Content>
           </Button>
           {updateMode && (
-          <Button color="blue" className="profile__form__button__validate" type="submit">Valider</Button>
+          <Button
+            animated
+            color="teal"
+            className="profile__form__buttons__validate"
+          >
+            <Button.Content visible>Valider</Button.Content>
+            <Button.Content hidden>
+              <Icon name="checkmark" />
+            </Button.Content>
+          </Button>
           )}
           <Button
             animated
-            className="signup__form__button__delete"
+            className="signup__form__buttons__delete"
             color="red"
             onClick={deleteAccount}
           >

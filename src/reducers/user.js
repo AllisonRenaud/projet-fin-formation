@@ -38,12 +38,14 @@ const reducer = (state = initialState, action = {}) => {
         logged: true,
         token: action.data.accessToken,
         password: '',
+        role: action.data.role,
       };
     case SAVE_USER_DATA:
       return {
         ...state,
         // token: action.data.accessToken,
         // id: action.data.id,
+        logged: true,
         firstname: action.data.firstname,
         lastname: action.data.lastname,
         email: action.data.email,
@@ -55,7 +57,7 @@ const reducer = (state = initialState, action = {}) => {
         street_name: action.data.street_name,
         street_number: action.data.street_number,
         password: '',
-        role: action.data.role,
+        // role: action.data.role,
       };
     case SIGNOUT:
       return {

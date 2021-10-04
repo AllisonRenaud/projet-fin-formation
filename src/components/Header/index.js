@@ -1,26 +1,40 @@
-import { useSelector } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 import { Dropdown } from 'semantic-ui-react';
+
+import PropTypes from 'prop-types';
 
 import chalet from '../../assets/images/logo-ochalet.png';
 import './header.scss';
 
-const options = [
-  {
-    key: 1, text: 'Mon profil', as: Link, to: '/profile', value: 1,
-  },
-  {
-    key: 2, text: 'Mes réservations', as: Link, to: '/account/user', value: 2,
-  },
-  {
-    key: 3, text: 'Déconnexion', as: Link, to: '/signout', value: 3,
-  },
-];
+const Header = ({ logged }) => {
+  const role = localStorage.getItem('role');
 
-const Header = () => {
-  const logged = useSelector((state) => state.user.logged);
+  const adminOptions = [
+    {
+      key: 1, text: 'Mon profil', as: Link, to: '/profile', value: 1,
+    },
+    {
+      key: 2, text: 'Mes annonces', as: Link, to: '/account/admin', value: 2,
+    },
+    {
+      key: 3, text: 'Déconnexion', as: Link, to: '/signout', value: 3,
+    },
+  ];
+
+  const userOptions = [
+    {
+      key: 1, text: 'Mon profil', as: Link, to: '/profile', value: 1,
+    },
+    {
+      key: 2, text: 'Mes réservations', as: Link, to: '/account/user', value: 2,
+    },
+    {
+      key: 3, text: 'Déconnexion', as: Link, to: '/signout', value: 3,
+    },
+  ];
 
   return (
+
     <header className="header">
       <NavLink
         className="header__navigation__link"
@@ -71,7 +85,7 @@ const Header = () => {
           <Dropdown
             className="header__navigation__link"
             text="Mon compte"
-            options={options}
+            options={role === 'user' ? userOptions : adminOptions}
             simple
             item
           />
@@ -79,6 +93,9 @@ const Header = () => {
       </nav>
     </header>
   );
+};
+Header.propTypes = {
+  logged: PropTypes.bool.isRequired,
 };
 
 export default Header;

@@ -24,7 +24,9 @@ const authController = {
 
           await asyncClient.setex("refreshTokenUser" + user.id, TIMEOUT, refreshToken)
 
-          response.json({accessToken, refreshToken})
+          delete user.password;
+
+          response.json({accessToken, refreshToken, user})
           
         } catch (error) {
             response.status(500).end(error.message)

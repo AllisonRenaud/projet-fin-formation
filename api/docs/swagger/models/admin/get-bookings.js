@@ -3,7 +3,7 @@ module.exports = {
   get: {
     security: [{bearerAuth: []}],
     tags: ["Admin"], // operation's tag.
-    description: "Get all bookings or filter by user_id or title using query parameter [{}]", // operation's desc.
+    description: "Get all bookings ", // operation's desc.
     parameters: [
       // expected params.
       {

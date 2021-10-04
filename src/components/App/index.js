@@ -1,8 +1,10 @@
 // == Import
 import { Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 import { connectUser } from '../../actions/user';
+import { fetchLocations, fetchOffers } from '../../actions/offers';
 
 import './styles.css';
 
@@ -20,20 +22,41 @@ import User from '../Backoffice/User';
 import Signout from '../Signout';
 import Cgv from '../CGV';
 import Legal from '../Legal';
+import Faq from '../FAQ';
 import Copyright from '../Copyright';
+import Createoffer from '../Createoffer';
 
 // == Composant
 const App = () => {
   const dispatch = useDispatch();
   const accessToken = localStorage.getItem('token');
 
+  const logged = useSelector((state) => state.user.logged);
+
   if (accessToken) {
     dispatch(connectUser(accessToken));
   }
 
+  // const role = localStorage.getItem('role');
+  // const role = useSelector((state) => state.user.role);
+
+  useEffect(
+    () => {
+      dispatch(fetchLocations());
+    },
+    [],
+  );
+
+  useEffect(
+    () => {
+      dispatch(fetchOffers());
+    },
+    [],
+  );
+
   return (
     <div className="app">
-      <Header />
+      <Header logged={logged} />
       <Switch>
         <Route path="/" exact>
           <Main />
@@ -47,6 +70,9 @@ const App = () => {
         <Route path="/offers/:id" exact>
           <Offer />
         </Route>
+        <Route path="/account/new-offer" exact>
+          <Createoffer />
+        </Route>
         <Route path="/signup" exact>
           <Signup />
         </Route>
@@ -54,7 +80,11 @@ const App = () => {
           <Signin />
         </Route>
         <Route path="/profile" exact>
-          <Profile />
+          {logged ? (
+            <Profile />
+          ) : (
+            <Signin />
+          )}
         </Route>
         <Route path="/account/admin" exact>
           <Admin />
@@ -64,6 +94,9 @@ const App = () => {
         </Route>
         <Route path="/cgv" exact>
           <Cgv />
+        </Route>
+        <Route path="/faq" exact>
+          <Faq />
         </Route>
         <Route path="/legal" exact>
           <Legal />

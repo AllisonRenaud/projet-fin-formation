@@ -3,38 +3,38 @@
 .main{
   flex: 1;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
 
-  &__card{
-    margin: 2rem;
-    width: 28%;
-    min-width: 300px;
-    border-radius: .6rem;
-    overflow: hidden;
-    background-color: #f0f8ffa8;
-    box-shadow: 0 0 20px #333;
-    cursor: pointer;
-    transition: .3s;
+  &__text {
+    color: #EAEAEA;
+    text-shadow: 0 0 5px #000;
+    font-size: 2rem;
+    margin: 1rem 0;
+    padding: 0 1rem;
+  }
 
-    &:hover {
-      transform: scale(1.03);
-    }
-  
-    &__image{
-      width: 100%;
-    }
+  &__link {
+    margin-top: 2rem;
+  }
 
-    &__title{
-      font-size: 1.8rem;
-      padding: 1rem ;
-      font-family: 'Patrick Hand', cursive;
-    }
-
-    &__description{
-      font-size: 1rem;
-      padding: 1rem;
-    }
-  }  
 }
+
+@media screen and (max-width: 1225px) {
+  .main {
+    &__text {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+@media screen and (max-width: 990px) {
+  .main {
+    &__text {
+      font-size: 1.2rem;
+    }
+  }
+}
+
