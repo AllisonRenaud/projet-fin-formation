@@ -9,6 +9,9 @@ import { useState } from 'react';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { DateRange } from 'react-date-range';
+import frLocale from 'date-fns/locale/fr';
+import addMonths from 'date-fns/addMonths';
+
 
 import Carousel from 'nuka-carousel';
 
@@ -54,10 +57,15 @@ const Offer = ({ match }) => {
         />
         <div className="offer__main__calendar">
           <DateRange
-            editableDateInputs="true"
             onChange={(item) => setDateRange([item.selection])}
             moveRangeOnFirstSelection={false}
             ranges={dateRange}
+            locale={frLocale}
+            dateDisplayFormat="dd.MM.yyyy"
+            minDate={new Date()}
+            maxDate={addMonths(new Date(), 12)}
+            startDatePlaceholder="Arrivée"
+            endDatePlaceholder="Départ"
           />
         </div>
       </div>
