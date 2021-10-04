@@ -58,11 +58,16 @@ const Admin = () => {
       <div className="backoffice-admin__card-list">
         {
           offers.map((offer) => (
-            <div className="backoffice-admin__card">
+            <div key={offer.id} className="backoffice-admin__card">
               <img src={offer.main_picture} alt="mountain" className="backoffice-admin__card__image" />
               <div className="backoffice-admin__card__details">
                 <h2 className="backoffice-admin__card__name">{offer.title}</h2>
                 <p className="backoffice-admin__card__city">{offer.city}</p>
+              </div>
+              <div className="backoffice-admin__card__button">
+                <Link to={`/offers/${offer.id}`}>
+                  <Button color="teal" className="backoffice-admin__create-offer__button">Voir l'annonce</Button>
+                </Link>
               </div>
             </div>
           ))
@@ -71,9 +76,5 @@ const Admin = () => {
     </main>
   );
 };
-
-// Admin.propTypes = {
-//   role: PropTypes.string.isRequired,
-// };
 
 export default Admin;

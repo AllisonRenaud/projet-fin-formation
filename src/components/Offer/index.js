@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable camelcase */
 import PropTypes from 'prop-types';
 
 import { Button, Icon } from 'semantic-ui-react';
@@ -92,7 +94,7 @@ const Offer = ({ match }) => {
           >
             <Button.Content visible>Supprimer l'annonce</Button.Content>
             <Button.Content hidden>
-              <Icon name="bookmark" />
+              <Icon name="delete" />
             </Button.Content>
           </Button>
         )}
@@ -104,7 +106,7 @@ const Offer = ({ match }) => {
           >
             <Button.Content visible>Modifier l'annonce</Button.Content>
             <Button.Content hidden>
-              <Icon name="bookmark" />
+              <Icon name="code" />
             </Button.Content>
           </Button>
         )}
