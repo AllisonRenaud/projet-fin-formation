@@ -12,7 +12,10 @@ module.exports = {
     }),
 
     updatePaymentIntent: Joi.object({
-      
+      offerID: Joi.number().positive(),
+      booking_start: Joi.string(),
+      booking_end: Joi.string(),
+      customer_email: Joi.string().email()
     }),
 
     deletePaymentIntent: Joi.object({
