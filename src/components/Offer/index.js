@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Icon } from 'semantic-ui-react';
 
 import { withRouter } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
@@ -16,30 +15,28 @@ import Carousel from 'nuka-carousel';
 
 import './offer.scss';
 
+import { addDays, differenceInDays } from 'date-fns';
 import { findOffer } from '../../selectors/offers';
+import { setUpdateDaterange } from '../../actions/offers';
 
 const Offer = ({ match }) => {
+  const dispatch = useDispatch();
   const { id } = match.params;
 
   const offer = useSelector(
     (state) => findOffer(state.offers.offers, id),
   );
 
-  const [dateRange, setDateRange] = useState([{
-    startDate: null,
-    endDate: null,
-    key: 'selection',
-  }]);
+  const dateRange = useSelector((state) => state.offers.dateRange);
 
-  const [datesDisabled, setDatesDisabled] = useState([
-    new Date('2021-10-16'),
-    new Date('2021-10-17'),
-    new Date('2021-10-18'),
-    new Date('2021-10-19'),
-    new Date('2021-10-20'),
-    new Date('2021-10-21'),
-    new Date('2021-10-22'),
-  ]);
+  const onChangeDatePicker = (event) => {
+    dispatch(setUpdateDaterange([event.dateRange]));
+  };
+
+  const getDatesDisabled = (startDate, endDate) => {
+    const days = differenceInDays(endDate, startDate);
+    return [...Array(days + 1).keys()].map((i) => addDays(startDate, i));
+  };
 
   return (
     <section className="offer">
@@ -66,7 +63,7 @@ const Offer = ({ match }) => {
         />
         <div className="offer__main__calendar">
           <DateRange
-            onChange={(item) => setDateRange([item.selection])}
+            onChange={onChangeDatePicker}
             moveRangeOnFirstSelection={false}
             ranges={dateRange}
             locale={frLocale}
@@ -75,7 +72,7 @@ const Offer = ({ match }) => {
             maxDate={addMonths(new Date(), 12)}
             startDatePlaceholder="Arrivée"
             endDatePlaceholder="Départ"
-            disabledDates={datesDisabled}
+            disabledDates={getDatesDisabled(new Date('2021-10-16T04:00:00.000Z'), new Date('2021-10-23T14:00:00.000Z'))}
           />
         </div>
       </div>
