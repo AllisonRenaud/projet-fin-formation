@@ -12,7 +12,6 @@ import { DateRange } from 'react-date-range';
 import frLocale from 'date-fns/locale/fr';
 import addMonths from 'date-fns/addMonths';
 
-
 import Carousel from 'nuka-carousel';
 
 import './offer.scss';
@@ -31,6 +30,16 @@ const Offer = ({ match }) => {
     endDate: null,
     key: 'selection',
   }]);
+
+  const [datesDisabled, setDatesDisabled] = useState([
+    new Date('2021-10-16'),
+    new Date('2021-10-17'),
+    new Date('2021-10-18'),
+    new Date('2021-10-19'),
+    new Date('2021-10-20'),
+    new Date('2021-10-21'),
+    new Date('2021-10-22'),
+  ]);
 
   return (
     <section className="offer">
@@ -66,6 +75,7 @@ const Offer = ({ match }) => {
             maxDate={addMonths(new Date(), 12)}
             startDatePlaceholder="Arrivée"
             endDatePlaceholder="Départ"
+            disabledDates={datesDisabled}
           />
         </div>
       </div>
