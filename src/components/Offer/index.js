@@ -17,6 +17,8 @@ import './offer.scss';
 import { findOffer } from '../../selectors/offers';
 
 const Offer = ({ match }) => {
+  const role = localStorage.getItem('role');
+
   const { id } = match.params;
 
   const offer = useSelector(
@@ -82,6 +84,30 @@ const Offer = ({ match }) => {
             <Icon name="bookmark" />
           </Button.Content>
         </Button>
+        {role === 'admin' && (
+          <Button
+            animated
+            className="offer__main__buttons__book"
+            color="red"
+          >
+            <Button.Content visible>Supprimer l'annonce</Button.Content>
+            <Button.Content hidden>
+              <Icon name="bookmark" />
+            </Button.Content>
+          </Button>
+        )}
+        {role === 'admin' && (
+          <Button
+            animated
+            className="offer__main__buttons__book"
+            color="orange"
+          >
+            <Button.Content visible>Modifier l'annonce</Button.Content>
+            <Button.Content hidden>
+              <Icon name="bookmark" />
+            </Button.Content>
+          </Button>
+        )}
       </div>
     </section>
   );
