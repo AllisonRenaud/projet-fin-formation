@@ -12,15 +12,19 @@ const {
     bookingRoutes,
     commentRoutes,
     authRoutes,
-    adminRoutes
+    adminRoutes,
+    paymentRoutes,
+    uploadRoutes
 } = require('./routes/index');
+
+router.use(uploadRoutes)
 
 router.use(redis, dataValidator)
 
 router.use(authRoutes, offerRoutes, locationRoutes)
 
 router.use(verifyAccessToken)
-router.use([userRoutes, messageRoutes, bookingRoutes, commentRoutes ])
+router.use([userRoutes, messageRoutes, bookingRoutes, commentRoutes, paymentRoutes])
 router.use(isAdmin, adminRoutes)
 
 

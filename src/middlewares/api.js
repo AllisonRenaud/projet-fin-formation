@@ -8,10 +8,10 @@ import {
   saveOffers,
   FETCH_LOCATIONS,
   saveLocations,
+  CREATE_OFFER,
 } from '../actions/offers';
 
 import {
-  connectUser,
   FETCH_USER_DATA,
   saveUserData,
   LOGIN,
@@ -35,14 +35,10 @@ export default (store) => (next) => (action) => {
         })
         .then(
           (response) => {
-            console.log(response.data);
-            console.log(localStorage);
             const token = response.data.accessToken;
             const decoded = jwt_decode(token);
-            store.dispatch(connectUser(response.data));
             store.dispatch(saveUserData(response.data.user));
             localStorage.setItem('user', JSON.stringify(response.data.user));
-            axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
             localStorage.setItem('token', token);
             localStorage.setItem('id', decoded.id);
             localStorage.setItem('role', decoded.role);
@@ -78,7 +74,6 @@ export default (store) => (next) => (action) => {
       break;
     }
     case FETCH_USER_DATA: {
-      // const { user: { token } } = store.getState();
       const token = localStorage.getItem('token');
       axiosInstance
         .get('/user',
@@ -91,7 +86,6 @@ export default (store) => (next) => (action) => {
           (response) => {
             store.dispatch(saveUserData(response.data));
           },
-          // localStorage.setItem('token', token),
         )
         .catch(
           (error) => console.log(error),
@@ -139,7 +133,6 @@ export default (store) => (next) => (action) => {
           (response) => {
             store.dispatch(saveUserData(response.data));
           },
-          // localStorage.setItem('token', token),
         )
         .catch(
           (error) => console.log(error),
@@ -171,6 +164,62 @@ export default (store) => (next) => (action) => {
         );
       next(action);
       break;
+    case CREATE_OFFER: {
+      const token = localStorage.getItem('token');
+      const {
+        title,
+        body,
+        zip_code,
+        city_name,
+        country,
+        street_name,
+        street_number,
+        price_ht,
+        tax,
+        main_picture,
+        galery_picture_1,
+        galery_picture_2,
+        galery_picture_3,
+        galery_picture_4,
+        galery_picture_5,
+        location_id,
+      } = store.getState().offers.newoffer;
+      axiosInstance
+        .post(
+          '/admin/offers',
+          {
+            title,
+            body,
+            zip_code,
+            city_name,
+            country,
+            street_name,
+            street_number,
+            price_ht,
+            tax,
+            main_picture,
+            galery_picture_1,
+            galery_picture_2,
+            galery_picture_3,
+            galery_picture_4,
+            galery_picture_5,
+            location_id,
+          }, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        )
+        .then(
+          (response) => {
+            console.log(response.data);
+          },
+        ).catch(
+          (error) => console.log(error.message),
+        );
+      next(action);
+      break;
+    }
     default:
       next(action);
   }

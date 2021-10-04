@@ -1,16 +1,20 @@
 /* eslint-disable camelcase */
 
-import { Form, Button } from 'semantic-ui-react';
+import { Form, Button, Select } from 'semantic-ui-react';
 
 import { useDispatch, useSelector } from 'react-redux';
+
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import Field from '../Field';
 
 import {
   // saveOfferData,
   setOfferField,
-  updateOffer,
+  createOffer,
   setUpdateMode,
+  selectLocation,
 } from '../../actions/offers';
 
 import './createoffer.scss';
@@ -35,16 +39,30 @@ const Createoffer = () => {
     galery_picture_4,
     galery_picture_5,
     updateMode,
+    location_id,
   } = useSelector((state) => state.offers.newoffer);
+
+  const locationOptions = [
+    { key: 1, value: 1, text: 'Jura' },
+    { key: 2, value: 2, text: 'Alpes du Nord' },
+    { key: 3, value: 3, text: 'Alpes du Sud' },
+    { key: 4, value: 4, text: 'Pyrénées' },
+    { key: 5, value: 5, text: 'Massif Central' },
+    { key: 6, value: 6, text: 'Vosges' },
+  ];
 
   const changeField = (value, name) => {
     dispatch(setOfferField(value, name));
   };
 
+  const changeLocation = (event, { value }) => {
+    dispatch(selectLocation(value));
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(updateOffer());
-    dispatch(setUpdateMode());
+    dispatch(createOffer());
+    // dispatch(setUpdateMode());
   };
 
   const toggleUpdateMode = (event) => {
@@ -75,7 +93,7 @@ const Createoffer = () => {
         <Field
           name="main_picture"
           value={main_picture}
-          type="text"
+          type="file"
           placeholder="Photo principale"
           onChange={changeField}
           updateMode={!updateMode}
@@ -152,13 +170,37 @@ const Createoffer = () => {
           onChange={changeField}
           updateMode={!updateMode}
         />
-        <Field
+        {/* <Field
           name="body"
           value={body}
           type="text"
           placeholder="Description"
           onChange={changeField}
           updateMode={!updateMode}
+        /> */}
+        <label className="create-offer__form__ck-label">Description</label>
+        <CKEditor
+          id="field-body"
+          name="body"
+          data={body}
+          className="ckeditor"
+          editor={ClassicEditor}
+          // onChange={changeField}
+          // data="<p>Hello from CKEditor 5!</p>"
+          onReady={(editor) => {
+            // You can store the "editor" and use when it is needed.
+            console.log('Editor is ready to use!', editor);
+          }}
+          onChange={(event, editor) => {
+            const data = editor.getData();
+            dispatch(setOfferField(data, 'body'));
+          }}
+          onBlur={(event, editor) => {
+            console.log('Blur.', editor);
+          }}
+          onFocus={(event, editor) => {
+            console.log('Focus.', editor);
+          }}
         />
         <Field
           name="price_ht"
@@ -176,12 +218,19 @@ const Createoffer = () => {
           onChange={changeField}
           updateMode={!updateMode}
         />
-        <Button color="brown" className="create-offer__form__button__modify" type="submit" onClick={toggleUpdateMode}>Modifier</Button>
+        <Select
+          placeholder="Où se situe le chalet ?"
+          options={locationOptions}
+          name="location_id"
+          onChange={changeLocation}
+          value={location_id}
+        />
+        <Button color="brown" className="create-offer__form__button__modify" onClick={toggleUpdateMode}>Modifier</Button>
         {updateMode && (
         <Button color="blue" className="create-offer__form__button__validate" type="submit">Valider</Button>
         )}
-        <Button color="blue" className="create-offer__form__button__save" type="submit">Sauvegarder</Button>
-        <Button color="green" className="create-offer__form__button__publish" type="submit">Publier</Button>
+        <Button color="blue" className="create-offer__form__button__save">Sauvegarder</Button>
+        <Button color="green" className="create-offer__form__button__publish">Publier</Button>
       </Form>
     </main>
   );

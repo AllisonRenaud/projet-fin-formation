@@ -1,21 +1,31 @@
 .create-offer{
-    height: 100%;
-    width: 500px;
-    margin: 3rem auto;
-    display: flex;
-    flex-direction: column;
+  width: 50%;
+  min-width: 500px;
+  margin: 3rem auto;
+  display: flex;
+  flex-direction: column;
 
-    &__title{
-      margin: 3rem auto;
-      font-size: 2rem;
+  &__title{
+    margin: 3rem auto;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  &__form{
+    &__ck-label {
+      color: #f1f1f1;
+      text-shadow: 0 0 3px #000;
       font-weight: bold;
     }
 
-    &__form{
+    & .ck-editor {
+      margin-bottom: 1rem;
+      margin-top: .2rem;
+    }
 
     &__button{
-    display: flex;
-    justify-content: space-evenly;  
-        }
+      display: flex;
+      justify-content: space-evenly;  
     }
+  }
 }

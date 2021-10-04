@@ -6,5 +6,7 @@ module.exports = {
     bookingRoutes: require('./bookingRoutes'),
     commentRoutes: require('./commentRoutes'),
     authRoutes: require('./authRoutes'),
-    adminRoutes: require('./adminRoutes')
+    adminRoutes: require('./adminRoutes'),
+    paymentRoutes: require('./paymentRoutes'),
+    uploadRoutes: require('./uploadRoutes')
 }

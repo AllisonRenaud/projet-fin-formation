@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { Button, Icon } from 'semantic-ui-react';
 
 import { withRouter } from 'react-router-dom';
@@ -44,11 +46,12 @@ const Offer = ({ match }) => {
         </div>
       </div>
       <div className="offer__main">
-        <div className="offer__main__description">
-          <p>
-            {offer.body}
-          </p>
-        </div>
+        <div
+          className="offer__main__description"
+          dangerouslySetInnerHTML={{
+            __html: offer.body,
+          }}
+        />
         <div className="offer__main__calendar">
           <DateRange
             editableDateInputs="true"
@@ -82,6 +85,14 @@ const Offer = ({ match }) => {
       </div>
     </section>
   );
+};
+
+Offer.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+    }),
+  }).isRequired,
 };
 
 export default withRouter(Offer);
