@@ -6,6 +6,7 @@ import { Button, Icon } from 'semantic-ui-react';
 
 import { withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
@@ -17,18 +18,19 @@ import Carousel from 'nuka-carousel';
 
 import './offer.scss';
 
-import { addDays, differenceInDays } from 'date-fns';
-import { findOffer } from '../../selectors/offers';
-import { setUpdateDaterange } from '../../actions/offers';
+import eachDayOfInterval from 'date-fns/eachDayOfInterval';
+import { setUpdateDaterange, fetchOffer } from '../../actions/offers';
 
 const Offer = ({ match }) => {
   const dispatch = useDispatch();
   const role = localStorage.getItem('role');
   const { id } = match.params;
 
-  const offer = useSelector(
-    (state) => findOffer(state.offers.offers, id),
-  );
+  const offerSelected = useSelector((state) => state.offers.offerSelected);
+
+  useEffect(() => {
+    dispatch(fetchOffer(id));
+  }, [dispatch]);
 
   const dateRange = useSelector((state) => state.offers.dateRange);
 
@@ -36,32 +38,38 @@ const Offer = ({ match }) => {
     dispatch(setUpdateDaterange([event.dateRange]));
   };
 
-  const getDatesDisabled = (startDate, endDate) => {
-    const days = differenceInDays(endDate, startDate);
-    return [...Array(days + 1).keys()].map((i) => addDays(startDate, i));
+  const getDatesDisabled = (bookings) => {
+    const reservations = bookings.map((reservation) => eachDayOfInterval({
+      start: new Date(reservation.reservation_start),
+      end: new Date(reservation.reservation_end),
+    }));
+    const newArray = Array.prototype.concat.apply([], reservations);
+    return newArray;
   };
 
   return (
-    <section className="offer">
-      <div className="offer__header">
-        <h2 className="offer__header__title">{offer.title}</h2>
-        <h3 className="offer__header__city">{offer.city_name}</h3>
+    <>
+      { offerSelected ? 
+      <section className="offer">
+        <div className="offer__header">
+        <h2 className="offer__header__title">{offerSelected.offer.title}</h2>
+        <h3 className="offer__header__city">{offerSelected.offer.city_name}</h3>
         <div className="offer__header__pictures">
           <Carousel>
-            <img src={offer.main_picture} alt="main" />
-            <img src={offer.galery_picture_1} alt="galery" />
-            <img src={offer.galery_picture_2} alt="galery" />
-            <img src={offer.galery_picture_3} alt="galery" />
-            <img src={offer.galery_picture_4} alt="galery" />
-            <img src={offer.galery_picture_5} alt="galery" />
+            <img src={offerSelected.offer.main_picture} alt="main" />
+            <img src={offerSelected.offer.galery_picture_1} alt="galery" />
+            <img src={offerSelected.offer.galery_picture_2} alt="galery" />
+            <img src={offerSelected.offer.galery_picture_3} alt="galery" />
+            <img src={offerSelected.offer.galery_picture_4} alt="galery" />
+            <img src={offerSelected.offer.galery_picture_5} alt="galery" />
           </Carousel>
         </div>
       </div>
-      <div className="offer__main">
+        <div className="offer__main">
         <div
           className="offer__main__description"
           dangerouslySetInnerHTML={{
-            __html: offer.body,
+            __html: offerSelected.offer.body,
           }}
         />
         <div className="offer__main__calendar">
@@ -75,11 +83,11 @@ const Offer = ({ match }) => {
             maxDate={addMonths(new Date(), 12)}
             startDatePlaceholder="Arrivée"
             endDatePlaceholder="Départ"
-            disabledDates={getDatesDisabled(new Date('2021-10-16T04:00:00.000Z'), new Date('2021-10-23T14:00:00.000Z'))}
+            disabledDates={getDatesDisabled(offerSelected.bookings)}
           />
         </div>
       </div>
-      <div className="offer__main__buttons">
+        <div className="offer__main__buttons">
         <Button
           animated
           className="offer__main__buttons__contact"
@@ -125,14 +133,16 @@ const Offer = ({ match }) => {
           </Button>
         )}
       </div>
-    </section>
+      </section>
+      : <div> Not Found</div> }
+    </>
   );
 };
 
 Offer.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
     }),
   }).isRequired,
 };

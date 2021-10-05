@@ -5,6 +5,7 @@ import {
   SET_UPDATE_MODE,
   SELECT_LOCATION,
   SET_UPDATE_DATERANGE,
+  SET_OFFER,
 } from '../actions/offers';
 
 export const initialState = {
@@ -34,6 +35,7 @@ export const initialState = {
     endDate: new Date(),
     key: 'dateRange',
   }],
+  offerSelected: null,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -73,10 +75,14 @@ const reducer = (state = initialState, action = {}) => {
         },
       };
     case SET_UPDATE_DATERANGE:
-      console.log('state ', state);
       return {
         ...state,
         dateRange: action.value,
+      };
+    case SET_OFFER:
+      return {
+        ...state,
+        offerSelected: action.offer,
       };
     default:
       return state;
