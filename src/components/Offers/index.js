@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { useSelector } from 'react-redux';
 
 import { withRouter } from 'react-router-dom';
@@ -24,6 +26,14 @@ const Offers = ({ match }) => {
 
     </section>
   );
+};
+
+Offers.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+    }),
+  }).isRequired,
 };
 
 export default withRouter(Offers);

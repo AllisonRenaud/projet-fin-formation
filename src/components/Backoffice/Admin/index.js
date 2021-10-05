@@ -6,7 +6,6 @@ import { Button, Icon } from 'semantic-ui-react';
 import { useSelector } from 'react-redux';
 
 import './backoffice-admin.scss';
-import Chalet from '../../../assets/images/chalet2.jpeg';
 
 const Admin = () => {
   const role = localStorage.getItem('role');
@@ -16,8 +15,8 @@ const Admin = () => {
 
   const firstname = useSelector((state) => (state.user.firstname));
   const lastname = useSelector((state) => (state.user.lastname));
-  const title = useSelector((state) => (state.offers.title));
-  const city = useSelector((state) => (state.offers.city_name));
+
+  const offers = useSelector((state) => (state.offers.offers));
 
   return (
     <main className="backoffice-admin">
@@ -57,55 +56,25 @@ const Admin = () => {
         </div>
       </div>
       <div className="backoffice-admin__card-list">
-        <div className="backoffice-admin__card">
-          <img src={Chalet} alt="mountain" className="backoffice-admin__card__image" />
-          <div className="backoffice-admin__card__details">
-            <h2 className="backoffice-admin__card__name">{title}</h2>
-            <p className="backoffice-admin__card__city">{city}</p>
-          </div>
-        </div>
-        <div className="backoffice-admin__card">
-          <img src={Chalet} alt="mountain" className="backoffice-admin__card__image" />
-          <div className="backoffice-admin__card__details">
-            <h2 className="backoffice-admin__card__name">Nom de l'annonce</h2>
-            <p className="backoffice-admin__card__city">Ville</p>
-          </div>
-        </div>
-        <div className="backoffice-admin__card">
-          <img src={Chalet} alt="mountain" className="backoffice-admin__card__image" />
-          <div className="backoffice-admin__card__details">
-            <h2 className="backoffice-admin__card__name">Nom de l'annonce</h2>
-            <p className="backoffice-admin__card__city">Ville</p>
-          </div>
-        </div>
-        <div className="backoffice-admin__card">
-          <img src={Chalet} alt="mountain" className="backoffice-admin__card__image" />
-          <div className="backoffice-admin__card__details">
-            <h2 className="backoffice-admin__card__name">Nom de l'annonce</h2>
-            <p className="backoffice-admin__card__city">Ville</p>
-          </div>
-        </div>
-        <div className="backoffice-admin__card">
-          <img src={Chalet} alt="mountain" className="backoffice-admin__card__image" />
-          <div className="backoffice-admin__card__details">
-            <h2 className="backoffice-admin__card__name">Nom de l'annonce</h2>
-            <p className="backoffice-admin__card__city">Ville</p>
-          </div>
-        </div>
-        <div className="backoffice-admin__card">
-          <img src={Chalet} alt="mountain" className="backoffice-admin__card__image" />
-          <div className="backoffice-admin__card__details">
-            <h2 className="backoffice-admin__card__name">Nom de l'annonce</h2>
-            <p className="backoffice-admin__card__city">Ville</p>
-          </div>
-        </div>
+        {
+          offers.map((offer) => (
+            <div key={offer.id} className="backoffice-admin__card">
+              <img src={offer.main_picture} alt="mountain" className="backoffice-admin__card__image" />
+              <div className="backoffice-admin__card__details">
+                <h2 className="backoffice-admin__card__name">{offer.title}</h2>
+                <p className="backoffice-admin__card__city">{offer.city}</p>
+              </div>
+              <div className="backoffice-admin__card__button">
+                <Link to={`/offers/${offer.id}`}>
+                  <Button color="teal" className="backoffice-admin__create-offer__button">Voir l'annonce</Button>
+                </Link>
+              </div>
+            </div>
+          ))
+        }
       </div>
     </main>
   );
 };
-
-// Admin.propTypes = {
-//   role: PropTypes.string.isRequired,
-// };
 
 export default Admin;

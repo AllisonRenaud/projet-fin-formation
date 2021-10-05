@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable camelcase */
 import PropTypes from 'prop-types';
 
 import { Button, Icon } from 'semantic-ui-react';
@@ -17,6 +19,8 @@ import './offer.scss';
 import { findOffer } from '../../selectors/offers';
 
 const Offer = ({ match }) => {
+  const role = localStorage.getItem('role');
+
   const { id } = match.params;
 
   const offer = useSelector(
@@ -82,6 +86,30 @@ const Offer = ({ match }) => {
             <Icon name="bookmark" />
           </Button.Content>
         </Button>
+        {role === 'admin' && (
+          <Button
+            animated
+            className="offer__main__buttons__book"
+            color="red"
+          >
+            <Button.Content visible>Supprimer l'annonce</Button.Content>
+            <Button.Content hidden>
+              <Icon name="delete" />
+            </Button.Content>
+          </Button>
+        )}
+        {role === 'admin' && (
+          <Button
+            animated
+            className="offer__main__buttons__book"
+            color="orange"
+          >
+            <Button.Content visible>Modifier l'annonce</Button.Content>
+            <Button.Content hidden>
+              <Icon name="code" />
+            </Button.Content>
+          </Button>
+        )}
       </div>
     </section>
   );
