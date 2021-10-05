@@ -5,10 +5,14 @@ import {
   SET_UPDATE_MODE,
   SELECT_LOCATION,
   SET_UPDATE_DATERANGE,
+  OPEN_MODAL,
+  CLOSE_MODAL,
+  REMOVE_OFFER_FROM_STATE,
 } from '../actions/offers';
 
 export const initialState = {
   loading: true,
+  open: false,
   offers: [],
   locations: [],
   newoffer: {
@@ -79,6 +83,21 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         dateRange: action.value,
+      };
+    case OPEN_MODAL:
+      return {
+        ...state,
+        open: true,
+      };
+    case CLOSE_MODAL:
+      return {
+        ...state,
+        open: false,
+      };
+    case REMOVE_OFFER_FROM_STATE:
+      return {
+        ...state,
+        offers: state.offers.filter((offer) => offer.id !== action.data),
       };
     default:
       return state;
