@@ -26,11 +26,14 @@ import Faq from '../FAQ';
 import Copyright from '../Copyright';
 import Createoffer from '../Createoffer';
 import Error from '../Error';
+import Loading from '../Loading';
 
 // == Composant
 const App = () => {
   const dispatch = useDispatch();
   const accessToken = localStorage.getItem('token');
+
+  const loading = useSelector((state) => state.offers.loading);
 
   const logged = useSelector((state) => state.user.logged);
 
@@ -54,6 +57,10 @@ const App = () => {
     },
     [],
   );
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="app">
@@ -108,7 +115,7 @@ const App = () => {
         <Route path="/signout" exact>
           <Signout />
         </Route>
-        <Route>
+        <Route path="/error" exact>
           <Error />
         </Route>
       </Switch>

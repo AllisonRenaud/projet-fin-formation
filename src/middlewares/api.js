@@ -9,6 +9,7 @@ import {
   FETCH_LOCATIONS,
   saveLocations,
   CREATE_OFFER,
+  DELETE_OFFER,
 } from '../actions/offers';
 
 import {
@@ -213,6 +214,25 @@ export default (store) => (next) => (action) => {
         .then(
           (response) => {
             console.log(response.data);
+          },
+        ).catch(
+          (error) => console.log(error.message),
+        );
+      next(action);
+      break;
+    }
+    case DELETE_OFFER: {
+      const token = localStorage.getItem('token');
+      axiosInstance
+        .delete(`/admin/offers?id=${action.data}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+        .then(
+          (response) => {
+            console.log(response);
           },
         ).catch(
           (error) => console.log(error.message),

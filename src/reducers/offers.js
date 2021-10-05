@@ -8,6 +8,7 @@ import {
 } from '../actions/offers';
 
 export const initialState = {
+  loading: true,
   offers: [],
   locations: [],
   newoffer: {
@@ -42,6 +43,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         offers: action.data,
+        loading: false,
       };
     case SAVE_LOCATIONS:
       return {

@@ -76,6 +76,15 @@ export const createOffer = (data) => (
   }
 );
 
+export const DELETE_OFFER = 'DELETE_OFFER';
+
+export const deleteOffer = (data) => (
+  {
+    type: DELETE_OFFER,
+    data,
+  }
+);
+
 export const SET_UPDATE_DATERANGE = 'SET_UPDATE_DATERANGE';
 
 export const setUpdateDaterange = (value) => (

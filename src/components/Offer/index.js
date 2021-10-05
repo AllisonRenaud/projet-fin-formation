@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { Button, Icon } from 'semantic-ui-react';
 
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import 'react-date-range/dist/styles.css';
@@ -18,8 +18,9 @@ import Carousel from 'nuka-carousel';
 import './offer.scss';
 
 import { addDays, differenceInDays } from 'date-fns';
+import Loading from '../Loading';
 import { findOffer } from '../../selectors/offers';
-import { setUpdateDaterange } from '../../actions/offers';
+import { setUpdateDaterange, deleteOffer } from '../../actions/offers';
 
 const Offer = ({ match }) => {
   const dispatch = useDispatch();
@@ -30,6 +31,16 @@ const Offer = ({ match }) => {
     (state) => findOffer(state.offers.offers, id),
   );
 
+  const loading = useSelector((state) => state.offers.loading);
+
+  if (!offer) {
+    return <Redirect to="/error" />;
+  }
+
+  if (loading) {
+    return <Loading />;
+  }
+
   const dateRange = useSelector((state) => state.offers.dateRange);
 
   const onChangeDatePicker = (event) => {
@@ -39,6 +50,10 @@ const Offer = ({ match }) => {
   const getDatesDisabled = (startDate, endDate) => {
     const days = differenceInDays(endDate, startDate);
     return [...Array(days + 1).keys()].map((i) => addDays(startDate, i));
+  };
+
+  const removeOffer = () => {
+    dispatch(deleteOffer(id));
   };
 
   return (
@@ -105,6 +120,7 @@ const Offer = ({ match }) => {
             animated
             className="offer__main__buttons__book"
             color="red"
+            onClick={removeOffer}
           >
             <Button.Content visible>Supprimer l'annonce</Button.Content>
             <Button.Content hidden>
