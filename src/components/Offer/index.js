@@ -5,33 +5,41 @@ import PropTypes from 'prop-types';
 import { Button, Icon } from 'semantic-ui-react';
 
 import { withRouter } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { DateRange } from 'react-date-range';
+import frLocale from 'date-fns/locale/fr';
+import addMonths from 'date-fns/addMonths';
 
 import Carousel from 'nuka-carousel';
 
 import './offer.scss';
 
+import { addDays, differenceInDays } from 'date-fns';
 import { findOffer } from '../../selectors/offers';
+import { setUpdateDaterange } from '../../actions/offers';
 
 const Offer = ({ match }) => {
+  const dispatch = useDispatch();
   const role = localStorage.getItem('role');
-
   const { id } = match.params;
 
   const offer = useSelector(
     (state) => findOffer(state.offers.offers, id),
   );
 
-  const [dateRange, setDateRange] = useState([{
-    startDate: null,
-    endDate: null,
-    key: 'selection',
-  }]);
+  const dateRange = useSelector((state) => state.offers.dateRange);
+
+  const onChangeDatePicker = (event) => {
+    dispatch(setUpdateDaterange([event.dateRange]));
+  };
+
+  const getDatesDisabled = (startDate, endDate) => {
+    const days = differenceInDays(endDate, startDate);
+    return [...Array(days + 1).keys()].map((i) => addDays(startDate, i));
+  };
 
   return (
     <section className="offer">
@@ -58,10 +66,16 @@ const Offer = ({ match }) => {
         />
         <div className="offer__main__calendar">
           <DateRange
-            editableDateInputs="true"
-            onChange={(item) => setDateRange([item.selection])}
+            onChange={onChangeDatePicker}
             moveRangeOnFirstSelection={false}
             ranges={dateRange}
+            locale={frLocale}
+            dateDisplayFormat="dd.MM.yyyy"
+            minDate={new Date()}
+            maxDate={addMonths(new Date(), 12)}
+            startDatePlaceholder="Arrivée"
+            endDatePlaceholder="Départ"
+            disabledDates={getDatesDisabled(new Date('2021-10-16T04:00:00.000Z'), new Date('2021-10-23T14:00:00.000Z'))}
           />
         </div>
       </div>

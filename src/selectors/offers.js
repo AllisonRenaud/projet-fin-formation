@@ -20,3 +20,8 @@ export function findOffer(offers, searchedId) {
   });
   return offer;
 }
+
+// export function getDateRange(offers) {
+//   const { dateRange } = offers;
+//   return dateRange;
+// }
