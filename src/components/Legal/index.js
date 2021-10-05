@@ -6,43 +6,44 @@ const Legal = () => (
     <h2>Informations éditeur</h2>
     <p>
       Ce site est édité par l’entreprise O’Chalet, Société
-      par action simplifiée au capital de 1000 euros
-      Siège social :
-      5 rue du Dave - 75011 Paris
-      SIRET 115 315 382 00011
-      Code APE : 7911Z
-      Immatriculation au registre des opérateurs de voyages et de séjours :
-      Licence n° DV075120171 délivrée par Atout France.
-      N° Identification TVA intracommunautaire : FR 89 587 315 678
-      Nom du Directeur de la publication : Dave Loper
-      Numéro de téléphone de contact : 0 123 456 789
-      Adresse Courriel de contact : info@ochalet.com
+      par action simplifiée au capital de 1000 euros.
+      <p>Siège social : 5 rue du Dave - 75011 Paris - France</p>
+      <p>SIRET 115 315 382 00011</p>
+      <p>Code APE : 7911Z</p>
+      <p>Immatriculation au registre des opérateurs de voyages et de séjours :
+        Licence n° DV075120171 délivrée par Voyage France.</p>
+      <p>N° Identification TVA intracommunautaire : FR 89 587 315 678</p>
+      <p>Nom du Directeur de la publication : Dave Loper</p>
+      <p>Numéro de téléphone de contact : 0 123 456 789</p>
+      <p>Adresse mail de contact : info@ochalet.com</p>
     </p>
     <h2>Informations hébergeur</h2>
     <p>DEV SERVER
-      RCS Dev Server Group 154 539 789
-      50 Rue du Code, 75011 Paris - 01 06 07 05 45
+      <p>RCS Dev Server Group</p>
+      <p>154 539 789</p>
+      <p>50 Rue du Code, 75011 Paris</p>
+      <p>01 06 07 05 09</p>
     </p>
     <h2>Conditions générales d'utilisation</h2>
     <p>
       Ce Site est mis gratuitement à votre disposition pour votre usage personnel,
       sous réserve du respect des conditions définies ci-après. Votre utilisation de
-      ce Site implique votre acceptation pleine et entière de l'ensemble de ses
+      ce site implique votre acceptation pleine et entière de l'ensemble de ses
       Conditions d'Utilisation.
     </p>
-    Vous ne pouvez utiliser ce Site que si vous êtes âgé de plus de 18 ans et habilité
-    à signer des contrats qui engagent votre responsabilité (l'utilisation de notre Site
+    Vous ne pouvez utiliser ce site que si vous êtes âgé de plus de 18 ans et habilité
+    à signer des contrats qui engagent votre responsabilité (l'utilisation de notre site
     par les mineurs est interdite). Vous serez financièrement responsable de toutes vos
-    utilisations du Site.
+    utilisations du site.
     <p>
-      Vous ne pouvez utiliser le Site que pour faire des réservations et des achats dans un but
+      Vous ne pouvez utiliser le site que pour faire des réservations et des achats dans un but
       légitime. Ce site est destiné notamment à la réservation de séjours et aucune utilisation,
       ou détournement de finalité n’est autorisée, notamment pour des finalités contraires à
       l’Ordre Public et aux Bonnes Mœurs.
     </p>
     <p>
       A défaut de respect des présentes, nous nous réservons le droit, à tout moment, sans préavis,
-      de vous interdire ou de vous restreindre l'accès à tout ou partie du Site, sans préjudice de
+      de vous interdire ou de vous restreindre l'accès à tout ou partie du site, sans préjudice de
       tous dommages – intérêts.
     </p>
     <h2>Limitation de responsabilité et exclusion de garantie</h2>
@@ -78,7 +79,7 @@ const Legal = () => (
       sur ce site. De même O’Chalet ne pourra être responsable de dommage matériel ou accessoire
       (y compris, mais sans s'y limiter, défaillance technique, divulgation de documents
       confidentiels, perte de données), ni de tout autre dommage indirect, quelconque
-      survenant lors de ou liés à l'utilisation du Site.
+      survenant lors de ou liés à l'utilisation du site.
     </p>
     <h2>Politique de cookies</h2>
     <p>

@@ -75,3 +75,12 @@ export const createOffer = (data) => (
     data,
   }
 );
+
+export const SET_UPDATE_DATERANGE = 'SET_UPDATE_DATERANGE';
+
+export const setUpdateDaterange = (value) => (
+  {
+    type: SET_UPDATE_DATERANGE,
+    value,
+  }
+);

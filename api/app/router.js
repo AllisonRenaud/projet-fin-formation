@@ -13,11 +13,10 @@ const {
     commentRoutes,
     authRoutes,
     adminRoutes,
-    paymentRoutes,
-    uploadRoutes
+    paymentRoutes
 } = require('./routes/index');
 
-router.use(uploadRoutes)
+
 
 router.use(redis, dataValidator)
 
