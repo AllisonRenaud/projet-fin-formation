@@ -1,5 +1,6 @@
 const cloudinary = require('cloudinary');
 
+
 cloudinary.config({ 
   cloud_name: 'dudxvl1m3', 
   api_key: '321759913749339', 
@@ -10,18 +11,23 @@ cloudinary.config({
 module.exports = {
   upload: async (request, response, next) => {
     try {
-      const {url} = await cloudinary.v2.uploader.upload(request.body.main_picture);
-      request.body.main_picture = url
-
       
-      const optionalPictures = Object.keys(request.body)
+
+      const {url} = await cloudinary.v2.uploader.upload(request.files.main_picture.path);
+      request.body.main_picture = url
+   
+      
+      const optionalPictures = Object.keys(request.files)
                                      .map(key => key.includes("galery_picture") ? key : null)
                                      .filter(key => key)
                                      .filter(key => Object.keys(key).length)
       if(!optionalPictures) return next()
+
+      console.log(optionalPictures)
+  
       for(const picture of optionalPictures) {
         
-        const {url} = await cloudinary.v2.uploader.upload(request.body[picture]);
+        const {url} = await cloudinary.v2.uploader.upload(request.files[picture].path);
         request.body[picture] = url
       }
 

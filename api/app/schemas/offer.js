@@ -50,10 +50,14 @@ module.exports = {
       offer_status: Joi.boolean()
   }),
 
-    filterByTitle: Joi.object({
-      title: Joi.string(), 
-      location_id: Joi.number().positive()
-    })
+  filterByTitle: Joi.object({
+    title: Joi.string(), 
+    location_id: Joi.number().positive()
+  }),
+
+  deleteOffer: Joi.object({
+    id: Joi.number().positive().required()
+  })
 
     
 }
