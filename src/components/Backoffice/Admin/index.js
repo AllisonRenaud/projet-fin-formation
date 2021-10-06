@@ -24,7 +24,16 @@ const Admin = () => {
       <h3 className="backoffice-admin__role">Administrateur</h3>
       <div className="backoffice-admin__create-offer">
         <Link to="/account/new-offer">
-          <Button color="blue" className="backoffice-admin__create-offer__button">Créer une annonce</Button>
+          <Button
+            animated
+            className="backoffice-admin__create-offer__button"
+            color="green"
+          >
+            <Button.Content visible>Créer une annonce</Button.Content>
+            <Button.Content hidden>
+              <Icon name="plus" />
+            </Button.Content>
+          </Button>
         </Link>
       </div>
       <div className="backoffice-admin__notifications">
@@ -61,12 +70,19 @@ const Admin = () => {
             <div key={offer.id} className="backoffice-admin__card">
               <img src={offer.main_picture} alt="mountain" className="backoffice-admin__card__image" />
               <div className="backoffice-admin__card__details">
-                <h2 className="backoffice-admin__card__name">{offer.title}</h2>
-                <p className="backoffice-admin__card__city">{offer.city}</p>
-              </div>
-              <div className="backoffice-admin__card__button">
+                <h2 className="backoffice-admin__card__details__name">{offer.title}</h2>
+                <p className="backoffice-admin__card__details__city">{offer.city_name}, {offer.country}</p>
                 <Link to={`/offers/${offer.id}`}>
-                  <Button color="teal" className="backoffice-admin__create-offer__button">Voir l'annonce</Button>
+                  <Button
+                    animated
+                    className="backoffice-admin__card__details__button"
+                    color="teal"
+                  >
+                    <Button.Content visible>Voir l'annonce</Button.Content>
+                    <Button.Content hidden>
+                      <Icon name="eye" />
+                    </Button.Content>
+                  </Button>
                 </Link>
               </div>
             </div>
