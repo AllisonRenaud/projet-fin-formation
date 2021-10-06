@@ -1,4 +1,4 @@
-const {Offer} = require('../models');
+const {Offer, Booking} = require('../models');
 
 const offerController = {
 
@@ -37,7 +37,10 @@ const offerController = {
     findById: async (request, response) => {
       try {
           const offer = await Offer.findById(parseInt(request.params.id, 10));
-          response.json(offer);
+          const bookings = await Booking.findByOffer(parseInt(request.params.id, 10))
+          
+
+          response.json({offer, bookings});
       } catch(error) {
           response.status(500).send(error.message);
       }

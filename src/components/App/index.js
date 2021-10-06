@@ -27,11 +27,14 @@ import Copyright from '../Copyright';
 import Createoffer from '../Createoffer';
 import Error from '../Error';
 import Bookingform from '../Bookingform';
+import Loading from '../Loading';
 
 // == Composant
 const App = () => {
   const dispatch = useDispatch();
   const accessToken = localStorage.getItem('token');
+
+  const loading = useSelector((state) => state.offers.loading);
 
   const logged = useSelector((state) => state.user.logged);
 
@@ -55,6 +58,10 @@ const App = () => {
     },
     [],
   );
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="app">

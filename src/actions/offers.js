@@ -76,6 +76,24 @@ export const createOffer = (data) => (
   }
 );
 
+export const DELETE_OFFER = 'DELETE_OFFER';
+
+export const deleteOffer = (data) => (
+  {
+    type: DELETE_OFFER,
+    data,
+  }
+);
+
+export const REMOVE_OFFER_FROM_STATE = 'REMOVE_OFFER_FROM_STATE';
+
+export const removeOfferFromState = (data) => (
+  {
+    type: REMOVE_OFFER_FROM_STATE,
+    data,
+  }
+);
+
 export const SET_UPDATE_DATERANGE = 'SET_UPDATE_DATERANGE';
 
 export const setUpdateDaterange = (value) => (
@@ -98,5 +116,21 @@ export const setOffer = (offer) => (
   {
     type: SET_OFFER,
     offer,
+  }
+);
+
+export const OPEN_MODAL = 'OPEN_MODAL';
+
+export const openModal = () => (
+  {
+    type: OPEN_MODAL,
+  }
+);
+
+export const CLOSE_MODAL = 'CLOSE_MODAL';
+
+export const closeModal = () => (
+  {
+    type: CLOSE_MODAL,
   }
 );

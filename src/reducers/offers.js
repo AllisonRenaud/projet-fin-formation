@@ -6,14 +6,19 @@ import {
   SELECT_LOCATION,
   SET_UPDATE_DATERANGE,
   SET_OFFER,
+  OPEN_MODAL,
+  CLOSE_MODAL,
+  REMOVE_OFFER_FROM_STATE,
 } from '../actions/offers';
 
 export const initialState = {
+  loading: true,
+  open: false,
   offers: [],
   locations: [],
   newoffer: {
     title: '',
-    body: '',
+    body: '<h2>Description</h2><p>[Ecrire la description ici]</p><h2>Prestations</h2><table><tbody><tr><td><img src="https://img.icons8.com/ios-filled/30/000000/group-foreground-selected.png"/></td><td>.. personnes</td></tr><tr><td><img src="https://img.icons8.com/ios-filled/30/000000/bed.png"/></td><td>.. chambres</td></tr><tr><td><img src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/30/000000/external-wifi-signal-devices-flatart-icons-outline-flatarticons.png"/></td><td>Internet ?</td></tr><tr><td><img src="https://img.icons8.com/external-vitaliy-gorbachev-fill-vitaly-gorbachev/30/000000/external-croissant-fast-food-vitaliy-gorbachev-fill-vitaly-gorbachev.png"/></td><td>Petit déjeuner ?</td></tr><tr><td><img src="https://img.icons8.com/ios-filled/30/000000/dog.png"/></td><td>Animaux ?</td></tr><tr><td><img src="https://img.icons8.com/ios-filled/30/000000/housekeeping.png"/></td><td>Ménage ?</td></tr></tbody></table>',
     zip_code: '',
     city_name: '',
     country: '',
@@ -44,6 +49,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         offers: action.data,
+        loading: false,
       };
     case SAVE_LOCATIONS:
       return {
@@ -83,6 +89,21 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         offerSelected: action.offer,
+      };
+    case OPEN_MODAL:
+      return {
+        ...state,
+        open: true,
+      };
+    case CLOSE_MODAL:
+      return {
+        ...state,
+        open: false,
+      };
+    case REMOVE_OFFER_FROM_STATE:
+      return {
+        ...state,
+        offers: state.offers.filter((offer) => offer.id !== action.data),
       };
     default:
       return state;

@@ -2,9 +2,14 @@
 /* eslint-disable camelcase */
 import PropTypes from 'prop-types';
 
-import { Button, Icon } from 'semantic-ui-react';
+import {
+  Button,
+  Icon,
+  Header,
+  Modal,
+} from 'semantic-ui-react';
 
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
@@ -18,8 +23,18 @@ import Carousel from 'nuka-carousel';
 
 import './offer.scss';
 
+import { addDays, differenceInDays } from 'date-fns';
 import eachDayOfInterval from 'date-fns/eachDayOfInterval';
-import { setUpdateDaterange, fetchOffer } from '../../actions/offers';
+import Loading from '../Loading';
+import { findOffer } from '../../selectors/offers';
+import {
+  setUpdateDaterange,
+  fetchOffer,
+  deleteOffer,
+  openModal,
+  closeModal,
+  removeOfferFromState,
+} from '../../actions/offers';
 
 const Offer = ({ match }) => {
   const dispatch = useDispatch();
@@ -31,6 +46,20 @@ const Offer = ({ match }) => {
   useEffect(() => {
     dispatch(fetchOffer(id));
   }, [dispatch]);
+
+  const loading = useSelector((state) => state.offers.loading);
+
+  const isModalOpen = useSelector((state) => state.offers.open);
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  const history = useHistory();
+
+  const redirect = (url) => {
+    history.push(url);
+  };
 
   const dateRange = useSelector((state) => state.offers.dateRange);
 
@@ -45,6 +74,21 @@ const Offer = ({ match }) => {
     }));
     const newArray = Array.prototype.concat.apply([], reservations);
     return newArray;
+  };
+
+  const showModal = () => {
+    dispatch(openModal());
+  };
+
+  const hideModal = () => {
+    dispatch(closeModal());
+  };
+
+  const removeOffer = () => {
+    dispatch(removeOfferFromState(id));
+    dispatch(deleteOffer(id));
+    dispatch(closeModal());
+    redirect('/account/admin');
   };
 
   return (
@@ -109,18 +153,30 @@ const Offer = ({ match }) => {
           </Button.Content>
         </Button>
         {role === 'admin' && (
-          <Button
-            animated
-            className="offer__main__buttons__book"
-            color="red"
-          >
-            <Button.Content visible>Supprimer l'annonce</Button.Content>
-            <Button.Content hidden>
-              <Icon name="delete" />
-            </Button.Content>
-          </Button>
+        <Modal
+          // closeIcon
+          open={isModalOpen}
+          trigger={<Button color="red">Supprimer l'annonce</Button>}
+          onClose={hideModal}
+          onOpen={showModal}
+        >
+          <Header icon="delete" content="Supprimer une annonce" />
+          <Modal.Content>
+            <p>
+              Êtes-vous sûr.e de vouloir supprimer cette annonce ?
+            </p>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button color="green" onClick={removeOffer}>
+              <Icon name="checkmark" /> Oui
+            </Button>
+            <Button color="red" onClick={hideModal}>
+              <Icon name="remove" /> Non
+            </Button>
+          </Modal.Actions>
+        </Modal>
         )}
-        {role === 'admin' && (
+        {/* {role === 'admin' && (
           <Button
             animated
             className="offer__main__buttons__book"
@@ -131,7 +187,7 @@ const Offer = ({ match }) => {
               <Icon name="code" />
             </Button.Content>
           </Button>
-        )}
+        )} */}
       </div>
       </section>
       : <div> Not Found</div> }

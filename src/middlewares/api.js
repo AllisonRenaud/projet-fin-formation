@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable camelcase */
 /* eslint-disable no-console */
 import axios from 'axios';
@@ -12,6 +13,7 @@ import {
   CREATE_OFFER,
   FETCH_OFFER,
   setOffer,
+  DELETE_OFFER,
 } from '../actions/offers';
 
 import {
@@ -169,47 +171,64 @@ export default (store) => (next) => (action) => {
       break;
     case CREATE_OFFER: {
       const token = localStorage.getItem('token');
-      const {
-        title,
-        body,
-        zip_code,
-        city_name,
-        country,
-        street_name,
-        street_number,
-        price_ht,
-        tax,
-        main_picture,
-        galery_picture_1,
-        galery_picture_2,
-        galery_picture_3,
-        galery_picture_4,
-        galery_picture_5,
-        location_id,
-      } = store.getState().offers.newoffer;
+      const data = new FormData();
+      // data.append('img', fs.createReadStream(store.getState().offers.newoffer.main_picture));
+      // const stateKeys = Object.keys(store.getState().offers.newoffer);
+      // for (const key of stateKeys) {
+      //   if (key.match(/main_picture|galery_picture/)) {
+      //     data.append(key, fs.createReadStream(store.getState().offers.newoffer[key]));
+      //   }
+      //   else {
+      //     data.append(key, store.getState().offers.newoffer[key]);
+      //     console.log(store.getState().offers.newoffer[key]);
+      //   }
+      // }
+      console.log(data);
+      // const {
+      //   title,
+      //   body,
+      //   zip_code,
+      //   city_name,
+      //   country,
+      //   street_name,
+      //   street_number,
+      //   price_ht,
+      //   tax,
+      //   main_picture,
+      //   galery_picture_1,
+      //   galery_picture_2,
+      //   galery_picture_3,
+      //   galery_picture_4,
+      //   galery_picture_5,
+      //   location_id,
+      // } = store.getState().offers.newoffer;
+      // const newOffer = store.getState().offers;
       axiosInstance
         .post(
           '/admin/offers',
+          // {
+          //   title,
+          //   body,
+          //   zip_code,
+          //   city_name,
+          //   country,
+          //   street_name,
+          //   street_number,
+          //   price_ht,
+          //   tax,
+          //   main_picture,
+          //   galery_picture_1,
+          //   galery_picture_2,
+          //   galery_picture_3,
+          //   galery_picture_4,
+          //   galery_picture_5,
+          //   location_id,
+          // },
+          data,
           {
-            title,
-            body,
-            zip_code,
-            city_name,
-            country,
-            street_name,
-            street_number,
-            price_ht,
-            tax,
-            main_picture,
-            galery_picture_1,
-            galery_picture_2,
-            galery_picture_3,
-            galery_picture_4,
-            galery_picture_5,
-            location_id,
-          }, {
             headers: {
               Authorization: `Bearer ${token}`,
+              'Content-Type': 'multipart/form-data',
             },
           },
         )
@@ -235,6 +254,26 @@ export default (store) => (next) => (action) => {
         );
       next(action);
       break;
+    }
+    case DELETE_OFFER: {
+      const token = localStorage.getItem('token');
+      axiosInstance
+        .delete(`/admin/offers?id=${action.data}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+        .then(
+          (response) => {
+            console.log(response);
+          },
+        ).catch(
+          (error) => console.log(error.message),
+        );
+      next(action);
+      break;
+    }
     default:
       next(action);
   }
