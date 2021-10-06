@@ -128,6 +128,7 @@ const Offer = ({ match }) => {
             startDatePlaceholder="Arrivée"
             endDatePlaceholder="Départ"
             disabledDates={getDatesDisabled(offerSelected.bookings)}
+            rangeColors={['#0dc948']}
           />
         </div>
       </div>
