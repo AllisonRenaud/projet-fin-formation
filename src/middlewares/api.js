@@ -4,12 +4,15 @@
 import axios from 'axios';
 
 import jwt_decode from 'jwt-decode';
+
 import {
   FETCH_OFFERS,
   saveOffers,
   FETCH_LOCATIONS,
   saveLocations,
   CREATE_OFFER,
+  FETCH_OFFER,
+  setOffer,
   DELETE_OFFER,
 } from '../actions/offers';
 
@@ -235,6 +238,19 @@ export default (store) => (next) => (action) => {
           },
         ).catch(
           (error) => console.log(error.message),
+        );
+      next(action);
+      break;
+    }
+    case FETCH_OFFER:
+      axiosInstance
+        .get(
+          `/offers/${action.offerId}`,
+        )
+        .then(
+          (response) => {
+            store.dispatch(setOffer(response.data));
+          },
         );
       next(action);
       break;

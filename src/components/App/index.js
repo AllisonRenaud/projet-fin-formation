@@ -26,6 +26,7 @@ import Faq from '../FAQ';
 import Copyright from '../Copyright';
 import Createoffer from '../Createoffer';
 import Error from '../Error';
+import Bookingform from '../Bookingform';
 import Loading from '../Loading';
 
 // == Composant
@@ -77,6 +78,9 @@ const App = () => {
         </Route>
         <Route path="/offers/:id" exact>
           <Offer />
+        </Route>
+        <Route path="/offers/:id/booking" exact>
+          <Bookingform />
         </Route>
         <Route path="/account/new-offer" exact>
           <Createoffer />

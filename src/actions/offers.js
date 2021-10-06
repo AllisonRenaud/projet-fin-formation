@@ -103,6 +103,22 @@ export const setUpdateDaterange = (value) => (
   }
 );
 
+export const FETCH_OFFER = 'FETCH_OFFER';
+export const fetchOffer = (offerId) => (
+  {
+    type: FETCH_OFFER,
+    offerId,
+  }
+);
+
+export const SET_OFFER = 'SET_OFFER';
+export const setOffer = (offer) => (
+  {
+    type: SET_OFFER,
+    offer,
+  }
+);
+
 export const OPEN_MODAL = 'OPEN_MODAL';
 
 export const openModal = () => (
