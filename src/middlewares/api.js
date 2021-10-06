@@ -23,8 +23,7 @@ import {
 } from '../actions/user';
 
 const axiosInstance = axios.create({
-  // baseURL: 'https://ochalet-api.herokuapp.com',
-  baseURL: 'http://localhost:3000',
+  baseURL: 'https://ochalet-api.herokuapp.com',
 });
 
 export default (store) => (next) => (action) => {
