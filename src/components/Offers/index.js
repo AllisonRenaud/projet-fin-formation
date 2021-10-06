@@ -23,12 +23,12 @@ const Offers = ({ match }) => {
     (state) => filterOffers(state.offers.offers, id),
   );
 
-  useEffect(
-    () => {
-      dispatch(fetchOffers());
-    },
-    [filteredOffers],
-  );
+  // useEffect(
+  //   () => {
+  //     dispatch(fetchOffers());
+  //   },
+  //   [filteredOffers],
+  // );
 
   return (
     <section className="offers">

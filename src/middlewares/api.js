@@ -242,7 +242,7 @@ export default (store) => (next) => (action) => {
       next(action);
       break;
     }
-    case FETCH_OFFER:
+    case FETCH_OFFER: {
       axiosInstance
         .get(
           `/offers/${action.offerId}`,
