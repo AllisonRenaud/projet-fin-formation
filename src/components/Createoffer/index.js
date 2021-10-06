@@ -101,7 +101,7 @@ const Createoffer = () => {
         <Field
           name="galery_picture_1"
           value={galery_picture_1}
-          type="text"
+          type="file"
           placeholder="Photo 1"
           onChange={changeField}
           updateMode={!updateMode}
@@ -109,7 +109,7 @@ const Createoffer = () => {
         <Field
           name="galery_picture_2"
           value={galery_picture_2}
-          type="text"
+          type="file"
           placeholder="Photo 2"
           onChange={changeField}
           updateMode={!updateMode}
@@ -117,7 +117,7 @@ const Createoffer = () => {
         <Field
           name="galery_picture_3"
           value={galery_picture_3}
-          type="text"
+          type="file"
           placeholder="Photo 3"
           onChange={changeField}
           updateMode={!updateMode}
@@ -125,7 +125,7 @@ const Createoffer = () => {
         <Field
           name="galery_picture_4"
           value={galery_picture_4}
-          type="text"
+          type="file"
           placeholder="Photo 4"
           onChange={changeField}
           updateMode={!updateMode}
@@ -133,7 +133,7 @@ const Createoffer = () => {
         <Field
           name="galery_picture_5"
           value={galery_picture_5}
-          type="text"
+          type="file"
           placeholder="Photo 5"
           onChange={changeField}
           updateMode={!updateMode}
