@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable camelcase */
 
 import { Form, Button, Select } from 'semantic-ui-react';
@@ -13,7 +14,6 @@ import {
   // saveOfferData,
   setOfferField,
   createOffer,
-  setUpdateMode,
   selectLocation,
 } from '../../actions/offers';
 
@@ -38,7 +38,6 @@ const Createoffer = () => {
     galery_picture_3,
     galery_picture_4,
     galery_picture_5,
-    updateMode,
     location_id,
   } = useSelector((state) => state.offers.newoffer);
 
@@ -62,25 +61,19 @@ const Createoffer = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(createOffer());
-    // dispatch(setUpdateMode());
-  };
-
-  const toggleUpdateMode = (event) => {
-    event.preventDefault();
-    dispatch(setUpdateMode());
+    console.log(event.target);
   };
 
   return (
     <main className="create-offer">
       <h2 className="create-offer__title">Créez une nouvelle annonce</h2>
-      <Form className="create-offer__form" onSubmit={handleSubmit}>
+      <Form className="create-offer__form" encType="multipart/form-data" onSubmit={handleSubmit}>
         <Field
           name="title"
           value={title}
           type="text"
           placeholder="Titre de l'annonce"
           onChange={changeField}
-          updateMode={!updateMode}
         />
         <Field
           name="city_name"
@@ -88,7 +81,6 @@ const Createoffer = () => {
           type="text"
           placeholder="Ville"
           onChange={changeField}
-          updateMode={!updateMode}
         />
         <Field
           name="main_picture"
@@ -96,7 +88,6 @@ const Createoffer = () => {
           type="file"
           placeholder="Photo principale"
           onChange={changeField}
-          updateMode={!updateMode}
         />
         <Field
           name="galery_picture_1"
@@ -104,7 +95,6 @@ const Createoffer = () => {
           type="file"
           placeholder="Photo 1"
           onChange={changeField}
-          updateMode={!updateMode}
         />
         <Field
           name="galery_picture_2"
@@ -112,7 +102,6 @@ const Createoffer = () => {
           type="file"
           placeholder="Photo 2"
           onChange={changeField}
-          updateMode={!updateMode}
         />
         <Field
           name="galery_picture_3"
@@ -120,7 +109,6 @@ const Createoffer = () => {
           type="file"
           placeholder="Photo 3"
           onChange={changeField}
-          updateMode={!updateMode}
         />
         <Field
           name="galery_picture_4"
@@ -128,7 +116,6 @@ const Createoffer = () => {
           type="file"
           placeholder="Photo 4"
           onChange={changeField}
-          updateMode={!updateMode}
         />
         <Field
           name="galery_picture_5"
@@ -136,7 +123,6 @@ const Createoffer = () => {
           type="file"
           placeholder="Photo 5"
           onChange={changeField}
-          updateMode={!updateMode}
         />
         <Field
           name="country"
@@ -144,7 +130,6 @@ const Createoffer = () => {
           type="text"
           placeholder="Pays"
           onChange={changeField}
-          updateMode={!updateMode}
         />
         <Field
           name="street_name"
@@ -152,7 +137,6 @@ const Createoffer = () => {
           type="text"
           placeholder="Nom de la rue"
           onChange={changeField}
-          updateMode={!updateMode}
         />
         <Field
           name="street_number"
@@ -160,7 +144,6 @@ const Createoffer = () => {
           type="text"
           placeholder="Numéro de rue"
           onChange={changeField}
-          updateMode={!updateMode}
         />
         <Field
           name="zip_code"
@@ -168,7 +151,6 @@ const Createoffer = () => {
           type="text"
           placeholder="Code postal"
           onChange={changeField}
-          updateMode={!updateMode}
         />
         {/* <Field
           name="body"
@@ -208,7 +190,6 @@ const Createoffer = () => {
           type="text"
           placeholder="Prix hors taxe"
           onChange={changeField}
-          updateMode={!updateMode}
         />
         <Field
           name="tax"
@@ -216,7 +197,6 @@ const Createoffer = () => {
           type="text"
           placeholder="Taxes"
           onChange={changeField}
-          updateMode={!updateMode}
         />
         <Select
           placeholder="Où se situe le chalet ?"
@@ -225,12 +205,9 @@ const Createoffer = () => {
           onChange={changeLocation}
           value={location_id}
         />
-        <Button color="brown" className="create-offer__form__button__modify" onClick={toggleUpdateMode}>Modifier</Button>
-        {updateMode && (
         <Button color="blue" className="create-offer__form__button__validate" type="submit">Valider</Button>
-        )}
-        <Button color="blue" className="create-offer__form__button__save">Sauvegarder</Button>
-        <Button color="green" className="create-offer__form__button__publish">Publier</Button>
+        {/* <Button color="blue" className="create-offer__form__button__save">Sauvegarder</Button>
+        <Button color="green" className="create-offer__form__button__publish">Publier</Button> */}
       </Form>
     </main>
   );
