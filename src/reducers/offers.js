@@ -35,11 +35,11 @@ export const initialState = {
     location_id: '',
     updateMode: false,
   },
-  dateRange: [{
+  dateRange: {
     startDate: new Date(),
     endDate: new Date(),
     key: 'dateRange',
-  }],
+  },
   offerSelected: null,
 };
 
