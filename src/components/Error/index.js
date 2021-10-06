@@ -1,11 +1,11 @@
 import './error.scss';
-import gif from '../../assets/images/mountain.gif';
 
 const Error = () => (
-  <section>
-    <h1 className="page-not-found">Error 404 - Page not found</h1>
-    <img className="page-not-found__gif" src={gif} alt="" />
-  </section>
+  <main className="error404">
+    <div className="error404__bg" />
+    <h1 className="error404__title">Erreur 404</h1>
+    <h2 className="error404__text">On dirait bien que vous êtes perdu...</h2>
+  </main>
 );
 
 export default Error;
