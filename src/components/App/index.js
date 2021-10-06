@@ -115,7 +115,7 @@ const App = () => {
         <Route path="/signout" exact>
           <Signout />
         </Route>
-        <Route path="/error" exact>
+        <Route>
           <Error />
         </Route>
       </Switch>
