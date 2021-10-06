@@ -5,6 +5,8 @@ const booking = require("./booking")
 const authentification = require("./authentification")
 const offer = require("./offer")
 const admin = require("./admin")
+const payment = require("./payment")
+const locations = require("./locations")
 
 module.exports = {
     paths:{
@@ -12,7 +14,6 @@ module.exports = {
         '/user':{
             ...user.getUser,
             ...user.updateUser,
-        //  ...user.changePassword,
             ...user.deleteUser
         },
         '/bookings':{
@@ -24,15 +25,15 @@ module.exports = {
           ...booking.updateBooking,
           ...booking.getBooking
         },*/
-        '/offers':{
-          ...offer.getOffers,
-         // ...booking.createOffer
+        '/offers/{_id}':{
+          ...offer.getOffer
+         
         },
         '/offers?title=_':{
-          ...offer.getOffer,
-         // ...offer.updateOffer,
-         // ...offer.deleteOffer
+          ...offer.getOffer
+         
         },
+
         '/messages':{
             ...message.getMessages,
             ...message.createMessage
@@ -50,20 +51,24 @@ module.exports = {
             ...comment.getComments,
             ...comment.createComment
         },
-        /*'/comments/{_id}':{
-            ...comment.getComment,
-            ...comment.updateComment,
+        '/comments?id=_':{
             ...comment.deleteComment
-        },*/
+        },
         '/signin':{
             ...authentification.login
         },
         '/signup':{
             ...authentification.register
         },
-        /*'/recovery':{
-            ...authentification.lostPassword
-        },*/
+        '/refresh_token':{
+            ...authentification.refreshToken
+        },
+        '/reset_password':{
+            ...authentification.resetPassword
+        },
+        '/confirm_reset':{
+            ...authentification.confirmResetPassword
+        },
         '/admin':{
          // ...admin.getAdmin,
           //...admin.updateAdmin,
@@ -80,13 +85,16 @@ module.exports = {
           ...admin.createOffer,
           ...admin.updateOffer
         },
+        '/admin/offers?id=_':{
+          ...admin.deleteOffers
+        },
         '/admin/messages':{
           ...admin.getMessages,
+          ...admin.updateMessages
           
-          ...admin.deleteMessages
         },
         '/admin/messages?id=_':{
-          ...admin.updateMessages
+          ...admin.deleteteMessages
         },
         '/admin/comments?id=_':{
           ...admin.deleteComment
@@ -100,6 +108,14 @@ module.exports = {
         '/admin/bookings':{
           ...admin.updateBooking,
           ...admin.getBookings
+        },
+        '/locations':{
+          ...locations.getLocations
+        },
+        '/payment_intent':{
+          ...payment.createPayment,
+          ...payment.updatePayment,
+          ...payment.deletePayment
         }
         
   }
