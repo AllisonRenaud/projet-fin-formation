@@ -1,14 +1,10 @@
 import PropTypes from 'prop-types';
 
-import { useDispatch, useSelector } from 'react-redux';
-
-import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import { withRouter } from 'react-router-dom';
 
 import { filterOffers } from '../../selectors/offers';
-
-import { fetchOffers } from '../../actions/offers';
 
 import OfferCard from '../Cards/OfferCard';
 
@@ -17,18 +13,9 @@ import './offers.scss';
 const Offers = ({ match }) => {
   const { id } = match.params;
 
-  const dispatch = useDispatch();
-
   const filteredOffers = useSelector(
     (state) => filterOffers(state.offers.offers, id),
   );
-
-  // useEffect(
-  //   () => {
-  //     dispatch(fetchOffers());
-  //   },
-  //   [filteredOffers],
-  // );
 
   return (
     <section className="offers">
