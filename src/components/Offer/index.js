@@ -39,15 +39,17 @@ const Offer = ({ match }) => {
   const role = localStorage.getItem('role');
   const { id } = match.params;
 
-  // const offerSelected = useSelector((state) => state.offers.offerSelected);
-
-  const offer = useSelector(
-    (state) => findOffer(state.offers.offers, id),
-  );
+  // const offer = useSelector(
+  //   (state) => findOffer(state.offers.offers, id),
+  // );
 
   useEffect(() => dispatch(fetchOffer(parseInt(id, 10))), []);
 
+  const offerSelected = useSelector((state) => state.offers.offerSelected);
+
   const loading = useSelector((state) => state.offers.loading);
+
+  console.log(offerSelected, loading);
 
   const isModalOpen = useSelector((state) => state.offers.open);
 

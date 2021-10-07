@@ -11,6 +11,8 @@ import {
   FETCH_LOCATIONS,
   saveLocations,
   CREATE_OFFER,
+  FETCH_OFFER,
+  setOffer,
   DELETE_OFFER,
 } from '../actions/offers';
 
@@ -24,8 +26,8 @@ import {
 } from '../actions/user';
 
 const axiosInstance = axios.create({
-  // baseURL: 'https://ochalet-api.herokuapp.com',
-  baseURL: 'http://localhost:5000',
+  baseURL: 'https://ochalet-api.herokuapp.com',
+  // baseURL: 'http://localhost:5000',
 });
 
 export default (store) => (next) => async (action) => {
@@ -202,6 +204,20 @@ export default (store) => (next) => async (action) => {
           },
         ).catch(
           (error) => console.log(error.message),
+        );
+      next(action);
+      break;
+    }
+    case FETCH_OFFER: {
+      axiosInstance
+        .get(
+          `/offers/${action.offerId}`,
+        )
+        .then(
+          (response) => {
+            // console.log('test : ', response.data);
+            store.dispatch(setOffer(response.data));
+          },
         );
       next(action);
       break;

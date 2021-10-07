@@ -6,6 +6,7 @@ import {
   SET_UPDATE_MODE,
   SELECT_LOCATION,
   SET_UPDATE_DATERANGE,
+  SET_OFFER,
   OPEN_MODAL,
   CLOSE_MODAL,
   REMOVE_OFFER_FROM_STATE,
@@ -93,6 +94,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         dateRange: action.value,
+      };
+    case SET_OFFER:
+      return {
+        ...state,
+        offerSelected: action.offer,
       };
     case OPEN_MODAL:
       return {
