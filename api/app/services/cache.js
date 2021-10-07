@@ -10,11 +10,11 @@ const keys = [];
 module.exports = async (req, res, next) => {
   
     try {
+        console.log('actual cached keys', keys)
         if(req.method === "GET"){
           
           let key;
-          
-
+    
           const match = req.url.match(/admin|refresh|locations|offers/)
          
           if(match) key = req.url
@@ -52,34 +52,30 @@ module.exports = async (req, res, next) => {
               next();
           }
         }else {
-
-          
+            let url = req.url
+            if(url.includes("?")) url = url.split('?').shift()
           
             const cachedKeys = keys.filter(key => {
-              if(req.url.split('/').length === 2){
-                const check = req.url.split('/')[1]
+              
+              if(url.split('/').length === 2){
+                const check = url.split('/')[1]
                 if(key.includes(check)) return true
               }
               else {
-                const check = req.url.split('/')[2]
+                const check = url.split('/')[2]
                 if(key.includes(check)) return true
               }
-              
-              
             })
- 
            
             if(!cachedKeys.length) return next()
-            
+
             console.log('Removing keys', cachedKeys);
 
             await asyncClient.del(cachedKeys);
             
-            
             for(const key of cachedKeys) keys.splice(keys.indexOf(key), 1)
             cachedKeys.length = 0
             
-           
             next();
         }
 

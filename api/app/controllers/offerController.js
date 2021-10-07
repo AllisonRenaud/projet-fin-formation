@@ -4,27 +4,38 @@ const offerController = {
 
     findAllorFilter: async (request, response) => {
         try {
-            if(request.query.title){
+            const {id, title, location_id} = request.query
+            if(title){
 
-              const offers = await Offer.findByTitle(request.query.title);
+              const offers = await Offer.findByTitle(title);
               for(const offer of offers) {
                 for(const field in offer) !offer[field] ? delete offer[field] : null
+                offer.bookings = await Booking.findByOffer(parseInt(offer.id, 10))
                 
               }
               response.json(offers);
               
-            }else if(request.query.location_id) {
+            }else if(location_id) {
 
-              const offers = await Offer.findByLocation(request.query.location_id);
+              const offers = await Offer.findByLocation(location_id);
               for(const offer of offers) {
                 for(const field in offer) !offer[field] ? delete offer[field] : null
+                offer.bookings = await Booking.findByOffer(parseInt(offer.id, 10))
               }
               response.json(offers);
 
-            }else {
+            }else if(id) {
+              const offer = await Offer.findById(id);
+              for(const field in offer) !offer[field] ? delete offer[field] : null
+              offer.bookings = await Booking.findByOffer(parseInt(offer.id, 10))
+           
+              response.json(offer);
+            }
+            else {
               const offers = await Offer.findAll();
               for(const offer of offers) {
                 for(const field in offer) !offer[field] ? delete offer[field] : null
+                offer.bookings = await Booking.findByOffer(parseInt(offer.id, 10))
               }
               response.json(offers);
             }
