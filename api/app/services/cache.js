@@ -1,4 +1,3 @@
-const { type } = require('../databases/redis');
 const asyncClient = require('../utils/redis_promisify')
 const {decryptAccessToken} = require('./authJwt')
 
@@ -9,61 +8,67 @@ const keys = [];
 
 
 module.exports = async (req, res, next) => {
-  console.log(keys)
-  
   
     try {
         if(req.method === "GET"){
           
-          
           let key;
           
-          if(!req.headers["authorization"] || req.url.includes("admin") || req.url === "/refresh_token") key = req.url
+
+          const match = req.url.match(/admin|refresh|locations|offers/)
+         
+          if(match) key = req.url
           else {
-            const data = await decryptAccessToken(req.headers['authorization'])
-            key = req.url + data.id
+            const {id} = await decryptAccessToken(req.headers["authorization"])
+            key = req.url + id 
           }
+          
     
 
-            if (keys.includes(key)) {
-                const value =  JSON.parse(await asyncClient.get(key));
-                console.log('cached response')
-                res.json(value);
-            } 
-            else {
+          if (keys.includes(key)) {
+              const value =  JSON.parse(await asyncClient.get(key));
+              console.log('cached response')
+              res.json(value);
+          } 
+          else if(req.url.includes('refresh')) return next()
+          else {
+             
+              const originalJson = res.json.bind(res);
 
-                const originalJson = res.json.bind(res);
+              res.json = async (data) => {
+                  
+                  const stringifyedData = JSON.stringify(data);
 
-                res.json = async (data) => {
-                    
-                    const jsonData = JSON.stringify(data);
+                  await asyncClient.setex(key, TIMEOUT, stringifyedData);
 
-                    if(!jsonData || jsonData.match(/error|undefined/gi)) return originalJson(data)
-                    if(data.refreshToken || data.accessToken) return originalJson(data)
+                  keys.push(key);
 
-                    await asyncClient.setex(key, TIMEOUT, jsonData);
+                  console.log("modified json")
 
-                    keys.push(key);
+                  originalJson(data);
+                        
+              }
 
-                    console.log("modified json")
-
-                    originalJson(data);
-                          
-                }
-
-                next();
-            }
+              next();
+          }
         }else {
+
+          
           
             const cachedKeys = keys.filter(key => {
-              const count = (key.match(/.*[0-9]/g) || []).length;
+              if(req.url.split('/').length === 2){
+                const check = req.url.split('/')[1]
+                if(key.includes(check)) return true
+              }
+              else {
+                const check = req.url.split('/')[2]
+                if(key.includes(check)) return true
+              }
               
-              if(req.url.includes(key.split("?").shift().slice(count,-1).split("/").shift())) return true
-              if(req.url === "/signup" && key.includes("/admin/user")) return true
               
             })
-            
-            
+ 
+           
             if(!cachedKeys.length) return next()
             
             console.log('Removing keys', cachedKeys);
