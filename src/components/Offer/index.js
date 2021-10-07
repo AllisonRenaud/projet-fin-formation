@@ -43,6 +43,8 @@ const Offer = ({ match }) => {
   //   (state) => findOffer(state.offers.offers, id),
   // );
 
+  const logged = useSelector((state) => state.user.logged);
+
   useEffect(() => dispatch(fetchOffer(parseInt(id, 10))), []);
 
   const offerSelected = useSelector((state) => state.offers.offerSelected);
@@ -167,7 +169,7 @@ const Offer = ({ match }) => {
                   <Icon name="envelope" />
                 </Button.Content>
               </Button>
-              <Link to={`/offers/${id}/booking`}>
+              <Link to={logged ? `/offers/${id}/booking` : '/signin'}>
                 <Button
                   animated
                   className="offer__main__buttons__book"
