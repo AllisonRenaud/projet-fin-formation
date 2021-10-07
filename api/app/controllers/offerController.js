@@ -10,7 +10,7 @@ const offerController = {
               const offers = await Offer.findByTitle(title);
               for(const offer of offers) {
                 for(const field in offer) !offer[field] ? delete offer[field] : null
-                offer.bookings = await Booking.findByOffer(parseInt(offer.id, 10))
+                offer.bookings = await Booking.findByOffer(parseInt(offer.id, 10));
                 
               }
               response.json(offers);
