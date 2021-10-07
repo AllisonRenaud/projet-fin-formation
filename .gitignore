@@ -4,6 +4,7 @@
 # dependencies
 node_modules
 docker-compose.yml
+sqitch-init.sh
 
 .pnp
 .pnp.js
