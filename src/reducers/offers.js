@@ -34,11 +34,12 @@ export const initialState = {
     galery_picture_5: '',
     location_id: '',
   },
-  dateRange: [{
+  dateRange: {
     startDate: new Date(),
     endDate: new Date(),
     key: 'dateRange',
-  }],
+  },
+  offerSelected: null,
 };
 
 const reducer = (state = initialState, action = {}) => {
