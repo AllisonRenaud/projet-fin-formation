@@ -21,6 +21,12 @@ module.exports = {
       {
         name: "Admin", // name of tag
       },
+      {
+        name: "Payment", // name of tag
+      },
+      {
+        name: "Locations", // name of tag
+      },
     ],
   };
   

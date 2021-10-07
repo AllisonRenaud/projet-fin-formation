@@ -14,5 +14,6 @@ module.exports = {
   getComments: require("./get-comments"),
   deleteBooking: require("./delete-booking"),
   getBookings: require("./get-bookings"),
-  updateBooking: require("./update-booking")
+  updateBooking: require("./update-booking"),
+  deleteOffers: require("./delete-offer")
 }
