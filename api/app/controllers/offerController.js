@@ -49,9 +49,11 @@ const offerController = {
 
   create: async (request, response) => {
       try {
-        
-        const newOffer = new Offer(request.body).create()
-        response.status(201).json(newOffer);
+        console.log(request.body)
+        const newOffer = await new Offer(request.body).create()
+        if(!newOffer) throw new Error('database create offer error')
+        console.log(newOffer, '$$$$$$$$$$$$$$')
+        response.status(201).json({message: "offer created"});
 
       } catch (error) {
           response.status(500).send(error.message);
@@ -76,7 +78,8 @@ const offerController = {
   delete: async (request, response) => {
       try {
           const offerID = parseInt(request.query.id, 10);
-          await Offer.delete(offerID);
+          const confirmation = await Offer.delete(offerID);
+          if(!confirmation) return response.status(404).json({message: `no offer found with id ${offerID}`})
           response.status(200).json(`Offer with id ${offerID} deleted`);
       } catch(error) {
           response.status(500).send(error.message);

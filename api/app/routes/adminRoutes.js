@@ -1,5 +1,5 @@
 const adminRouter = require('express').Router()
-const {upload, deletePicture} = require('../services/cloudinary');
+const {cloudinaryUpload, deletePicture} = require('../services/cloudinary');
 const {uploadFile} = require("../services/multer")
 
 const bookingController = require("../controllers/bookingController")
@@ -13,7 +13,7 @@ adminRouter.route("/admin/user")
 .delete(userController.delete)
 
 adminRouter.route("/admin/offers")
-.post(uploadFile,  upload, offerController.create)
+.post(uploadFile,  cloudinaryUpload, offerController.create)
 .patch(offerController.update)
 .delete(offerController.delete)
 

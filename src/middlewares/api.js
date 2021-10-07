@@ -1,18 +1,16 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable camelcase */
 /* eslint-disable no-console */
+
 import axios from 'axios';
 
 import jwt_decode from 'jwt-decode';
-
 import {
   FETCH_OFFERS,
   saveOffers,
   FETCH_LOCATIONS,
   saveLocations,
   CREATE_OFFER,
-  FETCH_OFFER,
-  setOffer,
   DELETE_OFFER,
 } from '../actions/offers';
 
@@ -26,10 +24,11 @@ import {
 } from '../actions/user';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://ochalet-api.herokuapp.com',
+  // baseURL: 'https://ochalet-api.herokuapp.com',
+  baseURL: 'http://localhost:5000',
 });
 
-export default (store) => (next) => (action) => {
+export default (store) => (next) => async (action) => {
   switch (action.type) {
     case LOGIN: {
       const { user: { email, password } } = store.getState();
@@ -146,15 +145,15 @@ export default (store) => (next) => (action) => {
       break;
     }
     case FETCH_LOCATIONS:
-      axiosInstance
-        .get(
-          '/locations',
-        )
-        .then(
-          (response) => {
-            store.dispatch(saveLocations(response.data));
-          },
-        );
+      try {
+        const url = '/locations';
+        const { data } = await axiosInstance.get(url);
+        if (!data) throw new Error('AXIOS FETCH ERROR');
+        store.dispatch(saveLocations(data));
+      }
+      catch (error) {
+        console.log(error.message);
+      }
       next(action);
       break;
     case FETCH_OFFERS:
@@ -172,58 +171,20 @@ export default (store) => (next) => (action) => {
     case CREATE_OFFER: {
       const token = localStorage.getItem('token');
       const data = new FormData();
-      // data.append('img', fs.createReadStream(store.getState().offers.newoffer.main_picture));
-      // const stateKeys = Object.keys(store.getState().offers.newoffer);
-      // for (const key of stateKeys) {
-      //   if (key.match(/main_picture|galery_picture/)) {
-      //     data.append(key, fs.createReadStream(store.getState().offers.newoffer[key]));
-      //   }
-      //   else {
-      //     data.append(key, store.getState().offers.newoffer[key]);
-      //     console.log(store.getState().offers.newoffer[key]);
-      //   }
-      // }
-      console.log(data);
-      // const {
-      //   title,
-      //   body,
-      //   zip_code,
-      //   city_name,
-      //   country,
-      //   street_name,
-      //   street_number,
-      //   price_ht,
-      //   tax,
-      //   main_picture,
-      //   galery_picture_1,
-      //   galery_picture_2,
-      //   galery_picture_3,
-      //   galery_picture_4,
-      //   galery_picture_5,
-      //   location_id,
-      // } = store.getState().offers.newoffer;
-      // const newOffer = store.getState().offers;
+      const stateKeys = Object.keys(store.getState().offers.newoffer);
+
+      for (const key of stateKeys) {
+        let spacelessKey;
+        if (key.match(/ /)) {
+          spacelessKey = key.slice(0, -1);
+          data.append(spacelessKey, store.getState().offers.newoffer[key]);
+        }
+        else data.append(key, store.getState().offers.newoffer[key]);
+      }
       axiosInstance
         .post(
           '/admin/offers',
-          // {
-          //   title,
-          //   body,
-          //   zip_code,
-          //   city_name,
-          //   country,
-          //   street_name,
-          //   street_number,
-          //   price_ht,
-          //   tax,
-          //   main_picture,
-          //   galery_picture_1,
-          //   galery_picture_2,
-          //   galery_picture_3,
-          //   galery_picture_4,
-          //   galery_picture_5,
-          //   location_id,
-          // },
+
           data,
           {
             headers: {
@@ -235,22 +196,12 @@ export default (store) => (next) => (action) => {
         .then(
           (response) => {
             console.log(response.data);
+            if (response.data) {
+              window.location = '/account/admin';
+            }
           },
         ).catch(
           (error) => console.log(error.message),
-        );
-      next(action);
-      break;
-    }
-    case FETCH_OFFER: {
-      axiosInstance
-        .get(
-          `/offers/${action.offerId}`,
-        )
-        .then(
-          (response) => {
-            store.dispatch(setOffer(response.data));
-          },
         );
       next(action);
       break;
@@ -266,7 +217,10 @@ export default (store) => (next) => (action) => {
           })
         .then(
           (response) => {
-            console.log(response);
+            console.log(response.data);
+            if (response.data) {
+              window.location = '/account/admin';
+            }
           },
         ).catch(
           (error) => console.log(error.message),

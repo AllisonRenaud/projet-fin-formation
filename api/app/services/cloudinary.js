@@ -9,13 +9,16 @@ cloudinary.config({
 
 
 module.exports = {
-  upload: async (request, response, next) => {
+  cloudinaryUpload: async (request, response, next) => {
     try {
       
-
+      console.log('nous sommes dans cloudinary')
+      
       const {url} = await cloudinary.v2.uploader.upload(request.files.main_picture.path);
+      if(!url) throw new Error('Cloudinary upload error')
+      console.log(url)
       request.body.main_picture = url
-   
+     
       
       const optionalPictures = Object.keys(request.files)
                                      .map(key => key.includes("galery_picture") ? key : null)
@@ -28,7 +31,10 @@ module.exports = {
       for(const picture of optionalPictures) {
         
         const {url} = await cloudinary.v2.uploader.upload(request.files[picture].path);
+        if(!url) throw new Error('Cloudinary upload error')
+        console.log(url)
         request.body[picture] = url
+    
       }
 
       next()
