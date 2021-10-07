@@ -1,4 +1,7 @@
 // == Import
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+
 import { Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -28,6 +31,9 @@ import Createoffer from '../Createoffer';
 import Error from '../Error';
 import Bookingform from '../Bookingform';
 import Loading from '../Loading';
+import Paymentform from '../Paymentform';
+
+const promise = loadStripe('pk_test_51JfJN5KVmN7kqniyp7GiGwGamOluieDhF3fSRIlAilHK5cC4AZVdtIsX4n7WHPaldeCiSVusfuFa3vbTcpq2rdHv00LkVaWVJU');
 
 // == Composant
 const App = () => {
@@ -81,6 +87,11 @@ const App = () => {
         </Route>
         <Route path="/offers/:id/booking" exact>
           <Bookingform />
+        </Route>
+        <Route path="/booking-payment" exact>
+          <Elements stripe={promise}>
+            <Paymentform />
+          </Elements>
         </Route>
         <Route path="/account/new-offer" exact>
           <Createoffer />

@@ -68,7 +68,7 @@ const Bookingform = () => {
           type="text"
           placeholder="Nom"
           onChange={changeField}
-          updateMode={!updateMode}
+          // updateMode={!updateMode}
         />
         <Field
           name="firstname"
@@ -76,7 +76,7 @@ const Bookingform = () => {
           type="text"
           placeholder="Prénom"
           onChange={changeField}
-          updateMode={!updateMode}
+          // updateMode={!updateMode}
         />
         <Field
           name="email"
@@ -84,7 +84,7 @@ const Bookingform = () => {
           type="email"
           placeholder="Email"
           onChange={changeField}
-          updateMode={!updateMode}
+          // updateMode={!updateMode}
         />
         <Field
           name="street_number"
@@ -92,7 +92,7 @@ const Bookingform = () => {
           type="text"
           onChange={changeField}
           placeholder="Numéro de rue"
-          updateMode={!updateMode}
+          // updateMode={!updateMode}
         />
         <Field
           name="street_name"
@@ -100,7 +100,7 @@ const Bookingform = () => {
           type="text"
           onChange={changeField}
           placeholder="Nom de rue"
-          updateMode={!updateMode}
+          // updateMode={!updateMode}
         />
         <Field
           name="zip_code"
@@ -108,7 +108,7 @@ const Bookingform = () => {
           type="text"
           onChange={changeField}
           placeholder="Code postal"
-          updateMode={!updateMode}
+          // updateMode={!updateMode}
         />
         <Field
           name="city_name"
@@ -116,7 +116,7 @@ const Bookingform = () => {
           type="text"
           onChange={changeField}
           placeholder="Ville"
-          updateMode={!updateMode}
+          // updateMode={!updateMode}
         />
         <Field
           name="country"
@@ -124,7 +124,7 @@ const Bookingform = () => {
           type="text"
           onChange={changeField}
           placeholder="Pays"
-          updateMode={!updateMode}
+          // updateMode={!updateMode}
         />
         <Field
           name="phone"
@@ -132,7 +132,7 @@ const Bookingform = () => {
           type="text"
           onChange={changeField}
           placeholder="Numéro de téléphone"
-          updateMode={!updateMode}
+          // updateMode={!updateMode}
         />
         <div>
           <h2 className="booking__title">Vos dates de séjour</h2>
@@ -144,7 +144,7 @@ const Bookingform = () => {
           </label>
         </div>
         <div className="booking__form__buttons">
-          <Button
+          {/* <Button
             animated
             className="booking__form__buttons__modify"
             color="brown"
@@ -155,8 +155,8 @@ const Bookingform = () => {
             <Button.Content hidden>
               <Icon name="save" />
             </Button.Content>
-          </Button>
-          {updateMode && (
+          </Button> */}
+          {/* {updateMode && (
           <Button
             animated
             color="teal"
@@ -167,18 +167,20 @@ const Bookingform = () => {
               <Icon name="checkmark" />
             </Button.Content>
           </Button>
-          )}
-          <Button
-            animated
-            className="booking__form__buttons__book"
-            color="green"
-            type="submit"
-          >
-            <Button.Content visible>Réserver</Button.Content>
-            <Button.Content hidden>
-              <Icon name="checkmark" />
-            </Button.Content>
-          </Button>
+          )} */}
+          <Link to="/booking-payment">
+            <Button
+              animated
+              className="booking__form__buttons__book"
+              color="green"
+              type="submit"
+            >
+              <Button.Content visible>Réserver</Button.Content>
+              <Button.Content hidden>
+                <Icon name="checkmark" />
+              </Button.Content>
+            </Button>
+          </Link>
         </div>
       </Form>
     </main>
