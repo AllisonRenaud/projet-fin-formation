@@ -4,37 +4,37 @@ const {stripe, bill} = require("../services/stripe2")
 
 const paymentController = {
 
-    createPaymentIntent: async (request, response) => {
-        try {
+  createPaymentIntent: async (request, response) => {
+    try {
 
-          const {offerID, booking_start, booking_end, customer_email} = request.body
-          const offer = await Offer.findById(offerID)
-          if(!offer) return response.status(400).send("Bad request, no offer with " + offerID)
+      const {offerID, booking_start, booking_end, customer_email} = request.body
+      const offer = await Offer.findById(offerID)
+      if(!offer) return response.status(400).send("Bad request, no offer with " + offerID)
 
 
 
-          const paymentIntent = await stripe.paymentIntents.create({
-            amount: offer.price_ht * offer.tax * 100,
-            currency: 'eur',
-            description: `x1 ${offer.title}`,
-            statement_descriptor: `Ochalet-${offer.title}`.substr(0,22),
-            metadata: {
-              offer_id: offer.id,
-              booking_start,
-              booking_end
-            },
-            payment_method_types: ['card'],
-            receipt_email: customer_email
-          });
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: offer.price_ht * offer.tax * 100,
+        currency: 'eur',
+        description: `x1 ${offer.title}`,
+        statement_descriptor: `Ochalet-${offer.title}`.substr(0,22),
+        metadata: {
+          offer_id: offer.id,
+          booking_start,
+          booking_end
+        },
+        payment_method_types: ['card'],
+        receipt_email: customer_email
+      });
 
-          response.json({clientSecret: paymentIntent.client_secret, publicKey: process.env.STRIPE_TEST_PUBLIC_KEY, intentID: paymentIntent.id})
+      response.json({ clientSecret: paymentIntent.client_secret })
 
-          
-         
-        } catch(error) {
-            response.status(500).send(error.message);
-        }
-    },
+      
+     
+    } catch(error) {
+        response.status(500).send(error.message);
+    }
+},
 
     updatePaymentIntent: async (request, response) => {
 

@@ -5,10 +5,9 @@ module.exports = {
     
     
     createBooking: Joi.object({
-        reservation_start: Joi.date().required(),
-        reservation_end: Joi.date().required(),
+        intentID: Joi.string().token().trim().required(),
         message: Joi.string().trim(),
-        offer_id: Joi.number().positive().required(),
+        
     }),
 
     updateBooking: Joi.object({

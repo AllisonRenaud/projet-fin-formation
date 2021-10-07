@@ -29,26 +29,38 @@ const bookingController = {
 
 
     create: async (request, response) => {
-      try {
-        request.body.user_id = request.token.id
-        const newBooking = await new Booking(request.body).create()
-        
-        const user = await User.findById(request.token.id)
-        const offer = await Offer.findById(newBooking.offer_id)
-        
-     
-
-        const emailBody = bookingMailTemplate(user, newBooking, offer)
-        
-        await sendMail("ochaleto@gmail.com", "Booking", emailBody)
-        
-
-        response.status(201).json(newBooking);
-
-      } catch (error) {
-          response.status(500).send(error.message);
-      }
-    },
+        try {
+          
+          const {intentID} = request.body
+          const {status, metadata} = await stripe.paymentIntents.retrieve(intentID);
+          const {booking_start, booking_end, offer_id} = metadata
+          const {id} = request.token
+          
+          if(status !== 'succeeded') return response.status(401).send({message: "payment status not succeed"})
+  
+          const bookingData = {
+            user_id: request.token.id,
+            reservation_start: booking_start,
+            reservation_end: booking_end,
+            offer_id: offer_id,
+            user_id: id
+          }
+          
+          const newBooking = await new Booking(bookingData).create()
+          const user = await User.findById(id)
+          const offer = await Offer.findById(offer_id)
+          
+       
+          const emailBody = bookingMailTemplate(user, newBooking, offer)
+          await sendMail("ochaleto@gmail.com", "Booking", emailBody)
+          
+  
+          response.status(201).json(newBooking);
+  
+        } catch (error) {
+            response.status(500).send(error.message);
+        }
+      },
 
     update: async (request, response) => {
         try {
