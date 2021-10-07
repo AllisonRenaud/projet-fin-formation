@@ -58,6 +58,14 @@ export const setOfferField = (value, name) => (
   }
 );
 
+export const SET_INPUT_FILE = 'SET_INPUT_FILE';
+
+export const setInputFile = (event, name) => ({
+  type: SET_INPUT_FILE,
+  event,
+  name,
+});
+
 export const SELECT_LOCATION = 'SELECT_LOCATION';
 
 export const selectLocation = (value) => (

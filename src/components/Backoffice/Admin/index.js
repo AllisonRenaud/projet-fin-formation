@@ -3,7 +3,11 @@
 
 import { Link, Redirect } from 'react-router-dom';
 import { Button, Icon } from 'semantic-ui-react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { useEffect } from 'react';
+
+import { fetchOffers } from '../../../actions/offers';
 
 import './backoffice-admin.scss';
 
@@ -17,6 +21,15 @@ const Admin = () => {
   const lastname = useSelector((state) => (state.user.lastname));
 
   const offers = useSelector((state) => (state.offers.offers));
+
+  const dispatch = useDispatch();
+
+  useEffect(
+    () => {
+      dispatch(fetchOffers());
+    },
+    [],
+  );
 
   return (
     <main className="backoffice-admin">

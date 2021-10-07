@@ -3,6 +3,8 @@
 
 import { Form, Button, Select } from 'semantic-ui-react';
 
+import { useHistory } from 'react-router-dom';
+
 import { useDispatch, useSelector } from 'react-redux';
 
 import { CKEditor } from '@ckeditor/ckeditor5-react';
@@ -15,6 +17,7 @@ import {
   setOfferField,
   createOffer,
   selectLocation,
+  setInputFile,
 } from '../../actions/offers';
 
 import './createoffer.scss';
@@ -54,6 +57,10 @@ const Createoffer = () => {
     dispatch(setOfferField(value, name));
   };
 
+  const changeFileField = (value, name) => {
+    dispatch(setInputFile(value, name));
+  };
+
   const changeLocation = (event, { value }) => {
     dispatch(selectLocation(value));
   };
@@ -61,7 +68,6 @@ const Createoffer = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(createOffer());
-    console.log(event.target);
   };
 
   return (
@@ -87,42 +93,42 @@ const Createoffer = () => {
           value={main_picture}
           type="file"
           placeholder="Photo principale"
-          onChange={changeField}
+          onChange={changeFileField}
         />
         <Field
           name="galery_picture_1"
           value={galery_picture_1}
           type="file"
           placeholder="Photo 1"
-          onChange={changeField}
+          onChange={changeFileField}
         />
         <Field
           name="galery_picture_2"
           value={galery_picture_2}
           type="file"
           placeholder="Photo 2"
-          onChange={changeField}
+          onChange={changeFileField}
         />
         <Field
           name="galery_picture_3"
           value={galery_picture_3}
           type="file"
           placeholder="Photo 3"
-          onChange={changeField}
+          onChange={changeFileField}
         />
         <Field
           name="galery_picture_4"
           value={galery_picture_4}
           type="file"
           placeholder="Photo 4"
-          onChange={changeField}
+          onChange={changeFileField}
         />
         <Field
           name="galery_picture_5"
           value={galery_picture_5}
           type="file"
           placeholder="Photo 5"
-          onChange={changeField}
+          onChange={changeFileField}
         />
         <Field
           name="country"

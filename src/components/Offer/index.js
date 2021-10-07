@@ -41,7 +41,11 @@ const Offer = ({ match }) => {
   const role = localStorage.getItem('role');
   const { id } = match.params;
 
-  const offerSelected = useSelector((state) => state.offers.offerSelected);
+  // const offerSelected = useSelector((state) => state.offers.offerSelected);
+
+  const offer = useSelector(
+    (state) => findOffer(state.offers.offers, id),
+  );
 
   useEffect(() => {
     dispatch(fetchOffer(id));
@@ -93,19 +97,18 @@ const Offer = ({ match }) => {
 
   return (
     <>
-      { offerSelected ? 
       <section className="offer">
         <div className="offer__header">
-        <h2 className="offer__header__title">{offerSelected.offer.title}</h2>
-        <h3 className="offer__header__city">{offerSelected.offer.city_name}</h3>
+        <h2 className="offer__header__title">{offer.title}</h2>
+        <h3 className="offer__header__city">{offer.city_name}</h3>
         <div className="offer__header__pictures">
           <Carousel>
-            <img src={offerSelected.offer.main_picture} alt="main" />
-            <img src={offerSelected.offer.galery_picture_1} alt="galery" />
-            <img src={offerSelected.offer.galery_picture_2} alt="galery" />
-            <img src={offerSelected.offer.galery_picture_3} alt="galery" />
-            <img src={offerSelected.offer.galery_picture_4} alt="galery" />
-            <img src={offerSelected.offer.galery_picture_5} alt="galery" />
+            <img src={offer.main_picture} alt="main" />
+            <img src={offer.galery_picture_1} alt="galery" />
+            <img src={offer.galery_picture_2} alt="galery" />
+            <img src={offer.galery_picture_3} alt="galery" />
+            <img src={offer.galery_picture_4} alt="galery" />
+            <img src={offer.galery_picture_5} alt="galery" />
           </Carousel>
         </div>
       </div>
@@ -113,10 +116,10 @@ const Offer = ({ match }) => {
         <div
           className="offer__main__description"
           dangerouslySetInnerHTML={{
-            __html: offerSelected.offer.body,
+            __html: offer.body,
           }}
         />
-        <div className="offer__main__calendar">
+        {/* <div className="offer__main__calendar">
           <DateRange
             onChange={onChangeDatePicker}
             moveRangeOnFirstSelection={false}
@@ -127,9 +130,9 @@ const Offer = ({ match }) => {
             maxDate={addMonths(new Date(), 12)}
             startDatePlaceholder="Arrivée"
             endDatePlaceholder="Départ"
-            disabledDates={getDatesDisabled(offerSelected.bookings)}
+            disabledDates={getDatesDisabled(bookings)}
           />
-        </div>
+        </div> */}
       </div>
         <div className="offer__main__buttons">
         <Button
@@ -190,7 +193,6 @@ const Offer = ({ match }) => {
         )} */}
       </div>
       </section>
-      : <div> Not Found</div> }
     </>
   );
 };
