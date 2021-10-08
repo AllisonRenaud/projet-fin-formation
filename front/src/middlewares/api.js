@@ -215,11 +215,11 @@ export default (store) => (next) => async (action) => {
       axiosInstance
         .get(
           `/offers?id=${action.offerId}`,
-        )
-        .then(
-          (response) => {
-            // console.log('test : ', response.data);
-            store.dispatch(setOffer(response.data));
+          )
+          .then(
+            (response) => {
+              // console.log('test : ', response.data);
+              store.dispatch(setOffer(response.data));
           },
         );
       next(action);
@@ -250,7 +250,7 @@ export default (store) => (next) => async (action) => {
     }
     case FETCH_STRIPE_INFOS: {
       const token = localStorage.getItem('token');
-      const offerID = store.getState().offers.offerSelected.offer.id;
+      const offerID = store.getState().offers.offerSelected.id;
       const customer_email = store.getState().user.email;
       const booking_start = store.getState().offers.dateRange.startDate;
       const booking_end = store.getState().offers.dateRange.endDate;
