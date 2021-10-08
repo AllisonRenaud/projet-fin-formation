@@ -63,17 +63,4 @@ INSERT INTO "offer" (
     1
 );
 
-INSERT INTO "comment" ("user_id","offer_id","body","note") VALUES
-(3,1,'super chalet, je recommande',5),
-(2,2,'je me suis retrouvé au milieu des vaches',1),
-(1,1,'moyen',3);
-
-INSERT INTO "message" ("offer_id","user_id","reservation_start","reservation_end","nb_persons", "body") VALUES
-(1, 1, '2021-10-16 10:00:00+02', '2021-10-23 14:00:00+02', 50, 'Bonjour, on aimerai venir avec ma famille.'),
-(2, 3, '2021-12-18 10:00:00+02', '2021-12-25 14:00:00+02', 7, 'Bonjour, y a t il des vaches dans votre chalet ?');
-
-INSERT INTO "booking" ("user_id","offer_id","reservation_start","reservation_end") VALUES
-(1, 1, '2021-10-16 10:00:00+02', '2021-10-23 14:00:00+02'),
-(3, 2, '2021-12-18 10:00:00+02', '2021-12-25 14:00:00+02');
-
 COMMIT;
