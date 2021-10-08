@@ -8,8 +8,7 @@ const docs = require('./docs/swagger');
 if(process.env.NEWSLETTER) require("./app/services/newsletter")
 
 const app = express();
-
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5000
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
