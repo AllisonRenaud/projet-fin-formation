@@ -3,7 +3,7 @@
 
 # dependencies
 node_modules
-
+sqitch.conf
 .pnp
 .pnp.js
 .env
