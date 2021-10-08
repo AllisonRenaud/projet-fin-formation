@@ -5,7 +5,7 @@
 node_modules
 docker-compose.yml
 sqitch-init.sh
-
+sqitch.conf
 .pnp
 .pnp.js
 .env
