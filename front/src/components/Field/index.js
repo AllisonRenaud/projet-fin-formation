@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Form } from 'semantic-ui-react';
 
-// import './field.scss';
+//import './field.scss';
 
 const Field = ({
   name, value, type, placeholder, onChange, updateMode,
