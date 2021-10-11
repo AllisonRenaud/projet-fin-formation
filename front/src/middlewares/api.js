@@ -29,6 +29,7 @@ import {
 } from '../actions/user';
 
 const axiosInstance = axios.create({
+  // baseURL: 'http://ochaleto.ddns.net',
   baseURL: 'http://178.79.168.163:3000',
   // baseURL: 'http://localhost:5000',
 });
@@ -75,6 +76,9 @@ export default (store) => (next) => async (action) => {
         .then(
           (response) => {
             store.dispatch(signup(response.data));
+            // if (response.data) {
+              window.location = '/signin';
+            // }
           },
         ).catch(
           (error) => console.log(error.message),
@@ -141,6 +145,7 @@ export default (store) => (next) => async (action) => {
         .then(
           (response) => {
             store.dispatch(saveUserData(response.data));
+            window.location = '/profile';
           },
         )
         .catch(
@@ -241,7 +246,6 @@ export default (store) => (next) => async (action) => {
               window.location = '/account/admin';
             }
           },
-          
         ).catch(
           (error) => console.log(error.message),
         );
@@ -295,7 +299,8 @@ export default (store) => (next) => async (action) => {
         .then(
           (response) => {
             console.log(response.data);
-          }
+              window.location = '/account/user';
+          },
         )
         .catch(
           (error) => console.log(error),

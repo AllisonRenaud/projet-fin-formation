@@ -10,6 +10,7 @@ import {
   updateUser,
   setUpdateMode,
   saveUserData,
+  fetchUserData,
 } from '../../actions/user';
 
 import Field from '../Field';
@@ -48,6 +49,7 @@ const Profile = () => {
     event.preventDefault();
     dispatch(updateUser());
     dispatch(setUpdateMode());
+    // dispatch(fetchUserData());
   };
 
   const toggleUpdateMode = (event) => {
@@ -59,15 +61,22 @@ const Profile = () => {
     event.preventDefault();
   };
 
-  const user = localStorage.getItem('user');
-  const parsedUser = JSON.parse(user);
+  // const user = localStorage.getItem('user');
+  // const parsedUser = JSON.parse(user);
+
+  // useEffect(
+  //   () => {
+  //     dispatch(saveUserData(parsedUser));
+  //   },
+  //   [],
+  // );
 
   useEffect(
     () => {
-      dispatch(saveUserData(parsedUser));
+      dispatch(fetchUserData());
     },
     [],
-  );
+  )
 
   return (
     <main className="profile">

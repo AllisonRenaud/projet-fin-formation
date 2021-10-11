@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-// import { PropTypes } from 'prop-types';
+import { PropTypes } from 'prop-types';
 
 import { Link, Redirect } from 'react-router-dom';
 import { Button, Icon } from 'semantic-ui-react';
@@ -8,11 +8,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
 import { fetchOffers } from '../../../actions/offers';
+import { fetchUserData } from '../../../actions/user';
 
 import './backoffice-admin.scss';
 
 const Admin = () => {
-  const role = localStorage.getItem('role');
+
+  const role = useSelector((state) => state.user.role);
   if (role === 'user') {
     <Redirect to="/account/user" />;
   }
@@ -27,6 +29,13 @@ const Admin = () => {
   useEffect(
     () => {
       dispatch(fetchOffers());
+    },
+    [],
+  );
+
+  useEffect(
+    () => {
+      dispatch(fetchUserData());
     },
     [],
   );
@@ -68,6 +77,10 @@ const Admin = () => {
       </div>
     </main>
   );
+};
+
+Admin.propTypes = {
+  logged: PropTypes.bool.isRequired,
 };
 
 export default Admin;

@@ -86,10 +86,9 @@ const Offer = ({ match }) => {
   };
 
   const removeOffer = () => {
-    dispatch(removeOfferFromState(id));
+    // dispatch(removeOfferFromState(id));
     dispatch(deleteOffer(id));
     dispatch(closeModal());
-    redirect('/account/admin');
   };
 
   if (loading) {
