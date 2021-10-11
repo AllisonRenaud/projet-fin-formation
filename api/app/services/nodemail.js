@@ -25,11 +25,10 @@ module.exports = (to, subject, html) => {
     transporter.sendMail(mailOptions, function(error, info){
       if (error) reject(error)
 
-      if(info.response) resolve(info.response) 
-       
+      if(info?.response) resolve(info?.response) 
+      
     });
   })
-
 }
 
 
