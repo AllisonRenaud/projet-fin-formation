@@ -29,7 +29,7 @@ import {
 } from '../actions/user';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://139.162.194.55:3000',
+  baseURL: 'http://178.79.168.163:3000',
   // baseURL: 'http://localhost:5000',
 });
 
