@@ -24,23 +24,20 @@
     }
 
     &__pictures{
-      width: 900px;
-      height: 500px;
+      width: 70%;
+      min-width: 300px;
       margin: 2rem auto;
-      border-radius: .6rem;
-      overflow: hidden;
     }
   }
 
   &__main{
-    width: 80%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     margin: 3rem auto;
     
     &__description {
-      width: 50%;
+      margin-right: 2rem;
       padding: 2rem;
       background-color: #f0f8ffa8;
       border-radius: .6rem;
@@ -89,7 +86,6 @@
     }
 
     &__buttons{
-      width: 40%;
       margin: 2rem auto;
       display: flex;
       justify-content:space-evenly;
@@ -103,4 +99,23 @@
   }
 
   
+}
+
+
+@media screen and (max-width: 770px) {
+  .offer__main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    &__description {
+      margin-right: 0;
+      margin: 2rem;
+    }
+
+    &__calendar {
+      width: 90%;
+    }
+  }
 }

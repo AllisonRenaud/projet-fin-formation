@@ -127,12 +127,6 @@ export default function Paymentform2() {
       {/* Show a success message upon completion */}
       <p className={succeeded ? 'result-message' : 'result-message hidden'}>
         Paiement réussi !
-        <a
-          href={`https://dashboard.stripe.com/test/payments`}
-        >
-          {' '}
-          Stripe dashboard.
-        </a> Actualiser la page pour payer à nouveau.
       </p>
     </form>
   );

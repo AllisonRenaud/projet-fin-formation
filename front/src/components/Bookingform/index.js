@@ -138,7 +138,7 @@ const Bookingform = () => {
         />
         <div>
           <h2 className="booking__title">Vos dates de séjour</h2>
-          <p>Du { format(dateRange.startDate, 'dd/MM/yyyy') } au { format(dateRange.endDate, 'dd/MM/yyyy') }</p>
+          <p className="booking__form__dates">Du { format(dateRange.startDate, 'dd/MM/yyyy') } au { format(dateRange.endDate, 'dd/MM/yyyy') }</p>
         </div>
         <div className="booking__legals">
           <label htmlFor="CGV">
@@ -147,40 +147,28 @@ const Bookingform = () => {
         </div>
         <div className="booking__form__buttons">
           <Button
-            animated
             className="booking__form__buttons__modify"
             color="brown"
             onClick={toggleUpdateMode}
             type="submit"
           >
-            <Button.Content visible>Modifier</Button.Content>
-            <Button.Content hidden>
-              <Icon name="save" />
-            </Button.Content>
+            <Button.Content visible><Icon name="save" />Modifier</Button.Content>
           </Button>
           {updateMode && (
           <Button
-            animated
             color="teal"
             className="booking__form__buttons__validate"
           >
-            <Button.Content visible>Valider</Button.Content>
-            <Button.Content hidden>
-              <Icon name="checkmark" />
-            </Button.Content>
+            <Button.Content visible><Icon name="checkmark" />Valider</Button.Content>
           </Button>
           )}
           <Link to="/booking-payment">
             <Button
-              animated
               className="booking__form__buttons__book"
               color="green"
               type="submit"
             >
-              <Button.Content visible>Réserver</Button.Content>
-              <Button.Content hidden>
-                <Icon name="checkmark" />
-              </Button.Content>
+              <Button.Content visible><Icon name="bookmark" />Réserver</Button.Content>
             </Button>
           </Link>
         </div>

@@ -2,8 +2,17 @@
     flex: 1;
     margin: 3rem auto;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    & h2 {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 3rem;
+      color: #EAEAEA;
+      text-shadow: 0 0 3px #000;
+      margin-bottom: 2rem;
+    }
 
     &__logo{
     width: 500px;
@@ -16,14 +25,11 @@
     }
 
     &__form{
-    width: 400px;
-    height: 400px;
-    margin-left: 3rem;
 
-    &__buttons{
-      display: flex;
-      flex-direction: row;
-      justify-content: space-evenly;
+      &__buttons{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+      }
     }
-  }
 }
