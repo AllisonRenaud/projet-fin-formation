@@ -8,13 +8,13 @@ import { Form } from 'semantic-ui-react';
 const Field = ({
   name, value, type, placeholder, onChange, updateMode,
 }) => {
-  const handleChange = (event) => {
-    if (event.target.type === 'file') {
-      name += ' ';
-      onChange(event.target.files[0], name);
-    }
-    else onChange(event.target.value, name);
-  };
+  // const handleChange = (event) => {
+  //   if (event.target.type === 'file') {
+  //     name += ' ';
+  //     onChange(event.target.files[0], name);
+  //   }
+  //   else onChange(event.target.value, name);
+  // };
 
   const inputId = `field-${name}`;
 
@@ -27,7 +27,7 @@ const Field = ({
         value={value}
         type={type}
         placeholder={placeholder}
-        onChange={handleChange}
+        // onChange={handleChange}
         disabled={updateMode}
       />
     </Form.Field>
@@ -39,7 +39,7 @@ Field.propTypes = {
   value: PropTypes.any,
   type: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  // onChange: PropTypes.func.isRequired,
   updateMode: PropTypes.bool.isRequired,
 };
 
