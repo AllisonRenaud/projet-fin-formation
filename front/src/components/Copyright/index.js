@@ -2,6 +2,7 @@ import { Icon } from 'semantic-ui-react';
 
 import benj from '../../assets/images/benj.png';
 import vincent from '../../assets/images/vincent.png';
+import jerome from '../../assets/images/jerome.png';
 import allison from '../../assets/images/allison.png';
 import christophe from '../../assets/images/christophe.png';
 import fire from '../../assets/images/fire.gif';
@@ -57,6 +58,28 @@ const Copyright = () => (
           <div className="card__footer__role">
             <Icon name="magic" />
             Dev Front
+          </div>
+        </div>
+      </div>
+      <div className="card">
+        <img className="fire" src={fire} alt="" />
+        <img className="card__image" src={jerome} alt="Jérôme en personnage de South Park" />
+        <div className="card__content">
+          <div className="card__content__header">
+            Jérôme
+          </div>
+          <div className="card__content__description">
+            Petit description pour chaque membre de l'équipe.
+          </div>
+        </div>
+        <div className="card__footer">
+        <div className="card__footer__role">
+            <Icon name="docker" />
+            Docker Master
+          </div>
+          <div className="card__footer__role">
+            <Icon name="database" />
+            Lead Dev Back
           </div>
         </div>
       </div>
