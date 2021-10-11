@@ -4,11 +4,14 @@
 # dependencies
 node_modules
 docker-compose.yml
-sqitch-init.sh
+package-lock.json
+yarn.lock
 sqitch.conf
 .pnp
 .pnp.js
 .env
+.env_postgres
+.env_api
 
 # testing
 coverage
