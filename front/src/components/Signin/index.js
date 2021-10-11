@@ -26,6 +26,7 @@ const Signin = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(login());
+    // dispatch(goBack());
   };
 
   if (logged) {

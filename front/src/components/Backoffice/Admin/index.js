@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-// import { PropTypes } from 'prop-types';
+import { PropTypes } from 'prop-types';
 
 import { Link, Redirect } from 'react-router-dom';
 import { Button, Icon } from 'semantic-ui-react';
@@ -12,7 +12,8 @@ import { fetchOffers } from '../../../actions/offers';
 import './backoffice-admin.scss';
 
 const Admin = () => {
-  const role = localStorage.getItem('role');
+
+  const role = useSelector((state) => state.user.role);
   if (role === 'user') {
     <Redirect to="/account/user" />;
   }
@@ -104,6 +105,10 @@ const Admin = () => {
       </div>
     </main>
   );
+};
+
+Admin.propTypes = {
+  logged: PropTypes.bool.isRequired,
 };
 
 export default Admin;
