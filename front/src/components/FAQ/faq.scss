@@ -30,6 +30,10 @@
       border: none;
     }
 
+    &__heading {
+      border: none;
+    }
+
     &__button {
       margin: 2rem 0;
       border-radius: .6rem;
@@ -47,6 +51,11 @@
       padding: 0 2rem;
       color: #EAEAEA;
       text-shadow: 0 0 2px #000;
+      border: none;
+
+      &-raa-0 {
+        border: none;
+      }
     }
   }
 
