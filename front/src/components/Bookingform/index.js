@@ -48,6 +48,7 @@ const Bookingform = () => {
     () => {
       dispatch(saveUserData(parsedUser));
     },
+    // eslint-disable-next-line
     [],
   );
 

@@ -45,6 +45,7 @@ const Offer = ({ match }) => {
 
   const logged = useSelector((state) => state.user.logged);
 
+  // eslint-disable-next-line
   useEffect(() => dispatch(fetchOffer(parseInt(id, 10))), []);
 
   const offerSelected = useSelector((state) => state.offers.offerSelected);

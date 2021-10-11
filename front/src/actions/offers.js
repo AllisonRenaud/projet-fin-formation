@@ -150,3 +150,19 @@ export const saveBookingDates = () => (
     type: SAVE_BOOKING_DATES,
   }
 );
+
+export const FETCH_BOOKINGS= 'FETCH_BOOKINGS';
+
+export const fetchBookings = () => (
+  {
+    type: FETCH_BOOKINGS,
+  }
+);
+
+export const SET_BOOKINGS = 'SET_BOOKINGS';
+export const setBookings = (bookings) => (
+  {
+    type: SET_BOOKINGS,
+    bookings,
+  }
+);
