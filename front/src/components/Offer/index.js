@@ -51,7 +51,6 @@ const Offer = ({ match }) => {
 
   const loading = useSelector((state) => state.offers.loading);
 
-  console.log(offerSelected, loading);
 
   const isModalOpen = useSelector((state) => state.offers.open);
 
@@ -102,32 +101,32 @@ const Offer = ({ match }) => {
           <section className="offer">
             <div className="offer__header">
               <h2 className="offer__header__title">
-                {offerSelected.offer.title}
+                {offerSelected.title}
               </h2>
               <h3 className="offer__header__city">
-                {offerSelected.offer.city_name}
+                {offerSelected.city_name}
               </h3>
               <div className="offer__header__pictures">
                 <Carousel>
-                  <img src={offerSelected.offer.main_picture} alt="main" />
+                  <img src={offerSelected.main_picture} alt="main" />
                   <img
-                    src={offerSelected.offer.galery_picture_1}
+                    src={offerSelected.galery_picture_1}
                     alt="galery"
                   />
                   <img
-                    src={offerSelected.offer.galery_picture_2}
+                    src={offerSelected.galery_picture_2}
                     alt="galery"
                   />
                   <img
-                    src={offerSelected.offer.galery_picture_3}
+                    src={offerSelected.galery_picture_3}
                     alt="galery"
                   />
                   <img
-                    src={offerSelected.offer.galery_picture_4}
+                    src={offerSelected.galery_picture_4}
                     alt="galery"
                   />
                   <img
-                    src={offerSelected.offer.galery_picture_5}
+                    src={offerSelected.galery_picture_5}
                     alt="galery"
                   />
                 </Carousel>
@@ -137,7 +136,7 @@ const Offer = ({ match }) => {
               <div
                 className="offer__main__description"
                 dangerouslySetInnerHTML={{
-                  __html: offerSelected.offer.body,
+                  __html: offerSelected.body,
                 }}
               />
               <div className="offer__main__calendar">
