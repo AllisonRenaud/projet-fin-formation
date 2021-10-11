@@ -1,6 +1,6 @@
-FROM node:16-slim
-WORKDIR /usr/src/app
-COPY ./package*.json ./
+FROM node:lts-alpine as builder
+WORKDIR /home
+COPY ./package.json ./
 RUN npm install
 COPY ./ ./
 EXPOSE 3000

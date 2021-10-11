@@ -63,4 +63,6 @@ INSERT INTO "offer" (
     1
 );
 
+
+
 COMMIT;
