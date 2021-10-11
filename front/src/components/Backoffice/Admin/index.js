@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
 import { fetchOffers } from '../../../actions/offers';
+import { fetchUserData } from '../../../actions/user';
 
 import './backoffice-admin.scss';
 
@@ -28,6 +29,13 @@ const Admin = () => {
   useEffect(
     () => {
       dispatch(fetchOffers());
+    },
+    [],
+  );
+
+  useEffect(
+    () => {
+      dispatch(fetchUserData());
     },
     [],
   );

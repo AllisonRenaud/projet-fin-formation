@@ -75,6 +75,9 @@ export default (store) => (next) => async (action) => {
         .then(
           (response) => {
             store.dispatch(signup(response.data));
+            // if (response.data) {
+              window.location = '/signin';
+            // }
           },
         ).catch(
           (error) => console.log(error.message),
@@ -241,7 +244,6 @@ export default (store) => (next) => async (action) => {
               window.location = '/account/admin';
             }
           },
-          
         ).catch(
           (error) => console.log(error.message),
         );
@@ -295,7 +297,8 @@ export default (store) => (next) => async (action) => {
         .then(
           (response) => {
             console.log(response.data);
-          }
+              window.location = '/account/user';
+          },
         )
         .catch(
           (error) => console.log(error),

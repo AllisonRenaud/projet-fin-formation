@@ -11,8 +11,6 @@ import './header.scss';
 const Header = ({ logged }) => {
   const role = useSelector((state) => state.user.role);
 
-  console.log(role);
-
   const adminOptions = [
     {
       key: 1, text: 'Mon profil', as: Link, to: '/profile', value: 1,

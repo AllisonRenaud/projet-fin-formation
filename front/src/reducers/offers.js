@@ -70,7 +70,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         newoffer: {
           ...state.newoffer,
-          [action.name]: file,
+          [action.name] : file,
         },
       };
     case SELECT_LOCATION:
