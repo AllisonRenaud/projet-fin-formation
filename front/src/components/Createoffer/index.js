@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable camelcase */
 
-import { Form, Button, Select } from 'semantic-ui-react';
+import { Form, Button, Select, Icon } from 'semantic-ui-react';
 
 import { useHistory } from 'react-router-dom';
 
@@ -72,7 +72,7 @@ const Createoffer = () => {
 
   return (
     <main className="create-offer">
-      <h2 className="create-offer__title">Créez une nouvelle annonce</h2>
+      <h2 className="create-offer__title">Nouvelle annonce</h2>
       <Form className="create-offer__form" encType="multipart/form-data" onSubmit={handleSubmit}>
         <Field
           name="title"
@@ -211,7 +211,9 @@ const Createoffer = () => {
           onChange={changeLocation}
           value={location_id}
         />
-        <Button color="blue" className="create-offer__form__button__validate" type="submit">Valider</Button>
+        <div className="create-offer__form__buttons">
+          <Button color="teal" type="submit"><Icon name="checkmark" />Valider</Button>
+        </div>
         {/* <Button color="blue" className="create-offer__form__button__save">Sauvegarder</Button>
         <Button color="green" className="create-offer__form__button__publish">Publier</Button> */}
       </Form>

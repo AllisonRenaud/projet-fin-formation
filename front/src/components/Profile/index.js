@@ -176,40 +176,21 @@ const Profile = () => {
         )}
         <div className="profile__form__buttons">
           <Button
-            animated
             className="signup__form__buttons__modify"
             color="brown"
             onClick={toggleUpdateMode}
             type="submit"
           >
-            <Button.Content visible>Modifier</Button.Content>
-            <Button.Content hidden>
-              <Icon name="save" />
-            </Button.Content>
+            <Button.Content visible><Icon name="save" />Modifier</Button.Content>
           </Button>
           {updateMode && (
           <Button
-            animated
             color="teal"
             className="profile__form__buttons__validate"
           >
-            <Button.Content visible>Valider</Button.Content>
-            <Button.Content hidden>
-              <Icon name="checkmark" />
-            </Button.Content>
+            <Button.Content visible><Icon name="checkmark" />Valider</Button.Content>
           </Button>
           )}
-          <Button
-            animated
-            className="signup__form__buttons__delete"
-            color="red"
-            onClick={deleteAccount}
-          >
-            <Button.Content visible>Supprimer mon compte</Button.Content>
-            <Button.Content hidden>
-              <Icon name="trash" />
-            </Button.Content>
-          </Button>
         </div>
       </Form>
     </main>
