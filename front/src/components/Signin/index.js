@@ -34,7 +34,7 @@ const Signin = () => {
 
   return (
     <main className="signin">
-      <h2>Connexion</h2>
+      {/* <h2>Connexion</h2> */}
       <Form className="signin__form" autoComplete="on" onSubmit={handleSubmit}>
         <Field
           name="email"

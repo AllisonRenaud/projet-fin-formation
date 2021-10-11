@@ -73,6 +73,10 @@ const Copyright = () => (
           </div>
         </div>
         <div className="card__footer">
+        <div className="card__footer__role">
+            <Icon name="docker" />
+            Docker Master
+          </div>
           <div className="card__footer__role">
             <Icon name="database" />
             Lead Dev Back

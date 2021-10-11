@@ -31,7 +31,7 @@ const Signup = () => {
 
   return (
     <main className="signup">
-      <h2>Inscription</h2>
+      {/* <h2>Inscription</h2> */}
       <Form className="signup__form" onSubmit={handleSubmit}>
         <Field
           name="lastname"

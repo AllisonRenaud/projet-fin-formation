@@ -24,7 +24,7 @@
     }
 
     &__pictures{
-      width: 70%;
+      width: 50%;
       min-width: 300px;
       margin: 2rem auto;
     }
@@ -34,7 +34,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    margin: 3rem auto;
+    margin: 3rem;
     
     &__description {
       margin-right: 2rem;
@@ -78,7 +78,6 @@
 
     &__calendar{
       
-     
       &__item {
         border-radius: .6rem;
         box-shadow: 0 0 30px #333;
@@ -98,8 +97,25 @@
     background-color: rgba(104, 99, 99, 0.137);
   }
 
-  
 }
+
+.carousel .control-arrow:before, .carousel.carousel-slider .control-arrow:before {
+  border-left-color: red;
+}
+
+.carousel .control-arrow:before, .carousel.carousel-slider .control-arrow:before {
+  border-left-color: #000;
+  border-right-color: #000;
+  filter: drop-shadow(0 0 3px #fff)
+}
+
+.carousel.carousel-slider .control-arrow.control-next {
+  opacity: 1;
+}
+.carousel.carousel-slider .control-arrow.control-previous {
+  opacity: 1;
+}
+
 
 
 @media screen and (max-width: 770px) {
@@ -111,11 +127,13 @@
 
     &__description {
       margin-right: 0;
-      margin: 2rem;
+      margin-bottom: 2rem;
     }
 
     &__calendar {
       width: 90%;
+      display: flex;
+      justify-content: center;
     }
   }
 }

@@ -137,19 +137,19 @@ const Offer = ({ match }) => {
                     <img src={offerSelected.main_picture} alt="main" />
                   </div>
                   <div>
-                      <img src={offerSelected.galery_picture_1} alt="main" />
+                    <img src={offerSelected.galery_picture_1} alt="galery_1" />
                   </div>
                   <div>
-                      <img src={offerSelected.galery_picture_2} alt="main" />
+                    <img src={offerSelected.galery_picture_2} alt="galery_2" />
                   </div>
                   <div>
-                      <img src={offerSelected.galery_picture_3} alt="main" />
+                    <img src={offerSelected.galery_picture_3} alt="galery_3" />
                   </div>
                   <div>
-                      <img src={offerSelected.galery_picture_4} alt="main" />
+                    <img src={offerSelected.galery_picture_4} alt="galery_4" />
                   </div>
                   <div>
-                      <img src={offerSelected.galery_picture_5} alt="main" />
+                    <img src={offerSelected.galery_picture_5} alt="galery_5" />
                   </div>
               </Carousel>
               </div>

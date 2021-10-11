@@ -25,6 +25,8 @@
     }
 
     &__form{
+      width: 50%;
+      min-width: 300px;
 
       &__buttons{
         display: flex;
