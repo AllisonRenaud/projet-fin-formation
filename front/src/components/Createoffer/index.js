@@ -57,7 +57,7 @@ const Createoffer = () => {
     dispatch(setOfferField(value, name));
   };
 
-  const changeFileField = (value, name) => {
+  const changeFileField = (value, name, event) => {
     dispatch(setInputFile(value, name));
   };
 

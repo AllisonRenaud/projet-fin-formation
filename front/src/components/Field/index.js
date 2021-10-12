@@ -11,7 +11,7 @@ const Field = ({
   const handleChange = (event) => {
     if (event.target.type === 'file') {
       name += ' ';
-      onChange(event.target.files[0], name);
+      onChange(event.target.files[0], name, event);
     }
     else onChange(event.target.value, name);
   };
