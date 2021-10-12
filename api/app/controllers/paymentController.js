@@ -11,7 +11,13 @@ const paymentController = {
       const offer = await Offer.findById(offerID);
       if(!offer) return response.status(400).send("Bad request, no offer with " + offerID);
 
-      const {client_secret} = await createPaymentIntent({...offer, booking_start, booking_end, customer_email});
+      const {client_secret} = await createPaymentIntent(
+        {
+          ...offer, 
+          booking_start, 
+          booking_end, 
+          customer_email}
+      );
       if(!client_secret) throw new Error("Stripe error, payment intent not created");
     
       response.json({ clientSecret: client_secret });

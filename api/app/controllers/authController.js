@@ -5,7 +5,6 @@ const asyncClient = require('../utils/redisPromisify');
 const sendEmail = require('../services/nodemailer');
 const resetPasswordTemplate = require('../utils/email-templates/resetPasswordTemplate');
 
-const TIMEOUT = 60 * 30; // 30 minutes
 
 const authController = {
     signin: async (request, response) => {
@@ -22,7 +21,7 @@ const authController = {
           const refreshToken = jwtSignRefresh({id: user.id, role: user.role});
           if(!accessToken || !refreshToken) throw new Error("JWT sign ERROR");
 
-          await asyncClient.setex("refreshTokenUser" + user.id, TIMEOUT, refreshToken);
+          await asyncClient.setex("refreshTokenUser" + user.id, 60*30, refreshToken);
 
           delete user.password;
           
@@ -77,7 +76,7 @@ const authController = {
           const accessToken = jwtSignAccess({id: actualTokenPayload.id, role: actualTokenPayload.role});
           const refreshToken = jwtSignRefresh({id: actualTokenPayload.id, role: actualTokenPayload.role});
 
-          await asyncClient.setex("refreshTokenUser" + actualTokenPayload.id, TIMEOUT, refreshToken);
+          await asyncClient.setex("refreshTokenUser" + actualTokenPayload.id, 60*30, refreshToken);
 
           response.json({accessToken, refreshToken});
 

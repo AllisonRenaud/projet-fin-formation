@@ -6,15 +6,15 @@ module.exports = {
     
     createPaymentIntent: Joi.object({
         offerID: Joi.number().positive().required(),
-        booking_start: Joi.string().required(),
-        booking_end: Joi.string().required(),
+        booking_start: Joi.date().required(),
+        booking_end: Joi.date().required(),
         customer_email: Joi.string().email().required()
     }),
 
     updatePaymentIntent: Joi.object({
       offerID: Joi.number().positive(),
-      booking_start: Joi.string(),
-      booking_end: Joi.string(),
+      booking_start: Joi.date(),
+      booking_end: Joi.date(),
       customer_email: Joi.string().email()
     }),
 

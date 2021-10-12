@@ -1,8 +1,5 @@
 
-const stripeKey = process.env.STRIPE_TEST_PRIVATE_KEY
-const {Offer} = require('../models')
-
-const stripe = require("stripe")(stripeKey)
+const stripe = require("stripe")(process.env.STRIPE_TEST_PRIVATE_KEY)
 
 
 
@@ -18,7 +15,8 @@ module.exports = {
         metadata: {
           offer_id: obj.id,
           booking_start: obj.booking_start,
-          booking_end: obj.booking_end
+          booking_end: obj.booking_end,
+          email: obj.customer_email
         },
         payment_method_types: ['card'],
         receipt_email: obj.customer_email
