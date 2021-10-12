@@ -189,7 +189,10 @@ export default (store) => (next) => async (action) => {
         let spacelessKey;
         if (key.match(/ /)) {
           spacelessKey = key.slice(0, -1);
+          console.log("1er -", data);
+          console.log(store.getState().offers.newoffer[key]);
           data.append(spacelessKey, store.getState().offers.newoffer[key]);
+          console.log("2eme -", data);
         }
         else data.append(key, store.getState().offers.newoffer[key]);
       }

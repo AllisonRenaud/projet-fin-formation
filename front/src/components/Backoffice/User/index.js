@@ -34,7 +34,7 @@ const User = () => {
         }
         </div>
     </main>
-    : (<div><Loading /></div>) }
+    : (<Loading />) }
     </>
   );
 };

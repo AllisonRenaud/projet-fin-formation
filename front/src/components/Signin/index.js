@@ -54,22 +54,18 @@ const Signin = () => {
         <div className="signin__form__buttons">
           <Button
             className="signin__form__button"
-            color="teal"
+            color="brown"
             type="submit"
           >
             <Button.Content visible><Icon name="sign in" />Se connecter</Button.Content>
           </Button>
           <Link to="/signup">
           <Button
-            animated
             className="signin__form__button"
             color="teal"
             type="submit"
           >
-            <Button.Content visible>S'inscrire</Button.Content>
-            <Button.Content hidden>
-              <Icon name="plus" />
-            </Button.Content>
+            <Button.Content visible><Icon name="plus" />S'inscrire</Button.Content>
           </Button>
           </Link>
         </div>
