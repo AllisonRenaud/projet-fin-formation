@@ -1,4 +1,4 @@
-const asyncClient = require('../utils/redis_promisify')
+const asyncClient = require('../utils/redisPromisify')
 const {decryptAccessToken} = require('./authJwt')
 
 
