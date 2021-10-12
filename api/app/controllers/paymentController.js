@@ -54,7 +54,7 @@ const paymentController = {
 
     },
 
-    deleteAbandonedPaymentIntent: async (request, response) => {
+    deleteAbandonedPaymentIntent: async () => {
         try {
           const {data} = await stripe.paymentIntents.list({created: {lt: Date.now() - 1000 * 60 * 60 * 24}})
           
@@ -65,10 +65,10 @@ const paymentController = {
 
 
           for(const cancelableIntent of cancelableList) await stripe.paymentIntents.cancel(cancelableIntent, {cancellation_reason: "abandoned"})
-          response.send("Older than 1 day intent's deleted")
+          console.log("pending payment intent older than 24 deleted")
 
         } catch (error) {
-          response.status(500).send(error.message)
+          console.log(error.message)
         }
 
     }
