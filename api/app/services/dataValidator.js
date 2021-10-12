@@ -3,20 +3,19 @@ const schema = require("../schemas")
 module.exports = async (req, res, next) => {
 
     try {
-        console.log("validator activated")
-
+        
         const urlSchemaMatch = req.url
             .split("/")
             .map(element => element.includes("?") ? element.split("?").shift() : element)
             .filter(element => element)
 
     
-        console.log(urlSchemaMatch)
+        
         const dataLocationsList = ["body", "query"]
 
         const dataLocation = dataLocationsList.find(location => Object.keys(req[location]).length)
         if(!dataLocation) return next()
-        
+        console.log("validator activated")
         
         req[dataLocation] = await validate(req[dataLocation], urlSchemaMatch, req.method)
         
@@ -46,6 +45,7 @@ const validate = (data, urlSchemaMatch, method) => {
             })
 
             if(!schemaName) return reject({message:"no schema match"})
+            
            
             const {error, value} = schema[urlSchemaMatch[0]][schemaName].validate(data)
             
@@ -69,6 +69,7 @@ const validate = (data, urlSchemaMatch, method) => {
           })
           
           if(!schemaName) return reject({message:"no schema match"})
+       
           
          
           const {error, value} = schema[urlSchemaMatch[1]][schemaName].validate(data)
@@ -80,7 +81,6 @@ const validate = (data, urlSchemaMatch, method) => {
         }
         else if(schema.auth[urlSchemaMatch]){
             
-
             const {error, value} = schema.auth[urlSchemaMatch].validate(data)
             if(error) return reject(error.details[0])
             else return resolve(value)
