@@ -2,12 +2,19 @@ const nodemailer = require('nodemailer')
 
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  tls: {rejectUnauthorized: false},
-  ignoreTLS: true,
+  host: "smtp.mailtrap.io",
+  port: 2525,
   auth: {
     user: process.env.EMAIL,
     pass: process.env.EMAIL_PASSWORD
+  }
+});
+
+transporter.verify(function (error, success) {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("nodemailer connected to mailtrap");
   }
 });
 
