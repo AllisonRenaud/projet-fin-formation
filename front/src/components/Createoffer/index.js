@@ -90,42 +90,42 @@ const Createoffer = () => {
         />
         <Field
           name="main_picture"
-          value={main_picture}
+          value={main_picture.name}
           type="file"
           placeholder="Photo principale"
           onChange={changeFileField}
         />
         <Field
           name="galery_picture_1"
-          value={galery_picture_1}
+          value={galery_picture_1.name}
           type="file"
           placeholder="Photo 1"
           onChange={changeFileField}
         />
         <Field
           name="galery_picture_2"
-          value={galery_picture_2}
+          value={galery_picture_2.name}
           type="file"
           placeholder="Photo 2"
           onChange={changeFileField}
         />
         <Field
           name="galery_picture_3"
-          value={galery_picture_3}
+          value={galery_picture_3.name}
           type="file"
           placeholder="Photo 3"
           onChange={changeFileField}
         />
         <Field
           name="galery_picture_4"
-          value={galery_picture_4}
+          value={galery_picture_4.name}
           type="file"
           placeholder="Photo 4"
           onChange={changeFileField}
         />
         <Field
           name="galery_picture_5"
-          value={galery_picture_5}
+          value={galery_picture_5.name}
           type="file"
           placeholder="Photo 5"
           onChange={changeFileField}
