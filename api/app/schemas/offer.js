@@ -17,18 +17,18 @@ module.exports = {
         longitude: Joi.string().max(25).trim(),
         price_ht: Joi.number().positive().required(),
         tax: Joi.number().positive().required(),
-        main_picture: Joi.string().required(),
+        main_picture: Joi.string().pattern(/^(\/tmp\/upload_).*/).required(),
          
-        galery_picture_1:Joi.string(),
-        galery_picture_2: Joi.string(),
-        galery_picture_3: Joi.string(),
-        galery_picture_4: Joi.string(),
-        galery_picture_5: Joi.string(),
+        galery_picture_1:Joi.string().pattern(/^([\/]{1}[a-z-A-Z-0-9_]+)+$/),
+        galery_picture_2: Joi.string().pattern(/^([\/]{1}[a-z-A-Z-0-9_]+)+$/),
+        galery_picture_3: Joi.string().pattern(/^([\/]{1}[a-z-A-Z-0-9_]+)+$/),
+        galery_picture_4: Joi.string().pattern(/^([\/]{1}[a-z-A-Z-0-9_]+)+$/),
+        galery_picture_5: Joi.string().pattern(/^([\/]{1}[a-z-A-Z-0-9_]+)+$/),
         location_id: Joi.number().positive().required()
     }),
 
     updateOffer: Joi.object({
-      id: Joi.number().required(),
+      id: Joi.number().positive().required(),
       title: Joi.string().max(50).trim(),
       body: Joi.string().trim(),
       zip_code: joiPostalCode.string().postalCode("FR"),
@@ -50,7 +50,7 @@ module.exports = {
       offer_status: Joi.boolean()
   }),
 
-  filterByTitle: Joi.object({
+  filterOffer: Joi.object({
     title: Joi.string(), 
     location_id: Joi.number().positive(),
     id: Joi.number().positive()

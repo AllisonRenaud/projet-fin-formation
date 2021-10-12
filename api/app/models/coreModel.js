@@ -70,7 +70,8 @@ class CoreModel {
 
     static async delete(id) {
       try {
-        await db.query(`DELETE FROM "${this.tableName}" WHERE id = $1`, [id]);
+        const {rowCount} = await db.query(`DELETE FROM "${this.tableName}" WHERE id = $1`, [id]);
+        return rowCount
       } catch(error) {
         if(error.detail) throw new Error(error.detail)
         else throw error;
