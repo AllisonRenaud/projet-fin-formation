@@ -1,6 +1,7 @@
 const adminRouter = require('express').Router()
 const {cloudinaryUpload, deletePicture} = require('../services/cloudinary');
 const {uploadFile} = require("../services/multer")
+const newsLetterSender = require('../services/newsletter')
 
 const bookingController = require("../controllers/bookingController")
 const commentController = require("../controllers/commentController")
@@ -30,6 +31,9 @@ adminRouter.route("/admin/messages")
 .get(messageController.findAll)
 .patch(messageController.update)
 .delete(messageController.delete)
+
+adminRouter.route("/admin/newsletter")
+.post(newsLetterSender)
 
 
 module.exports = adminRouter

@@ -35,13 +35,13 @@ const validate = (data, urlSchemaMatch, method) => {
           
             
             const schemaName = Object.keys(schema[urlSchemaMatch[0]]).find(name => {
-                if(method === "PATCH" && name.match(/[uU]pdate|[sS]ave/g)) return true
+                if(method === "PATCH" && name.match(/update|patch/gi)) return true
                    
-                if(method === "POST" && name.match(/[cC]reate|[aD]dd|[sS]ave/g)) return true
+                if(method === "POST" && name.match(/create|add|save|post/gi)) return true
 
-                if(method === 'GET' && name.match(/[gG]et|[fF]ilter/)) return true
+                if(method === 'GET' && name.match(/get|filter/gi)) return true
 
-                if(method === 'DELETE' && name.match(/[gG]et|[fF]ilter|[dD]elete/)) return true
+                if(method === 'DELETE' && name.match(/remove|delete/gi)) return true
 
             })
 
@@ -58,13 +58,13 @@ const validate = (data, urlSchemaMatch, method) => {
          
             
           const schemaName = Object.keys(schema[urlSchemaMatch[1]]).find(name => {
-              if(method === "PATCH" && name.match(/[uU]pdate|[sS]ave/g)) return true
-                 
-              if(method === "POST" && name.match(/[cC]reate|[aD]dd|[sS]ave/g)) return true
+            if(method === "PATCH" && name.match(/update|patch/gi)) return true
+                   
+            if(method === "POST" && name.match(/create|add|save|post/gi)) return true
 
-              if(method === 'GET' && name.match(/[gG]et|[fF]ilter/)) return true
+            if(method === 'GET' && name.match(/get|filter/gi)) return true
 
-              if(method === 'DELETE' && name.match(/delete/gi)) return true
+            if(method === 'DELETE' && name.match(/remove|delete/gi)) return true
 
           })
           

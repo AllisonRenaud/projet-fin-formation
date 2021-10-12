@@ -223,8 +223,7 @@ sed -i '4c PATH_TO_SEEDING_FILE=' modules/sqitch.sh
 sed -i '5c DB_URI=' modules/sqitch.sh
 
 
-rm .env_postgres && touch .env_postgres
-rm .env_api && touch .env_api
+
 
 
 
