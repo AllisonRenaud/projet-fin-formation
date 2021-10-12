@@ -20,7 +20,6 @@ adminRouter.route("/admin/offers")
 .delete(offerController.delete)
 
 adminRouter.route("/admin/comments")
-.get(commentController.findAll)
 .delete(commentController.delete)
 
 adminRouter.route("/admin/bookings")

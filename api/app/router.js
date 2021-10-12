@@ -10,7 +10,8 @@ const {
     locationRoutes,
     messageRoutes,
     bookingRoutes,
-    commentRoutes,
+    protectedCommentRoutes,
+    publicCommentRoutes,
     authRoutes,
     adminRoutes,
     paymentRoutes
@@ -20,10 +21,10 @@ const {
 
 router.use(redis, dataValidator)
 
-router.use(authRoutes, offerRoutes, locationRoutes)
+router.use(authRoutes, offerRoutes, locationRoutes, publicCommentRoutes)
 
 router.use(verifyAccessToken)
-router.use([userRoutes, messageRoutes, bookingRoutes, commentRoutes, paymentRoutes])
+router.use([userRoutes, messageRoutes, bookingRoutes, protectedCommentRoutes, paymentRoutes])
 router.use(isAdmin, adminRoutes)
 
 

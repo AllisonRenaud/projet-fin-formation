@@ -1,14 +1,11 @@
-const commentRouter = require('express').Router()
+const protectedCommentRouter = require('express').Router()
 const commentController = require("../controllers/commentController")
 
 
-commentRouter.route("/comments")
+protectedCommentRouter.route("/comments")
 .get(commentController.findByUserId)
 .post(commentController.create)
 .delete(commentController.delete)
 
 
-
-
-
-module.exports = commentRouter
+module.exports = protectedCommentRouter

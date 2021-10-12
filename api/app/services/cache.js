@@ -15,7 +15,7 @@ module.exports = async (req, res, next) => {
           
           let key;
     
-          const match = req.url.match(/admin|refresh|locations|offers/)
+          const match = req.url.match(/admin|refresh|locations|offers|offer/)
          
           if(match) key = req.url
           else {
