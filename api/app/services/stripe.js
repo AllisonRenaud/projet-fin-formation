@@ -31,7 +31,7 @@ module.exports = {
   deletePaymentIntent: async (id) => {
     try {
       const {status} = await stripe.paymentIntents.cancel(id, {cancellation_reason: "requested_by_customer"});
-      if(status !== "canceled") throw new Error(`Stripe ERROR: payment intent with id ${id} status is not cancelled`)
+      if(!status || status !== "canceled") throw new Error(`Stripe ERROR: payment intent with id ${id} status is not cancelled`)
       else return status
     } catch (error) {
       throw error

@@ -35,10 +35,8 @@ const paymentController = {
       try {
 
         const {id} = request.body;
-        const status = await deletePaymentIntent(id);
-        if(!status) throw new Error(`Stripe ERROR: payment intent with id: ${id} not deleted`);
-        
-        response.json({message: `payment intent with id: ${id} status is now: ${status}`});
+        await deletePaymentIntent(id);
+        response.json({message: `payment intent with id: ${id} status is now: canceled`});
 
       } catch (error) {
         response.status(500).send(error.message);
@@ -53,12 +51,12 @@ const paymentController = {
           
           const cancelableList = data
           .filter(intent => intent.status === "requires_payment_method")
-          .map(cancelableIntent => cancelableIntent.id)
-          if(!cancelableList.lenght) return response.status(404).send("no payment intent pending");
+          .map(cancelableIntent => cancelableIntent.id);
+          if(!cancelableList.lenght) return console.log("no payment intent pending");
 
 
           for(const cancelableIntent of cancelableList) {
-            await stripe.paymentIntents.cancel(cancelableIntent, {cancellation_reason: "abandoned"})
+            await stripe.paymentIntents.cancel(cancelableIntent, {cancellation_reason: "abandoned"});
           };
           console.log("pending payment intent older than 24 deleted");
 
