@@ -2,7 +2,7 @@
 
 import { Button, Icon, Form } from 'semantic-ui-react';
 
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -59,6 +59,19 @@ const Signin = () => {
           >
             <Button.Content visible><Icon name="sign in" />Se connecter</Button.Content>
           </Button>
+          <Link to="/signup">
+          <Button
+            animated
+            className="signin__form__button"
+            color="teal"
+            type="submit"
+          >
+            <Button.Content visible>S'inscrire</Button.Content>
+            <Button.Content hidden>
+              <Icon name="plus" />
+            </Button.Content>
+          </Button>
+          </Link>
         </div>
       </Form>
     </main>

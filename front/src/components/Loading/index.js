@@ -1,5 +1,6 @@
 import './loading.scss';
 
+
 const Loading = () => (
   <main className="loading-container">
     <div className="loading">Chargement...</div>

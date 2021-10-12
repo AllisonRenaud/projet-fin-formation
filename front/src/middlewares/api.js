@@ -15,6 +15,8 @@ import {
   setOffer,
   DELETE_OFFER,
   SAVE_BOOKING_DATES,
+  FETCH_BOOKINGS,
+  setBookings,
 } from '../actions/offers';
 
 import {
@@ -307,6 +309,39 @@ export default (store) => (next) => async (action) => {
         )
         next(action);
         break;
+    }
+    case FETCH_BOOKINGS: {
+      const token = localStorage.getItem('token');
+      axiosInstance
+        .get(
+          '/bookings',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then(
+            (response) => {
+
+              const bookings = response.data;
+              const offers = store.getState().offers.offers;
+
+              const newBookings = bookings.map(booking => {
+                const offerFound = offers.find(offer => {
+                  return booking.offer_id === offer.id
+                })
+
+                return {
+                  ...booking,
+                  offer: offerFound
+                }
+              })
+
+              store.dispatch(setBookings(newBookings));
+          },
+        );
+      next(action);
+      break;
     }
     default:
       next(action);
