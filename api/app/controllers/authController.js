@@ -96,6 +96,8 @@ const authController = {
         
         const emailBody = resetPasswordTemplate(resetPasswordToken);
 
+        await asyncClient.setex("resetPasswordToken" + user.id, 60*60, "")
+
         await sendEmail("ochaleto@gmail.com", "Reset Password", emailBody);
 
         response.json("email sent");
@@ -104,26 +106,29 @@ const authController = {
 
       confirmResetPassword: async (request, response) => {
           try {
-
             
-            delete request.body.passwordConfirm
-           
-            const user = await User.findById(request.token.id)
+            const tokenPayload = await decryptResetPasswordToken(`Bearer ${request.body.resetPasswordToken}`);
+
+            const cachedResetPasswordToken = await asyncClient.exists("resetPasswordToken" + tokenPayload.id);
+            if(!cachedResetPasswordToken) return response.status(401).send("invalid reset password token");
+
+            const user = await User.findById(tokenPayload.id);
            
             const salt = await bcrypt.genSalt(10);
             user.password = await bcrypt.hash(request.body.password, salt);
 
-            await user.update()
+            delete request.body.passwordConfirm;
+            delete request.body.resetPasswordToken;
 
+            await user.update();
 
-            response.send("Password updated")
+            await asyncClient.del("resetPasswordToken" + tokenPayload.id);
+
+            response.json({message: "Password updated"});
 
           } catch (error) {
-              console.log(error)
               response.status(500).send(error.message)
           }
-
-          
 
       }
 
