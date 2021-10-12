@@ -7,40 +7,38 @@ const stripe = require("stripe")(stripeKey)
 
 
 module.exports = {
-  stripe,
-  bill: async (basket) => {
+  createPaymentIntent: async (obj) => {
     
     try {
-      const bill = []
-
-      for(const offerID of basket) {
-        
-          const offer = await Offer.findById(offerID)
-
-          bill.push({
-            price_data: {
-              currency: "eur",
-              product_data: {
-                name: `${offer.title} - ${Date.now()}`
-              },
-              unit_amount: offer.price_ht * 100 * 1.3
-            },
-            tax_rates: ["txr_1JfQloKVmN7kqniymoRgpnqp"],
-            quantity: 1  
-          })
-        
-
-      };
-      
-      if(basket.length !== bill.length) throw new Error("Payment error")
-      return bill
-
+      return await stripe.paymentIntents.create({
+        amount: obj.price_ht * obj.tax * 100,
+        currency: 'eur',
+        description: `x1 ${obj.title}`,
+        statement_descriptor: `Ochalet-${obj.title}`.substr(0,22),
+        metadata: {
+          offer_id: obj.id,
+          booking_start: obj.booking_start,
+          booking_end: obj.booking_end
+        },
+        payment_method_types: ['card'],
+        receipt_email: obj.customer_email
+      });
     } catch (error) {
-        console.log(error)
-        throw error
-
+      throw error
+      
     }
+    
   },
+
+  deletePaymentIntent: async (id) => {
+    try {
+      const {status} = await stripe.paymentIntents.cancel(id, {cancellation_reason: "requested_by_customer"});
+      if(status !== "canceled") throw new Error(`Stripe ERROR: payment intent with id ${id} status is not cancelled`)
+      else return status
+    } catch (error) {
+      throw error
+    }
+  }
 
 
 }

@@ -1,8 +1,8 @@
 const {User} = require('../models');
 const bcrypt = require('bcrypt');
 const {jwtSignAccess, jwtSignRefresh, jwtSignResetPassword, decryptRefreshToken, decryptResetPasswordToken} = require('../services/authJwt')
-const asyncClient = require('../utils/redis_promisify')
-const sendEmail = require('../services/nodemail')
+const asyncClient = require('../utils/redisPromisify')
+const sendEmail = require('../services/nodemailer')
 const resetPasswordTemplate = require('../utils/email-templates/resetPasswordTemplate')
 
 const TIMEOUT = 60 * 30; // 30 minutes

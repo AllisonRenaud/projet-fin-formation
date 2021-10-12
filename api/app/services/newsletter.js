@@ -1,5 +1,5 @@
 const db = require('../databases/postgres')
-const sendEmail = require('./nodemail')
+const sendEmail = require('./nodemailer')
 const newsLetterTemplate = require('../utils/email-templates/newsletterTemplate')
 
 
