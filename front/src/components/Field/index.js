@@ -39,7 +39,7 @@ Field.propTypes = {
   value: PropTypes.any,
   type: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  // onChange: PropTypes.func.isRequired,
   updateMode: PropTypes.bool.isRequired,
 };
 

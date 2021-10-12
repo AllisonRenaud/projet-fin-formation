@@ -122,7 +122,7 @@ const Bookingform = () => {
         />
         <div>
           <h2 className="booking__title">Vos dates de séjour</h2>
-          <p>Du { format(dateRange.startDate, 'dd/MM/yyyy') } au { format(dateRange.endDate, 'dd/MM/yyyy') }</p>
+          <p className="booking__form__dates">Du { format(dateRange.startDate, 'dd/MM/yyyy') } au { format(dateRange.endDate, 'dd/MM/yyyy') }</p>
         </div>
         <div className="booking__legals">
           <label htmlFor="CGV">
@@ -132,15 +132,11 @@ const Bookingform = () => {
         <div className="booking__form__buttons">
           <Link to="/booking-payment">
             <Button
-              animated
               className="booking__form__buttons__book"
               color="green"
               type="submit"
             >
-              <Button.Content visible>Réserver</Button.Content>
-              <Button.Content hidden>
-                <Icon name="checkmark" />
-              </Button.Content>
+              <Button.Content visible><Icon name="bookmark" />Réserver</Button.Content>
             </Button>
           </Link>
         </div>

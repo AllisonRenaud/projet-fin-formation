@@ -19,7 +19,9 @@ import { DateRange } from 'react-date-range';
 import frLocale from 'date-fns/locale/fr';
 import addMonths from 'date-fns/addMonths';
 
-import Carousel from 'nuka-carousel';
+// import Carousel from 'nuka-carousel';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 
 import './offer.scss';
 
@@ -85,10 +87,9 @@ const Offer = ({ match }) => {
   };
 
   const removeOffer = () => {
-    dispatch(removeOfferFromState(id));
+    // dispatch(removeOfferFromState(id));
     dispatch(deleteOffer(id));
     dispatch(closeModal());
-    redirect('/account/admin');
   };
 
   if (loading) {
@@ -108,7 +109,7 @@ const Offer = ({ match }) => {
                 {offerSelected.city_name}
               </h3>
               <div className="offer__header__pictures">
-                <Carousel>
+                {/* <Carousel>
                   <img src={offerSelected.main_picture} alt="main" />
                   <img
                     src={offerSelected.galery_picture_1}
@@ -130,7 +131,27 @@ const Offer = ({ match }) => {
                     src={offerSelected.galery_picture_5}
                     alt="galery"
                   />
-                </Carousel>
+                </Carousel> */}
+                <Carousel dynamicHeight="true">
+                  <div>
+                    <img src={offerSelected.main_picture} alt="main" />
+                  </div>
+                  <div>
+                    <img src={offerSelected.galery_picture_1} alt="galery_1" />
+                  </div>
+                  <div>
+                    <img src={offerSelected.galery_picture_2} alt="galery_2" />
+                  </div>
+                  <div>
+                    <img src={offerSelected.galery_picture_3} alt="galery_3" />
+                  </div>
+                  <div>
+                    <img src={offerSelected.galery_picture_4} alt="galery_4" />
+                  </div>
+                  <div>
+                    <img src={offerSelected.galery_picture_5} alt="galery_5" />
+                  </div>
+              </Carousel>
               </div>
             </div>
             <div className="offer__main">
@@ -157,35 +178,19 @@ const Offer = ({ match }) => {
               </div>
             </div>
             <div className="offer__main__buttons">
-              <Button
-                animated
-                className="offer__main__buttons__contact"
-                color="brown"
-              >
-                <Button.Content visible>
-                  Contacter le propriétaire
-                </Button.Content>
-                <Button.Content hidden>
-                  <Icon name="envelope" />
-                </Button.Content>
-              </Button>
               <Link to={logged ? `/offers/${id}/booking` : '/signin'}>
                 <Button
-                  animated
                   className="offer__main__buttons__book"
-                  color="teal"
+                  color="brown"
                 >
-                  <Button.Content visible>Réserver</Button.Content>
-                  <Button.Content hidden>
-                    <Icon name="bookmark" />
-                  </Button.Content>
+                  <Button.Content visible><Icon name="bookmark" />Réserver</Button.Content>
                 </Button>
               </Link>
               {role === 'admin' && (
                 <Modal
                   // closeIcon
                   open={isModalOpen}
-                  trigger={<Button color="red">Supprimer l'annonce</Button>}
+                  trigger={<Button color="red"><Icon name="trash" />Supprimer l'annonce</Button>}
                   onClose={hideModal}
                   onOpen={showModal}
                 >

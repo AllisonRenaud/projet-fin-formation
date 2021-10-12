@@ -2,8 +2,8 @@
 
 import { useDispatch, useSelector } from 'react-redux';
 import { format } from 'date-fns';
-
 import Loading from '../../Loading';
+import PropTypes from 'prop-types';
 import './backoffice-user.scss';
 import { fetchBookings } from '../../../actions/offers';
 import { useEffect } from 'react';
@@ -29,16 +29,6 @@ const User = () => {
           <p className="backoffice-user__reservation__date">Du { format(new Date(booking.reservation_start), 'dd/MM/yyyy') } au { format( new Date(booking.reservation_end), 'dd/MM/yyyy') }</p>
           <p className="backoffice-user__reservation__booking-offer">{booking.offer.title}</p>
           <p className="backoffice-user__reservation__booking-number">OC-00052179-00{booking.id}</p>
-          {/* <Button
-            animated
-            className="backoffice-user__reservation__button"
-            color="brown"
-          >
-            <Button.Content visible>Un souci ?</Button.Content>
-            <Button.Content hidden>
-              <Icon name="warning sign" />
-            </Button.Content>
-          </Button> */}
         </div>
           ))
         }
@@ -48,5 +38,6 @@ const User = () => {
     </>
   );
 };
+
 
 export default User;
