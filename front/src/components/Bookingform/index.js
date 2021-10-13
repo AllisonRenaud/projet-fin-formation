@@ -46,6 +46,7 @@ const Bookingform = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    dispatch(updateUser());
     dispatch(fetchStripeInfos());
     dispatch(updateUser());
     history.push('/booking-payment');
