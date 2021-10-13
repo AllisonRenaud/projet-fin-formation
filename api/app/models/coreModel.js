@@ -18,8 +18,8 @@ class CoreModel {
     static async findById(id) {
       try {
         const {rows} = await db.query(`SELECT * FROM "${this.tableName}" WHERE id = $1`, [id]);
-        if(!rows[0]) return
-        return new this(rows[0])
+        if(!rows[0]) return;
+        return new this(rows[0]);
       } catch(error) {
         if(error.detail) throw new Error(error.detail);
         throw error;
@@ -33,7 +33,7 @@ class CoreModel {
         for(const instance of rows) {
             instances.push(new this(instance));
         }
-        return instances
+        return instances;
         
       } catch(error) {
         if(error.detail) throw new Error(error.detail);
@@ -51,7 +51,7 @@ class CoreModel {
 
       } catch (error) {
 
-        if(error.detail) throw new Error(error.detail)
+        if(error.detail) throw new Error(error.detail);
         else throw error;
 
       }
@@ -61,9 +61,7 @@ class CoreModel {
       try {
           await db.query(`SELECT update_${this.constructor.tableName}($1)`, [this]);
       } catch (error) {
-        console.log(error)
-
-        if(error.detail) throw new Error(error.detail)
+        if(error.detail) throw new Error(error.detail);
         else throw error;
       }
     }
@@ -71,9 +69,9 @@ class CoreModel {
     static async delete(id) {
       try {
         const {rowCount} = await db.query(`DELETE FROM "${this.tableName}" WHERE id = $1`, [id]);
-        return rowCount
+        return rowCount;
       } catch(error) {
-        if(error.detail) throw new Error(error.detail)
+        if(error.detail) throw new Error(error.detail);
         else throw error;
       }
     }

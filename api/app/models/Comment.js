@@ -18,7 +18,7 @@ class Comment extends CoreModel {
           for(const instance of rows) {
               instances.push(new this(instance));
           }
-          return instances
+          return instances;
           
         } catch(error) {
           if(error.detail) throw new Error(error.detail);
