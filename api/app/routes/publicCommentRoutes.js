@@ -1,8 +1,8 @@
-const publicCommentRouter = require('express').Router()
-const commentController = require("../controllers/commentController")
+const publicCommentRouter = require('express').Router();
+const commentController = require("../controllers/commentController");
 
 publicCommentRouter.route("/offer/comments")
-.get(commentController.findByOfferId)
+.get(commentController.findByOfferId);
 
 
-module.exports = publicCommentRouter
+module.exports = publicCommentRouter;

@@ -9,4 +9,4 @@ module.exports = {
     authRoutes: require('./authRoutes'),
     adminRoutes: require('./adminRoutes'),
     paymentRoutes: require('./paymentRoutes')
-}
+};

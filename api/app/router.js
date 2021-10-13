@@ -1,5 +1,5 @@
-const {Router} = require('express');
-const router = Router();
+const rootRooter = require('express').Router();
+
 const dataValidator = require("./services/dataValidator")
 const {verifyAccessToken, isAdmin} = require('./services/authJwt')
 const redis = require("./services/cache")
@@ -15,17 +15,15 @@ const {
     authRoutes,
     adminRoutes,
     paymentRoutes
-} = require('./routes/index');
+} = require('./routes');
 
 
+rootRooter.use(redis, dataValidator)
 
-router.use(redis, dataValidator)
+rootRooter.use(authRoutes, offerRoutes, locationRoutes, publicCommentRoutes)
 
-router.use(authRoutes, offerRoutes, locationRoutes, publicCommentRoutes)
+rootRooter.use(verifyAccessToken)
+rootRooter.use([userRoutes, messageRoutes, bookingRoutes, protectedCommentRoutes, paymentRoutes])
+rootRooter.use(isAdmin, adminRoutes)
 
-router.use(verifyAccessToken)
-router.use([userRoutes, messageRoutes, bookingRoutes, protectedCommentRoutes, paymentRoutes])
-router.use(isAdmin, adminRoutes)
-
-
-module.exports = router;
+module.exports = rootRooter;

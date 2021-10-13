@@ -1,8 +1,7 @@
 const formidable = require('formidable')
 const dataValidator = require('./dataValidator')
 
-module.exports = {
-  uploadFile: (request, response, next) => {
+module.exports = (request, response, next) => {
     console.log('Michel')
     const form = formidable({multiples: true})
   
@@ -30,7 +29,7 @@ module.exports = {
       
     })
   }
-}
+
 
 
 
