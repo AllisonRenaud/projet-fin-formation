@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { Button, Form, Icon } from 'semantic-ui-react';
 import { format } from 'date-fns';
 import { fetchOffer } from '../../actions/offers';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 
 import Field from '../Field';
 
@@ -42,10 +42,13 @@ const Bookingform = () => {
     dispatch(setUserField(value, name));
   };
 
+  const history = useHistory();
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(updateUser());
     dispatch(fetchStripeInfos());
+    dispatch(updateUser());
+    history.push('/booking-payment');
   };
 
   const user = localStorage.getItem('user');
@@ -147,7 +150,7 @@ const Bookingform = () => {
           </label>
         </div>
         <div className="booking__form__buttons">
-          <Link to="/booking-payment">
+          {/* <Link to="/booking-payment"> */}
             <Button
               className="booking__form__buttons__book"
               color="green"
@@ -155,7 +158,7 @@ const Bookingform = () => {
             >
               <Button.Content visible><Icon name="bookmark" />Réserver</Button.Content>
             </Button>
-          </Link>
+          {/* </Link> */}
         </div>
       </Form>
     </main>
