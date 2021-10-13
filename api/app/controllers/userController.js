@@ -58,9 +58,10 @@ const userController = {
     delete: async (request, response) => {
         try {
 
-            let userID = request.token.id;
-
-            if(request.token.role === "admin") userID = request.query.id;
+            let userID;
+            if(request.token.role === "user") userID = request.token.id
+            else if(request.token.role === "admin" && request.query.id !== 666) userID = request.query.id;
+            else return response.status(401).send({error: "Unauthorized"})
 
             await Comment.setUserUnknown(userID);
             await Message.deleteByUserId(userID);

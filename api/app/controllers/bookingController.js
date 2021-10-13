@@ -46,9 +46,8 @@ const bookingController = {
           const { booking_start, booking_end, offer_id, email } = metadata;
           const { id } = request.token;
 
-          // if(status !== 'succeeded') return response.status(401).send({message: "payment status not succeed"});
+          if(status !== 'succeeded') return response.status(401).send({message: "payment status not succeed"});
   
-     
           const bookingData = {
             user_id: id,
             reservation_start: new Date(booking_start * 1000),

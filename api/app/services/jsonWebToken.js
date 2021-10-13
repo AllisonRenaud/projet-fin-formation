@@ -26,7 +26,7 @@ module.exports = {
         try {
           return jwt.sign(
             obj, 
-            process.env.ACCES_TOKEN_SECRET, 
+            process.env.ACCESS_TOKEN_SECRET, 
             { expiresIn: '5d', algorithm: 'HS256' }
           );
         } catch (error) {
