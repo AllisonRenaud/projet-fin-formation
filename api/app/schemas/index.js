@@ -6,9 +6,5 @@ module.exports = {
     bookings: require('./booking'),
     auth: require('./auth'),
     payment_intent: require('./paymentIntent'),
-    newsletter: require('./newsletter')
-   
-
-    
-    
-}
+    newsletter: require('./newsletter')   
+};

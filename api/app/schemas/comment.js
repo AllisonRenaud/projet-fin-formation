@@ -15,8 +15,6 @@ module.exports = {
 
     deleteComment: Joi.object({
       id: Joi.number().positive().required()
-    })
-
-    
-}
+    }) 
+};
 

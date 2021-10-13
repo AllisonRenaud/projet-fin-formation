@@ -1,8 +1,4 @@
 const Joi = require("joi")
-const joiPostalCode = Joi.extend(require('joi-postalcode'))
-
-const now = Date.now();
-const cutoffDate = new Date(now - (1000 * 60 * 60 * 24 * 365 * 18));
 
 module.exports = {
     signin: Joi.object({
@@ -27,7 +23,4 @@ module.exports = {
       passwordConfirm: Joi.string().trim().required().valid(Joi.ref('password')),
       resetPasswordToken: Joi.string().required()
     })
-
-    
-   
-}
+};

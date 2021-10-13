@@ -58,7 +58,5 @@ module.exports = {
 
   deleteOffer: Joi.object({
     id: Joi.number().positive().required()
-  })
-
-    
-}
+  })  
+};

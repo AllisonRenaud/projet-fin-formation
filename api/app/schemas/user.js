@@ -2,12 +2,10 @@ const Joi = require('joi');
 
 const joiPostalCode = Joi.extend(require('joi-postalcode'))
 
-
 const now = Date.now();
 const cutoffDate = new Date(now - (1000 * 60 * 60 * 24 * 365 * 18));
 
 module.exports = {
-    
     
     updateUser: Joi.object({
         firstname: Joi.string().max(40).trim(),
@@ -27,8 +25,6 @@ module.exports = {
 
     deleteUser: Joi.object({
       id: Joi.number().positive()
-    })
-
-    
-}
+    }) 
+};
 

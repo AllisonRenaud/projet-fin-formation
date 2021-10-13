@@ -3,11 +3,8 @@ const Joi = require('joi');
 
 module.exports = {
     
-    
     createBooking: Joi.object({
-        intentID: Joi.string().token().trim().required(),
-        message: Joi.string().trim(),
-        
+        intentID: Joi.string().token().trim().required()   
     }),
 
     updateBooking: Joi.object({
@@ -22,8 +19,5 @@ module.exports = {
 
     deleteBooking: Joi.object({
       id: Joi.number().positive().required()
-    })
-
-
-    
-}
+    }) 
+};

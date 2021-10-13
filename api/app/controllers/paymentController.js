@@ -34,9 +34,9 @@ const paymentController = {
     deletePaymentIntent: async (request, response) => {
       try {
 
-        const {id} = request.body;
-        await deletePaymentIntent(id);
-        response.json({message: `payment intent with id: ${id} status is now: canceled`});
+        const {intentID} = request.body;
+        await deletePaymentIntent(intentID);
+        response.json({message: `payment intent with id: ${intentID} status is now: canceled`});
 
       } catch (error) {
         response.status(500).send(error.message);

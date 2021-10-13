@@ -3,7 +3,6 @@ const Joi = require('joi');
 
 module.exports = {
     
-    
     createMessage: Joi.object({
         body: Joi.string().trim().required(),
         offer_id: Joi.number().positive().required(),

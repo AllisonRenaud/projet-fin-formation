@@ -12,6 +12,7 @@ module.exports = {
     }),
 
     updatePaymentIntent: Joi.object({
+      intentID: Joi.string().token().required(),
       offerID: Joi.number().positive(),
       booking_start: Joi.date(),
       booking_end: Joi.date(),
@@ -19,10 +20,6 @@ module.exports = {
     }),
 
     deletePaymentIntent: Joi.object({
-      id: Joi.string().token().required()
-    })
-
-    
-
-    
-}
+      intentID: Joi.string().token().required()
+    })  
+};
