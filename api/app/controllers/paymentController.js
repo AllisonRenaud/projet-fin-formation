@@ -43,29 +43,7 @@ const paymentController = {
       }
 
 
-    },
-
-    deleteAbandonedPaymentIntent: async () => {
-        try {
-          const {data} = await stripe.paymentIntents.list({created: {lt: Date.now() - 1000 * 60 * 60 * 24}});
-          
-          const cancelableList = data
-          .filter(intent => intent.status === "requires_payment_method")
-          .map(cancelableIntent => cancelableIntent.id);
-          if(!cancelableList.lenght) return console.log("no payment intent pending");
-
-
-          for(const cancelableIntent of cancelableList) {
-            await stripe.paymentIntents.cancel(cancelableIntent, {cancellation_reason: "abandoned"});
-          };
-          console.log("pending payment intent older than 24 deleted");
-
-        } catch (error) {
-          console.log(error.message);
-        }
-
     }
-
 }
 
 module.exports = paymentController;
