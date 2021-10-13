@@ -11,10 +11,11 @@ import {
   CLOSE_MODAL,
   REMOVE_OFFER_FROM_STATE,
   SET_BOOKINGS,
+  TOGGLE_LOADER,
 } from '../actions/offers';
 
 export const initialState = {
-  loading: true,
+  loading: false,
   open: false,
   offers: [],
   locations: [],
@@ -121,6 +122,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         bookings: action.bookings,
+      };
+    case TOGGLE_LOADER:
+      return {
+        ...state,
+        loading: !state.loading,
       };
     default:
       return state;
