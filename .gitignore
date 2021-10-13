@@ -13,6 +13,8 @@ sqitch.conf
 .env_postgres
 .env_api
 
+/api/app/uploads/!*.template
+
 # testing
 coverage
 
