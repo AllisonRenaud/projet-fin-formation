@@ -57,6 +57,7 @@ module.exports = async (request, response, next) => {
               if(url.split('/').length === 2){
                 const check = url.split('/')[1];
                 if(key.includes(check)) return true;
+                if(check.includes("signup") && key.includes("admin/user") ) return true;
               }
               else {
                 const check = url.split('/')[2];

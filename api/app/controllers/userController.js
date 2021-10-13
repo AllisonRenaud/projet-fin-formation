@@ -60,7 +60,7 @@ const userController = {
 
             let userID;
             if(request.token.role === "user") userID = request.token.id
-            else if(request.token.role === "admin" && request.query.id !== 666) userID = request.query.id;
+            else if(request.token.role === "admin" && request.query.id !== 666 && request.query.id !== request.token.id) userID = request.query.id;
             else return response.status(401).send({error: "Unauthorized"})
 
             await Comment.setUserUnknown(userID);

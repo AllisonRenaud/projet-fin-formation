@@ -88,7 +88,8 @@ const bookingController = {
     delete: async (request, response) => {
         try {
             const bookingID = parseInt(request.query.id, 10);
-            await Booking.delete(bookingID);
+            const bookingDelete = await Booking.delete(bookingID);
+            if(!bookingDelete) return response.status(404).send({error: `Booking with id: ${bookingID} not found`})
             response.status(200).json(`booking with id ${bookingID} deleted`);
         } catch(error) {
             response.status(500).send(error.message);

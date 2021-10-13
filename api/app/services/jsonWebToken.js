@@ -80,7 +80,7 @@ module.exports = {
     decryptRefreshToken: async (token) => {
 
         try {
-          return await asyncVerify(token, process.env.REFRESH_TOKEN_SECRET);
+          return await asyncVerify(token.split(' ').pop(), process.env.REFRESH_TOKEN_SECRET);
         } catch (error) {
           console.log(error.message);
           throw error;
@@ -90,7 +90,7 @@ module.exports = {
     decryptResetPasswordToken: async (token) => {
 
         try {
-          return await asyncVerify(token, process.env.RESET_PASSWORD_TOKEN_SECRET);
+          return await asyncVerify(token.split(' ').pop(), process.env.RESET_PASSWORD_TOKEN_SECRET);
         } catch (error) {
           console.log(error.message);
           throw error;
