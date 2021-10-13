@@ -1,8 +1,6 @@
 
 const stripe = require("stripe")(process.env.STRIPE_TEST_PRIVATE_KEY)
 
-
-
 module.exports = {
   createPaymentIntent: async (obj) => {
     
@@ -10,7 +8,7 @@ module.exports = {
       return await stripe.paymentIntents.create({
         amount: obj.price_ht * obj.tax * 100,
         currency: 'eur',
-        description: `x1 ${obj.title}`,
+        description: obj.title,
         statement_descriptor: `Ochalet-${obj.title}`.substr(0,22),
         metadata: {
           offer_id: obj.id,
@@ -23,9 +21,7 @@ module.exports = {
       });
     } catch (error) {
       throw error
-      
     }
-    
   },
 
   deletePaymentIntent: async (id) => {
@@ -56,9 +52,7 @@ module.exports = {
     } catch (error) {
       console.log(error.message);
     }
-
-}
-
+  }
 
 }
 
