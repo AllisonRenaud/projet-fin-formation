@@ -5,7 +5,7 @@ const cors = require('cors');
 const swaggerUI = require("swagger-ui-express");
 const rateLimit = require('express-rate-limit');
 const docs = require('./docs/swagger');
-require('./app/services/pendingPaymentIntentDeleter')
+require('./app/services/scheduledTasks')
 
 const app = express();
 const port = process.env.PORT || 5000
