@@ -233,7 +233,7 @@ const Offer = ({ match }) => {
           </section>
         </div>
       ) : (
-        <div><Loading /></div>
+        <Loading />
       )}
     </>
   );
