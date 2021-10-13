@@ -146,8 +146,9 @@ export default (store) => (next) => async (action) => {
           })
         .then(
           (response) => {
-            store.dispatch(saveUserData(response.data));
-            window.location = '/profile';
+            console.log(response.data);
+            // store.dispatch(saveUserData(response.data));
+            // window.location = '/profile';
           },
         )
         .catch(
