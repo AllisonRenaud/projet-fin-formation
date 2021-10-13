@@ -304,7 +304,7 @@ export default (store) => (next) => async (action) => {
         .then(
           (response) => {
             console.log(response.data);
-              window.location = '/account/user';
+              // window.location = '/account/user';
           },
         )
         .catch(
