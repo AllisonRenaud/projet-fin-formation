@@ -1,6 +1,5 @@
 const nodemailer = require('nodemailer')
 
-
 const transporter = nodemailer.createTransport({
   host: "smtp.mailtrap.io",
   port: 2525,
@@ -31,11 +30,9 @@ module.exports = (to, subject, html) => {
   
     transporter.sendMail(mailOptions, function(error, info){
       if (error) reject(error)
-
-      if(info?.response) resolve(info?.response) 
-      
+      if(info.response) resolve(info.response) 
     });
   })
-}
+};
 
 
