@@ -10,7 +10,6 @@ module.exports = {
     
     
     updateUser: Joi.object({
-        id: Joi.number().positive(),
         firstname: Joi.string().max(40).trim(),
         lastname: Joi.string().max(40).trim(),
         email: Joi.string().email().max(50).trim().lowercase(),

@@ -81,7 +81,7 @@ class CoreModel {
     static async setUserUnknown(id) {
       try {
         
-        await db.query(`UPDATE "${this.tableName}" SET "user_id" = 29 WHERE "user_id" = $1`, [id])
+        await db.query(`UPDATE "${this.tableName}" SET "user_id" = 666 WHERE "user_id" = $1`, [id]);
 
       } catch (error) {
         if(error.detail) throw new Error(error.detail);
