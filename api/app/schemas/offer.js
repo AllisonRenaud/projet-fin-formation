@@ -17,7 +17,7 @@ module.exports = {
         longitude: Joi.string().max(25).trim(),
         price_ht: Joi.number().positive().required(),
         tax: Joi.number().positive().required(),
-        main_picture: Joi.string().pattern(/^(\/tmp\/upload_).*/).required(),
+        main_picture: Joi.string().pattern(/^([\/]{1}[a-z-A-Z-0-9_]+)+$/).required(),
          
         galery_picture_1:Joi.string().pattern(/^([\/]{1}[a-z-A-Z-0-9_]+)+$/),
         galery_picture_2: Joi.string().pattern(/^([\/]{1}[a-z-A-Z-0-9_]+)+$/),
