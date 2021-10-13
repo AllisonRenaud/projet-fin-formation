@@ -12,6 +12,8 @@ import {
   setUserField,
   saveUserData,
   fetchStripeInfos,
+  fetchUserData,
+  updateUser,
 } from '../../actions/user';
 
 import './bookingform.scss';
@@ -42,6 +44,7 @@ const Bookingform = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    dispatch(updateUser());
     dispatch(fetchStripeInfos());
   };
 
@@ -50,6 +53,7 @@ const Bookingform = () => {
 
   useEffect(
     () => {
+      dispatch(fetchUserData());
       dispatch(saveUserData(parsedUser));
       dispatch(fetchOffer(id))
     },
