@@ -3,9 +3,9 @@ const fs = require("fs")
 
 
 cloudinary.config({ 
-  cloud_name: 'dudxvl1m3', 
-  api_key: '321759913749339', 
-  api_secret: 'wu5YyKEkaSLWpufw7GvYf5pZNxs' 
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME, 
+  api_key: process.env.CLOUDINARY_API_KEY, 
+  api_secret: process.env.CLOUDINARY_API_SECRET 
 });
 
 

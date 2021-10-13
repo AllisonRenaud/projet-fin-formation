@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken")
-// const {promisify} = require('util');
-
-// const asyncVerify = promisify(jwt.verify).bind(jwt)
+const {promisify} = require('util');
+const asyncVerify = promisify(jwt.verify).bind(jwt)
 
 
 module.exports = {
