@@ -1,7 +1,7 @@
 const rootRooter = require('express').Router();
 
 const dataValidator = require("./services/dataValidator")
-const {verifyAccessToken, isAdmin} = require('./services/authJwt')
+const {verifyAccessToken, isAdmin} = require('./services/jsonWebToken')
 const redis = require("./services/cache")
 
 const {

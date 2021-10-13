@@ -1,5 +1,5 @@
 const asyncClient = require('../utils/redisPromisify')
-const {decryptAccessToken} = require('./authJwt')
+const {decryptAccessToken} = require('./jsonWebToken')
 
 
 const TIMEOUT = 60 * 10; // 10 minutes

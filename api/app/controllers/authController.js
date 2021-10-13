@@ -1,6 +1,6 @@
 const {User} = require('../models');
 const bcrypt = require('bcrypt');
-const {jwtSignAccess, jwtSignRefresh, jwtSignResetPassword, decryptRefreshToken, decryptResetPasswordToken} = require('../services/authJwt');
+const {jwtSignAccess, jwtSignRefresh, jwtSignResetPassword, decryptRefreshToken, decryptResetPasswordToken} = require('../services/jsonWebToken');
 const asyncClient = require('../utils/redisPromisify');
 const sendEmail = require('../services/nodemailer');
 const resetPasswordTemplate = require('../utils/email-templates/resetPasswordTemplate');
