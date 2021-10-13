@@ -2,6 +2,7 @@ const {Booking, User, Offer} = require('../models');
 const sendMail = require("../services/nodemailer");
 const bookingMailTemplate = require('../utils/email-templates/bookingTemplate');
 const stripe = require("stripe")(process.env.STRIPE_TEST_PRIVATE_KEY)
+const dayjs = require("dayjs")
 
 const bookingController = {
 
@@ -45,7 +46,7 @@ const bookingController = {
           const { booking_start, booking_end, offer_id, email } = metadata;
           const { id } = request.token;
 
-          if(status !== 'succeeded') return response.status(401).send({message: "payment status not succeed"});
+          // if(status !== 'succeeded') return response.status(401).send({message: "payment status not succeed"});
   
      
           const bookingData = {
@@ -59,6 +60,9 @@ const bookingController = {
           const newBooking = await new Booking(bookingData).create();
           const user = await User.findById(id);
           const offer = await Offer.findById(offer_id);
+
+          newBooking.reservation_start = dayjs(newBooking.reservation_start).format("YYYY-MM-DD")
+          newBooking.reservation_end = dayjs(newBooking.reservation_end).format("YYYY-MM-DD")
           
           const emailBody = bookingMailTemplate(user, newBooking, offer);
           await sendMail(email, "Booking", emailBody);
