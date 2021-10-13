@@ -121,4 +121,4 @@ module.exports = (user, booking, offer) => {
     
   </body>
   </html>`
-}
+};
