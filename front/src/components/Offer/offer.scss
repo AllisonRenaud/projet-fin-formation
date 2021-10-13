@@ -36,7 +36,7 @@
     justify-content: space-evenly;
     margin: 3rem;
     
-    &__description {
+    &__description, &__price {
       margin-right: 2rem;
       padding: 2rem;
       background-color: #f0f8ffa8;
@@ -74,6 +74,14 @@
         font-style: italic;
       }
 
+    }
+
+    &__price {
+      margin-top: 2rem;
+      width: 100%;
+      h2 {
+        margin-bottom: 1rem;
+      }
     }
 
     &__calendar{

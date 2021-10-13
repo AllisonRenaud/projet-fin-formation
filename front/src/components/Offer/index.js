@@ -78,6 +78,10 @@ const Offer = ({ match }) => {
     return newArray;
   };
 
+  const getFinalPrice = (price, tax) => {
+    return price + (price * ( tax / 100 ));
+  }
+
   const showModal = () => {
     dispatch(openModal());
   };
@@ -175,6 +179,11 @@ const Offer = ({ match }) => {
                   disabledDates={getDatesDisabled(offerSelected.bookings)}
                   rangeColors={['#0dc948']}
                 />
+                
+                <div className="offer__main__price">
+                  <h2>Prix TTC à la semaine</h2>
+                  {getFinalPrice(offerSelected.price_ht, offerSelected.tax)} €
+                  </div>
               </div>
             </div>
             <div className="offer__main__buttons">
