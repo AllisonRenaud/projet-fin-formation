@@ -113,29 +113,6 @@ const Offer = ({ match }) => {
                 {offerSelected.city_name}
               </h3>
               <div className="offer__header__pictures">
-                {/* <Carousel>
-                  <img src={offerSelected.main_picture} alt="main" />
-                  <img
-                    src={offerSelected.galery_picture_1}
-                    alt="galery"
-                  />
-                  <img
-                    src={offerSelected.galery_picture_2}
-                    alt="galery"
-                  />
-                  <img
-                    src={offerSelected.galery_picture_3}
-                    alt="galery"
-                  />
-                  <img
-                    src={offerSelected.galery_picture_4}
-                    alt="galery"
-                  />
-                  <img
-                    src={offerSelected.galery_picture_5}
-                    alt="galery"
-                  />
-                </Carousel> */}
                 <Carousel dynamicHeight="true">
                   <div>
                     <img src={offerSelected.main_picture} alt="main" />
@@ -167,6 +144,7 @@ const Offer = ({ match }) => {
               />
               <div className="offer__main__calendar">
                 <DateRange
+                  className="offer__main__calendar__item"
                   onChange={onChangeDatePicker}
                   moveRangeOnFirstSelection={false}
                   ranges={[dateRange]}
@@ -181,9 +159,14 @@ const Offer = ({ match }) => {
                 />
                 
                 <div className="offer__main__price">
-                  <h2>Prix TTC à la semaine</h2>
-                  {getFinalPrice(offerSelected.price_ht, offerSelected.tax)} €
-                  </div>
+                  <h2>Prix TTC</h2>
+                  {getFinalPrice(offerSelected.price_ht, offerSelected.tax)} € / semaine
+                </div>
+                <div className="offer__main__address">
+                  <h2>Adresse</h2>
+                  <p>{offerSelected.street_number} {offerSelected.street_name}</p>
+                  <p>{offerSelected.zip_code} {offerSelected.city_name}</p>
+                </div>
               </div>
             </div>
             <div className="offer__main__buttons">
