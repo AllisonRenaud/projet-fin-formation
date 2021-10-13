@@ -2,37 +2,38 @@ const asyncClient = require('../utils/redisPromisify')
 const {decryptAccessToken} = require('./authJwt')
 
 
-const TIMEOUT = 60 * 30; // 30 minutes
+const TIMEOUT = 60 * 10; // 10 minutes
 
 const keys = [];
 
 
-module.exports = async (req, res, next) => {
+module.exports = async (request, response, next) => {
   
     try {
         console.log('actual cached keys', keys);
-        if(req.method === "GET"){
+        if(request.method === "GET"){
           
           let key;
-          const match = req.url.match(/admin|refresh|locations|offers|offer/);
+          const match = request.url.match(/admin|refresh|locations|offers|offer/);
          
-          if(match) key = req.url;
-          else if(req.headers["authorization"]) {
-            const {id} = await decryptAccessToken(req.headers["authorization"]);
-            key = req.url + id;
-          };
+          if(match) key = request.url
+          else if(request.headers["authorization"]) {
+            const {id} = await decryptAccessToken(request.headers["authorization"]);
+            key = request.url + id;
+          }
+          else return next();
           
           if (keys.includes(key)) {
               const value =  JSON.parse(await asyncClient.get(key));
               console.log('cached response');
-              res.json(value);
+              response.json(value);
           } 
-          else if(req.url.includes('refresh')) return next()
+          else if(request.url.includes('refresh')) return next()
           else {
              
-              const originalJson = res.json.bind(res);
+              const originalJson = response.json.bind(response);
 
-              res.json = async (data) => {
+              response.json = async (data) => {
                   
                   const stringifyedData = JSON.stringify(data);
 
@@ -48,7 +49,7 @@ module.exports = async (req, res, next) => {
               next();
           }
         }else {
-            let url = req.url;
+            let url = request.url;
             if(url.includes("?")) url = url.split('?').shift();
           
             const cachedKeys = keys.filter(key => {
@@ -76,7 +77,7 @@ module.exports = async (req, res, next) => {
         }
 
     } catch (error) {
-        res.status(401).send(error.message);
+        response.status(401).send(error.message);
     }
 }
 
