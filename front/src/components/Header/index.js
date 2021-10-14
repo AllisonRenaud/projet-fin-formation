@@ -8,8 +8,8 @@ import PropTypes from 'prop-types';
 import chalet from '../../assets/images/logo-ochalet.png';
 import './header.scss';
 
-const Header = ({ logged, role }) => {
-  // const role = useSelector((state) => state.user.role);
+const Header = ({ logged }) => {
+  const role = useSelector((state) => state.user.role);
   // const role = localStorage.getItem('role');
 
   const adminOptions = [
@@ -35,6 +35,18 @@ const Header = ({ logged, role }) => {
       key: 3, text: 'Déconnexion', as: Link, to: '/signout', value: 3,
     },
   ];
+
+  let options = adminOptions;
+
+  const testRole = () => {
+    if (role === 'admin'){
+      options = adminOptions;
+      return options;
+    } else {
+      options = userOptions;
+      return options;
+    }
+  };
 
   return (
 
@@ -88,7 +100,7 @@ const Header = ({ logged, role }) => {
           <Dropdown
             className="header__navigation__link"
             text="Mon compte"
-            options={role !== 'user' ? adminOptions : userOptions}
+            options={testRole()}
             simple
             item
           />

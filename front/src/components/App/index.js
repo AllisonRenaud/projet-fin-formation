@@ -6,7 +6,7 @@ import { Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
-import { connectUser } from '../../actions/user';
+import { connectUser, fetchUserData } from '../../actions/user';
 import { fetchLocations, fetchOffers } from '../../actions/offers';
 
 import 'semantic-ui-css/semantic.min.css';
@@ -50,7 +50,7 @@ const App = () => {
     dispatch(connectUser(accessToken));
   }
 
-  const role = localStorage.getItem('role');
+  // const role = localStorage.getItem('role');
   // const role = useSelector((state) => state.user.role);
 
   useEffect(
@@ -67,6 +67,13 @@ const App = () => {
     [],
   );
 
+  useEffect(
+    () => {
+      dispatch(fetchUserData());
+    },
+    [],
+  );
+
   if (loading) {
     return <Loading />;
   }
@@ -76,53 +83,53 @@ const App = () => {
       {/* <Header logged={logged} role={role} /> */}
       <Switch>
         <Route path="/" exact>
-          <Header logged={logged} role={role} />
+          <Header logged={logged} />
           <Main />
         </Route>
         <Route path="/locations" exact>
-          <Header logged={logged} role={role} />
+          <Header logged={logged} />
           <Locations />
         </Route>
         <Route path="/offers/location/:id" exact>
-          <Header logged={logged} role={role} />
+          <Header logged={logged} />
           <Offers />
         </Route>
         <Route path="/offers/:id" exact>
-          <Header logged={logged} role={role} />
+          <Header logged={logged} />
           <Offer />
         </Route>
         <Route path="/offers/:id/booking" exact>
-          <Header logged={logged} role={role} />
+          <Header logged={logged} />
           <Bookingform />
         </Route>
         <Route path="/booking-payment" exact>
           <Elements stripe={promise}>
-            <Header logged={logged} role={role} />
+            <Header logged={logged} />
             <Paymentform />
           </Elements>
         </Route>
         <Route path="/account/new-offer" exact>
-          <Header logged={logged} role={role} />
+          <Header logged={logged} />
           <Createoffer />
         </Route>
         <Route path="/signup" exact>
-          <Header logged={logged} role={role} />
+          <Header logged={logged} />
           <Signup />
         </Route>
         <Route path="/signin" exact>
-          <Header logged={logged} role={role} />
+          <Header logged={logged} />
           <Signin />
         </Route>
         <Route path="/profile" exact>
-          <Header logged={logged} role={role} />
+          <Header logged={logged} />
           {logged ? (
-            <Profile role={role} />
+            <Profile />
           ) : (
             <Signin />
           )}
         </Route>
         <Route path="/account/admin" exact>
-          <Header logged={logged} role={role} />
+          <Header logged={logged} />
           {logged ? (
             <Admin />
           ) : (
@@ -130,7 +137,7 @@ const App = () => {
           )}
         </Route>
         <Route path="/account/user" exact>
-          <Header logged={logged} role={role} />
+          <Header logged={logged} />
           {logged ? (
           <User />
           ) : (
