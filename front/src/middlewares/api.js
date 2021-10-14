@@ -47,6 +47,7 @@ export default (store) => (next) => async (action) => {
         })
         .then(
           (response) => {
+            console.log(response.data);
             const token = response.data.accessToken;
             const decoded = jwt_decode(token);
             store.dispatch(saveUserData(response.data.user));
