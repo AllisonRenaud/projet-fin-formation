@@ -8,9 +8,9 @@ import PropTypes from 'prop-types';
 import chalet from '../../assets/images/logo-ochalet.png';
 import './header.scss';
 
-const Header = ({ logged }) => {
+const Header = ({ logged, role }) => {
   // const role = useSelector((state) => state.user.role);
-  const role = localStorage.getItem('role');
+  // const role = localStorage.getItem('role');
 
   const adminOptions = [
     {
@@ -88,7 +88,7 @@ const Header = ({ logged }) => {
           <Dropdown
             className="header__navigation__link"
             text="Mon compte"
-            options={role !== 'admin' ? userOptions : adminOptions}
+            options={role !== 'user' ? adminOptions : userOptions}
             simple
             item
           />

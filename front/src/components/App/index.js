@@ -50,8 +50,8 @@ const App = () => {
     dispatch(connectUser(accessToken));
   }
 
-  // const role = localStorage.getItem('role');
-  const role = useSelector((state) => state.user.role);
+  const role = localStorage.getItem('role');
+  // const role = useSelector((state) => state.user.role);
 
   useEffect(
     () => {
@@ -76,53 +76,53 @@ const App = () => {
       {/* <Header logged={logged} role={role} /> */}
       <Switch>
         <Route path="/" exact>
-          <Header logged={logged} />
+          <Header logged={logged} role={role} />
           <Main />
         </Route>
         <Route path="/locations" exact>
-          <Header logged={logged} />
+          <Header logged={logged} role={role} />
           <Locations />
         </Route>
         <Route path="/offers/location/:id" exact>
-          <Header logged={logged} />
+          <Header logged={logged} role={role} />
           <Offers />
         </Route>
         <Route path="/offers/:id" exact>
-          <Header logged={logged} />
+          <Header logged={logged} role={role} />
           <Offer />
         </Route>
         <Route path="/offers/:id/booking" exact>
-          <Header logged={logged} />
+          <Header logged={logged} role={role} />
           <Bookingform />
         </Route>
         <Route path="/booking-payment" exact>
           <Elements stripe={promise}>
-            <Header logged={logged} />
+            <Header logged={logged} role={role} />
             <Paymentform />
           </Elements>
         </Route>
         <Route path="/account/new-offer" exact>
-          <Header logged={logged} />
+          <Header logged={logged} role={role} />
           <Createoffer />
         </Route>
         <Route path="/signup" exact>
-          <Header logged={logged} />
+          <Header logged={logged} role={role} />
           <Signup />
         </Route>
         <Route path="/signin" exact>
-          <Header logged={logged} />
+          <Header logged={logged} role={role} />
           <Signin />
         </Route>
         <Route path="/profile" exact>
-          <Header logged={logged} />
+          <Header logged={logged} role={role} />
           {logged ? (
-            <Profile />
+            <Profile role={role} />
           ) : (
             <Signin />
           )}
         </Route>
         <Route path="/account/admin" exact>
-          <Header logged={logged} />
+          <Header logged={logged} role={role} />
           {logged ? (
             <Admin />
           ) : (
@@ -130,7 +130,7 @@ const App = () => {
           )}
         </Route>
         <Route path="/account/user" exact>
-          <Header logged={logged} />
+          <Header logged={logged} role={role} />
           {logged ? (
           <User />
           ) : (
