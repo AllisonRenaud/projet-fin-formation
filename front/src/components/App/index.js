@@ -51,7 +51,7 @@ const App = () => {
   }
 
   // const role = localStorage.getItem('role');
-  // const role = useSelector((state) => state.user.role);
+  const role = useSelector((state) => state.user.role);
 
   useEffect(
     () => {

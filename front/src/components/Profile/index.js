@@ -38,9 +38,9 @@ const Profile = () => {
 
   const role = localStorage.getItem('role');
 
-  let admin = false;
+  let user = true;
   if (role === 'admin') {
-    admin = true;
+    user = false;
   }
 
   const changeField = (value, name) => {
@@ -116,7 +116,7 @@ const Profile = () => {
           onChange={changeField}
           updateMode={!updateMode}
         />
-        {!admin && (
+        {user && (
         <Field
           name="birth_date"
           value={birth_date ? format(new Date(birth_date), 'yyyy-MM-dd') : ''}
@@ -126,7 +126,7 @@ const Profile = () => {
           updateMode={!updateMode}
         />
         )}
-        {!admin && (
+        {user && (
         <Field
           name="street_number"
           value={street_number}
@@ -136,7 +136,7 @@ const Profile = () => {
           updateMode={!updateMode}
         />
         )}
-        {!admin && (
+        {user && (
         <Field
           name="street_name"
           type="text"
@@ -146,7 +146,7 @@ const Profile = () => {
           updateMode={!updateMode}
         />
         )}
-        {!admin && (
+        {user && (
         <Field
           name="zip_code"
           type="text"
@@ -156,7 +156,7 @@ const Profile = () => {
           updateMode={!updateMode}
         />
         )}
-        {!admin && (
+        {user && (
         <Field
           name="city_name"
           type="text"
@@ -166,7 +166,7 @@ const Profile = () => {
           updateMode={!updateMode}
         />
         )}
-        {!admin && (
+        {user && (
         <Field
           name="country"
           type="text"

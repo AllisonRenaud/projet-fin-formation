@@ -9,7 +9,8 @@ import chalet from '../../assets/images/logo-ochalet.png';
 import './header.scss';
 
 const Header = ({ logged }) => {
-  const role = useSelector((state) => state.user.role);
+  // const role = useSelector((state) => state.user.role);
+  const role = localStorage.getItem('role');
 
   const adminOptions = [
     {
